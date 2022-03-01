@@ -5,6 +5,8 @@ import { Books } from "../components/Books";
 import Stack from "../components/Stack";
 import { Heading, Text } from "../components/Typography";
 import { styled } from "../Stitches";
+import { Location } from "../components/Location";
+import { Page } from "../components/Page";
 
 const Body = styled("body", {
   fontSize: 12,
@@ -34,26 +36,21 @@ const shadowVariants = {
 };
 
 export const Panel = styled("div", {
-  background: "rgba(255, 255, 255, 0.1)",
+  // background: "rgba(255, 255, 255, 0.1)",
 
-  borderRadius: "$6",
+  borderRadius: "$4",
   marginLeft: "auto",
   marginRight: "auto",
 
   padding: "$3",
 
+  borderColor: "rgba(255, 255, 255, 0.6)",
+  borderWidth: 1,
+  borderStyle: "solid",
+
   variants: {
     ...shadowVariants,
   },
-});
-
-const Page = styled("div", {
-  maxWidth: 950,
-  paddingBottom: 64,
-  marginLeft: "auto",
-  marginRight: "auto",
-
-  fontFamily: "Iosevka SS05",
 });
 
 const Home: NextPage = () => {
@@ -84,6 +81,8 @@ const Home: NextPage = () => {
                 </Text>
               </Padding>
             </Panel>
+
+            <Location />
 
             <Books />
           </Stack>

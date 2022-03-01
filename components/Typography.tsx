@@ -5,34 +5,26 @@ export const Heading = styled("div", {
   color: "$orange",
   fontSize: 90,
   lineHeight: "1.2em",
+  fontWeight: 700,
   variants: {
     size: {
-      xs: { fontSize: "$1" },
       sm: { fontSize: "$3" },
       md: { fontSize: "$4" },
       lg: { fontSize: "$5" },
       xl: { fontSize: "$6" },
-      hero: { fontSize: 74 }, // TODO: Refactor
+      hero: { fontSize: "$7" }, // TODO: Refactor
     },
   },
   defaultVariants: { size: "md" },
 });
 
-const paragraphFontSizeVariants = {
-  fontSize: {
-    xs: { fontSize: "$1" },
-    sm: { fontSize: "$2" },
-    md: { fontSize: "$3" },
-    lg: { fontSize: "$4" },
-    xl: { fontSize: "$5" },
-  },
-};
-
 export const Text = styled("p", {
-  color: "white",
-  fontSize: "1.2rem",
   fontFamily: "Iosevka SS05",
-  variants: { ...paragraphFontSizeVariants },
+  fontSize: "$2",
+});
+
+export const SubText = styled("p", {
+  fontSize: "$1",
 });
 
 export const Link = styled("a", {
@@ -40,5 +32,7 @@ export const Link = styled("a", {
   "&:hover": {
     color: "$orange",
   },
-  variants: { ...paragraphFontSizeVariants },
+  variants: {
+    invert: { true: { color: "$orange", "&:hover": { color: "white" } } },
+  },
 });

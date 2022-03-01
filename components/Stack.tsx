@@ -11,6 +11,7 @@ const Stack = styled("div", {
       start: { justifyContent: "flex-start" },
       center: { justifyContent: "center" },
       end: { justifyContent: "flex-end" },
+      spaceBetween: { justifyContent: "space-between" },
     },
     align: {
       start: { alignItems: "flex-start" },
