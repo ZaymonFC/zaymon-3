@@ -13,4 +13,6 @@ export const Page = styled("div", {
 
   fontFamily: "Iosevka SS05",
   color: "white",
+
+  minHeight: "100vh",
 });

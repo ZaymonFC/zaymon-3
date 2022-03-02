@@ -17,8 +17,8 @@ html {
   3. Allow percentage-based heights in the application
 */
 html, body {
-  height: 100%;
   background-image: linear-gradient(200deg, rgb(20, 18, 32), rgb(17, 15, 27));
+  min-height: '100vh'
 }
 
 /*

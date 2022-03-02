@@ -54,7 +54,6 @@ const Stack = styled("div", {
     direction: "row",
     spacing: "md",
     justify: "start",
-    align: "start",
   },
 });
 
