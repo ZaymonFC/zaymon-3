@@ -2,29 +2,16 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { BackgroundNoise } from "../components/BackgroundNoise";
 import { Books } from "../components/Books";
+import { Location } from "../components/Location";
+import Padding from "../components/Padding";
+import { Page } from "../components/Page";
 import Stack from "../components/Stack";
 import { Heading, Text } from "../components/Typography";
 import { styled } from "../Stitches";
-import { Location } from "../components/Location";
-import { Page } from "../components/Page";
 
 const Body = styled("body", {
   fontSize: 12,
   fontWeight: 600,
-});
-
-export const Padding = styled("div", {
-  padding: "$2",
-  variants: {
-    size: {
-      xs: { padding: "$1" },
-      sm: { padding: "$2" },
-      md: { padding: "$4" },
-      lg: { padding: "$6" },
-      xl: { padding: "$8" },
-    },
-  },
-  defaultVariants: { size: "md" },
 });
 
 const shadowVariants = {

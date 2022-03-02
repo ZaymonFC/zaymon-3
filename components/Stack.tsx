@@ -6,6 +6,7 @@ const childWithGap = "> * + *";
 const Stack = styled("div", {
   display: "flex",
   $$gap: "initial",
+
   variants: {
     justify: {
       start: { justifyContent: "flex-start" },
@@ -53,6 +54,7 @@ const Stack = styled("div", {
     direction: "row",
     spacing: "md",
     justify: "start",
+    align: "start",
   },
 });
 

@@ -4,15 +4,15 @@ export const Heading = styled("div", {
   fontFamily: "EB Garamond",
   color: "$orange",
   fontSize: 90,
-  lineHeight: "1.2em",
   fontWeight: 700,
+  lineHeight: 1.5,
   variants: {
     size: {
       sm: { fontSize: "$3" },
       md: { fontSize: "$4" },
       lg: { fontSize: "$5" },
       xl: { fontSize: "$6" },
-      hero: { fontSize: "$7" }, // TODO: Refactor
+      hero: { fontSize: "$7" },
     },
   },
   defaultVariants: { size: "md" },
