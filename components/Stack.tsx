@@ -2,7 +2,7 @@ import { styled } from "../Stitches";
 
 const childWithGap = "> * + *";
 
-// yoinked from https://codesandbox.io/s/stitches-stack-demo-lr2nj
+// Originally yoinked from https://codesandbox.io/s/stitches-stack-demo-lr2nj
 const Stack = styled("div", {
   display: "flex",
   $$gap: "initial",

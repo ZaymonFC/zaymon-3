@@ -32,6 +32,7 @@ export const Link = styled("a", {
   "&:hover": {
     color: "$orange",
   },
+  textDecoration: "underline",
   variants: {
     invert: { true: { color: "$orange", "&:hover": { color: "white" } } },
   },
