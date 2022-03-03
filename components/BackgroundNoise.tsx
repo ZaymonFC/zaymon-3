@@ -7,11 +7,11 @@ const Underneath = styled("div", {
   position: "fixed",
   top: -20, // Account for parallax
   left: 0,
+  pointerEvents: "none",
 
   svg: {
     height: "120vh", // Account for parallax
     width: "100vw",
-    pointerEvents: "none",
   },
 });
 
