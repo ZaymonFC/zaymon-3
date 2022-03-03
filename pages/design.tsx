@@ -1,30 +1,14 @@
-import { Panel } from "./index";
-import Padding from "../components/Padding";
+import React from "react";
 import { BackgroundNoise } from "../components/BackgroundNoise";
+import Badge from "../components/Badge";
+import Padding from "../components/Padding";
 import { Page } from "../components/Page";
+import ProjectEntry from "../components/ProjectEntry";
+import { Separator } from "../components/Separator";
+import { VSpacer } from "../components/Spacers";
 import Stack from "../components/Stack";
 import { Heading, SubText, Text } from "../components/Typography";
-import { styled } from "../Stitches";
-import { Separator } from "../components/Separator";
-import React from "react";
-import Badge from "../components/Badge";
-
-const VSpacer = styled("div", {
-  margin: 0,
-  padding: 0,
-  variants: {
-    size: {
-      xs: { height: 4 },
-      sm: { height: 8 },
-      md: { height: 16 },
-      lg: { height: 24 },
-      xl: { height: 32 },
-    },
-  },
-  defaultVariants: {
-    size: "md",
-  },
-});
+import { Panel } from "./index";
 
 const Typography = () => (
   <div>
@@ -39,18 +23,58 @@ const Typography = () => (
   </div>
 );
 
+const Components = () => (
+  <>
+    <Text>Badges.</Text>
+    <Separator />
+    <VSpacer size="sm" />
+
+    <Stack spacing="sm" align="center">
+      <Badge>Badge</Badge>
+      <Badge>Badge</Badge>
+      <Badge>Badge</Badge>
+    </Stack>
+  </>
+);
+
+const SectionHeader = ({ title }: { title: string }) => (
+  <>
+    <Text>{title}</Text>
+    <Separator />
+  </>
+);
+
+const LetterDeskEntry = () => (
+  <ProjectEntry
+    from="2021"
+    to="now"
+    link="https://www.letterdesk.app"
+    description="LetterDesk gives you the time and space to communicate your thoughts, feelings, stories and ideas with others without the pressure of instant messaging."
+    technologies={[
+      "Clojure",
+      "Reitit",
+      "HugSQL",
+      "Mount",
+      "Malli ",
+      "React",
+      "TypeScript",
+      "RxJs",
+      "XState",
+      "Zustand",
+      "StitchesJS",
+    ]}
+  />
+);
+
 const DesignRoot = () => {
   return (
     <Page>
-      <BackgroundNoise />
       <VSpacer size="lg" />
       <Stack direction="column">
-        <div>Typography.</div>
-        <Separator />
+        <SectionHeader title="Typography." />
         <Typography />
         <VSpacer size="xs" />
-        <Text>Panels.</Text>
-        <Separator />
+        <SectionHeader title="Panels." />
         <VSpacer size="xs" />
         <Panel shadow="lg">
           <Padding>
@@ -58,21 +82,17 @@ const DesignRoot = () => {
           </Padding>
         </Panel>
         <VSpacer size="xs" />
-        <Text>Components.</Text>
-        <Separator />
-        <VSpacer size="sm" />
 
-        <Stack spacing="sm" align="center">
-          <Badge>Badge</Badge>
-          <Badge>Badge</Badge>
-          <Badge>Badge</Badge>
-        </Stack>
+        <Components />
 
         <VSpacer size="xs" />
-        <Text>Composites.</Text>
-        <Separator />
+        <SectionHeader title="Project entry." />
+
+        <LetterDeskEntry />
+
         <VSpacer size="sm" />
       </Stack>
+      <BackgroundNoise />
     </Page>
   );
 };
