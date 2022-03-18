@@ -24,14 +24,16 @@ const Inlines = styled("div", {
 });
 
 type ProjectEntryProps = {
+  title: string;
   from: string;
   to: string | "now";
   description: string;
-  link: string;
+  link: string | undefined;
   technologies: string[];
 };
 
 const ProjectEntry = ({
+  title,
   from,
   to,
   description,
@@ -61,8 +63,8 @@ const ProjectEntry = ({
       <Right>
         <Stack direction="column" spacing="sm">
           <Stack justify="spaceBetween" align="end">
-            <Heading size="md">LetterDesk</Heading>
-            <Link href={link}>{link}</Link>
+            <Heading size="md">{title}</Heading>
+            {link && <Link href={link}>{link}</Link>}
           </Stack>
           <Text>{description}</Text>
           <VSpacer size="xs" />

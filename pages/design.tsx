@@ -7,7 +7,7 @@ import ProjectEntry from "../components/ProjectEntry";
 import { Separator } from "../components/Separator";
 import { VSpacer } from "../components/Spacers";
 import Stack from "../components/Stack";
-import { Heading, SubText, Text } from "../components/Typography";
+import { Heading, Link, SubText, Text } from "../components/Typography";
 import { Panel } from "./index";
 
 const Typography = () => (
@@ -20,6 +20,12 @@ const Typography = () => (
     <Heading size="sm">Heading 3</Heading>
     <Text>Paragraph</Text>
     <SubText>Small</SubText>
+    <Stack spacing="md">
+      <Link href="#">Link</Link>
+      <Link href="#" invert>
+        Inverted Link
+      </Link>
+    </Stack>
   </div>
 );
 
@@ -76,7 +82,7 @@ const DesignRoot = () => {
         <VSpacer size="xs" />
         <SectionHeader title="Panels." />
         <VSpacer size="xs" />
-        <Panel shadow="lg">
+        <Panel emphasis="strong" shadow="md">
           <Padding>
             <Heading size="xl">Title</Heading>
           </Padding>

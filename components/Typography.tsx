@@ -3,7 +3,6 @@ import { styled } from "../Stitches";
 export const Heading = styled("div", {
   fontFamily: "EB Garamond",
   color: "$orange",
-  fontSize: 90,
   fontWeight: 700,
   lineHeight: 1.5,
   variants: {
@@ -18,13 +17,22 @@ export const Heading = styled("div", {
   defaultVariants: { size: "md" },
 });
 
+const TextVariants = { bold: { true: { fontWeight: "bold" } } };
+
 export const Text = styled("p", {
   fontFamily: "Iosevka SS05",
   fontSize: "$2",
+  fontWeight: "normal",
+  variants: {
+    ...TextVariants,
+  },
 });
 
 export const SubText = styled("p", {
   fontSize: "$1",
+  variants: {
+    ...TextVariants,
+  },
 });
 
 export const Link = styled("a", {

@@ -5,8 +5,10 @@ import { Books } from "../components/Books";
 import { Location } from "../components/Location";
 import Padding from "../components/Padding";
 import { Page } from "../components/Page";
+import ProjectEntry from "../components/ProjectEntry";
+import { VSpacer } from "../components/Spacers";
 import Stack from "../components/Stack";
-import { Heading, Text } from "../components/Typography";
+import { Emphasis, Heading, Link, Text } from "../components/Typography";
 import { styled } from "../Stitches";
 
 const Body = styled("body", {
@@ -29,16 +31,103 @@ export const Panel = styled("div", {
   marginLeft: "auto",
   marginRight: "auto",
 
-  padding: "$3",
-
-  borderColor: "rgba(255, 255, 255, 0.6)",
-  borderWidth: 1,
-  borderStyle: "solid",
+  padding: "$4",
 
   variants: {
     ...shadowVariants,
+    emphasis: {
+      light: {
+        borderColor: "white",
+        borderWidth: 1,
+        borderStyle: "solid",
+      },
+      strong: {
+        borderColor: "$orange",
+        borderWidth: 2,
+        borderStyle: "solid",
+      },
+    },
   },
 });
+
+const Letter = () => (
+  <Stack direction={"column"}>
+    <Heading>Dear Visitor,</Heading>
+    <Text>
+      I{"'"}m a full-stack software engineer currently based in Brisbane,
+      Australia. My passion is building software that enhances human connection
+      and relationships.
+    </Text>
+    <Text>
+      The way software can create space for the user is fascinating. Software
+      has the power to change the way people think, allow people to discover
+      themselves and their relationships to the world in new and fascinating
+      ways. I believe that software should aim to <em>expand</em> human
+      awareness over pursuing profits at the expense of the user.
+    </Text>
+    <Text>
+      I currently spend my time building{" "}
+      <Link href="https://www.letterdesk.app">LetterDesk.app</Link>, a digital
+      space that allows people to explore human experience together through
+      letter writing and deep connection.
+    </Text>
+    <Text>
+      I'm currently open to opportunities. If you're building software that aims
+      to make the world better, expand how people think, or offers a new
+      perspective on the human experience and you would like to talk to me,
+      please <Link>get in touch</Link>.
+    </Text>
+    <VSpacer size="md" />
+    <Text>Regards,</Text>
+    <Text> Zaymon Antonio</Text>
+  </Stack>
+);
+
+const Projects = () => (
+  <Stack direction="column">
+    <Heading>Projects.</Heading>
+    <ProjectEntry
+      title="LetterDesk"
+      from="2021"
+      to="now"
+      link="https://www.letterdesk.app"
+      description="LetterDesk gives you the time and space to communicate your thoughts, feelings, stories and ideas with others without the pressure of instant messaging."
+      technologies={[
+        "Clojure",
+        "Reitit",
+        "HugSQL",
+        "Mount",
+        "Malli ",
+        "React",
+        "TypeScript",
+        "RxJs",
+        "XState",
+        "Zustand",
+        "StitchesJS",
+      ]}
+    />
+  </Stack>
+);
+
+const Work = () => (
+  <Stack spacing="sm" direction="column">
+    <Heading>Work.</Heading>
+    <ProjectEntry
+      title="Connect Develop"
+      from="2018-11-01"
+      to="2022-02-25"
+      description="Creating beautiful, human-friendly digital experiences that solve problems for businesses and consumers at the intersection of the property and energy sectors."
+      technologies={[
+        "F#",
+        ".NET Core",
+        "ASP.NET Core",
+        "EventStore",
+        "TypeScript",
+        "React",
+      ]}
+    />
+  </Stack>
+);
 
 const Home: NextPage = () => {
   return (
@@ -50,14 +139,21 @@ const Home: NextPage = () => {
       </Head>
       <Body>
         <BackgroundNoise />
-        <Page>
-          <Stack justify={"center"}>
-            <Padding size="lg">
-              <Heading size="hero">Zaymon Antonio</Heading>
-            </Padding>
-          </Stack>
+        <Padding size="md">
+          <Page>
+            <VSpacer size={"xl"} />
+            {/* <Heading size="xl">Zaymon Antonio</Heading> */}
+            <VSpacer size={"xl"} />
 
-          <Stack spacing="lg" direction="column">
+            <Letter />
+
+            <VSpacer size={"xl"} />
+            <VSpacer size={"xl"} />
+            <Projects />
+            <VSpacer size={"xl"} />
+            <Work />
+
+            {/* <Stack spacing="lg" direction="column">
             <Panel shadow="lg">
               <Padding size="lg">
                 <Heading size="lg">This is me.</Heading>
@@ -67,13 +163,14 @@ const Home: NextPage = () => {
                   program. Jk this is filler text love you.
                 </Text>
               </Padding>
-            </Panel>
+            </Panel> */}
 
-            <Location />
+            {/* <Location /> */}
 
-            <Books />
-          </Stack>
-        </Page>
+            {/* <Books /> */}
+            {/* </Stack> */}
+          </Page>
+        </Padding>
       </Body>
     </>
   );
