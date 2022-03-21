@@ -1,7 +1,7 @@
 import { styled } from "../Stitches";
 
 export const Page = styled("div", {
-  maxWidth: 800,
+  maxWidth: 780,
   marginLeft: "auto",
   marginRight: "auto",
 

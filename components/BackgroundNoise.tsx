@@ -19,8 +19,8 @@ const mapWidthToNoiseFreq = (width: number) => {
   const data = [
     { bp: 0, value: 0.08 },
     { bp: 400, value: 0.1 },
-    { bp: 800, value: 0.15 },
-    { bp: 1200, value: 0.15 },
+    { bp: 800, value: 0.12 },
+    { bp: 1200, value: 0.14 },
     { bp: 2000, value: 0.2 },
   ];
 

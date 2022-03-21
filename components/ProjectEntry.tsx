@@ -7,8 +7,8 @@ import Stack from "./Stack";
 import { Heading, Link, Text, SubText } from "./Typography";
 
 const Left = styled("div", {
-  width: 140,
-  paddingTop: 9, // HACK. Workout how to make this nicer.
+  width: 150,
+  paddingTop: 10, // HACK. Workout how to make this nicer.
 });
 
 const Right = styled("div", {
@@ -28,7 +28,7 @@ type ProjectEntryProps = {
   from: string;
   to: string | "now";
   description: string;
-  link: string | undefined;
+  link?: string;
   technologies: string[];
 };
 
@@ -50,11 +50,12 @@ const ProjectEntry = ({
   return (
     <Stack spacing="lg">
       <Left>
-        <Stack direction="column" align="end" spacing="md">
+        <Stack direction="column" align="end" spacing="none">
           <SubText>
             {format(fromDate, "yyyy")} -{" "}
             {to === "now" ? "Now" : format(toDate, "yyyy")}
           </SubText>
+          <VSpacer size="sm" />
           <SubText>
             {formatDuration(duration, { format: ["years", "months"] })}
           </SubText>
@@ -67,7 +68,6 @@ const ProjectEntry = ({
             {link && <Link href={link}>{link}</Link>}
           </Stack>
           <Text>{description}</Text>
-          <VSpacer size="xs" />
           <Inlines>
             {technologies.map((technology, idx) => (
               <Badge key={idx}>{technology}</Badge>

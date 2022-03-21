@@ -1,14 +1,12 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { BackgroundNoise } from "../components/BackgroundNoise";
-import { Books } from "../components/Books";
-import { Location } from "../components/Location";
 import Padding from "../components/Padding";
 import { Page } from "../components/Page";
 import ProjectEntry from "../components/ProjectEntry";
 import { VSpacer } from "../components/Spacers";
 import Stack from "../components/Stack";
-import { Emphasis, Heading, Link, Text } from "../components/Typography";
+import { Heading, Link, Text } from "../components/Typography";
 import { styled } from "../Stitches";
 
 const Body = styled("body", {
@@ -125,6 +123,13 @@ const Work = () => (
         "TypeScript",
         "React",
       ]}
+    />
+    <ProjectEntry
+      title="Concept Safety Systems"
+      from="2017-01-04"
+      to="2018-11-01"
+      description="Fill me"
+      technologies={["C#", "TypeScript", "React", "Cypress E2E"]}
     />
   </Stack>
 );
