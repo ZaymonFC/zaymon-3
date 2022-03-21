@@ -52,6 +52,7 @@ const SectionHeader = ({ title }: { title: string }) => (
 
 const LetterDeskEntry = () => (
   <ProjectEntry
+    title="LetterDesk"
     from="2021"
     to="now"
     link="https://www.letterdesk.app"
