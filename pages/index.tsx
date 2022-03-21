@@ -58,10 +58,9 @@ const Letter = () => (
     </Text>
     <Text>
       The way software can create space for the user is fascinating. Software
-      has the power to change the way people think, allow people to discover
-      themselves and their relationships to the world in new and fascinating
-      ways. I believe that software should aim to <em>expand</em> human
-      awareness over pursuing profits at the expense of the user.
+      can empower people to think in new ways, facilitate self-discovery and
+      explore the relationship between us and the world. I believe that software
+      should aim to <em>expand</em> human awareness over profit maxing.
     </Text>
     <Text>
       I currently spend my time building{" "}
@@ -70,9 +69,9 @@ const Letter = () => (
       letter writing and deep connection.
     </Text>
     <Text>
-      I'm currently open to opportunities. If you're building software that aims
-      to make the world better, expand how people think, or offers a new
-      perspective on the human experience and you would like to talk to me,
+      I{"'"}m currently open to opportunities. If you{"'"}re building software
+      that aims to make the world better, expand how people think, or offers a
+      new perspective on the human experience and you would like to talk to me,
       please <Link>get in touch</Link>.
     </Text>
     <VSpacer size="md" />
