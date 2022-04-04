@@ -22,7 +22,7 @@ const Stack = styled("div", {
     spacing: {
       none: { $$gap: 0 },
       sm: {
-        $$gap: "$space$2",
+        $$gap: "$space$4",
       },
       md: {
         $$gap: "$space$5",

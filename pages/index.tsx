@@ -69,10 +69,14 @@ const Letter = () => (
       letter writing and deep connection.
     </Text>
     <Text>
-      I{"'"}m currently open to opportunities. If you{"'"}re building software
-      that aims to make the world better, expand how people think, or offers a
-      new perspective on the human experience and you would like to talk to me,
-      please <Link>get in touch</Link>.
+      I{"'"}m also working on a series of short posts called <em>bytes</em>{" "}
+      <Link>here</Link> for <strong>Boundless.Garden</strong>
+    </Text>
+    <Text>
+      If you{"'"}re building software that aims to make the world better, expand
+      how people think, or offers a new perspective on the human experience and
+      you would like to talk to me, please{" "}
+      <Link href="mailto:zaymon.antonio@protonmail.com">get in touch</Link>.
     </Text>
     <VSpacer size="md" />
     <Text>Regards,</Text>
@@ -87,6 +91,7 @@ const Projects = () => (
       title="LetterDesk"
       from="2021"
       to="now"
+      position={"Sole Developer"}
       link="https://www.letterdesk.app"
       description="LetterDesk gives you the time and space to communicate your thoughts, feelings, stories and ideas with others without the pressure of instant messaging."
       technologies={[
@@ -113,6 +118,7 @@ const Work = () => (
       title="Connect Develop"
       from="2018-11-01"
       to="2022-02-25"
+      position="Software Engineer"
       description="Creating beautiful, human-friendly digital experiences that solve problems for businesses and consumers at the intersection of the property and energy sectors."
       technologies={[
         "F#",
@@ -127,8 +133,29 @@ const Work = () => (
       title="Concept Safety Systems"
       from="2017-01-04"
       to="2018-11-01"
-      description="Fill me"
+      position={"Student Software Developer"}
+      description={`Created a suite of UI tests to look out for regressions and ensure correctness.
+                    Web API's and .NET web application code. Requirements analysis. Bug fixes and investigation.
+                    Technology research and comparison.`}
       technologies={["C#", "TypeScript", "React", "Cypress E2E"]}
+    />
+    <ProjectEntry
+      title="Griffith University"
+      from="2017-03-01"
+      to="2018-07-01"
+      position="PASS Leader"
+      description={`Working as a PASS Leader (peer assisted study sessions) with classes up to 25 students for the courses
+                    Computer Systems and Networks and Data Management.
+                    Maintained high student retention rates throughout the semester.`}
+      technologies={[
+        "Logisim",
+        "SQL",
+        "Computing Fundamentals",
+        "Error Detection",
+        "OSI Stack",
+        "Binary Representations",
+        "Gate Logic",
+      ]}
     />
   </Stack>
 );

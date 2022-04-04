@@ -1,5 +1,7 @@
 import { styled } from "../Stitches";
 
+const TextVariants = { bold: { true: { fontWeight: "bold" } } };
+
 export const Heading = styled("div", {
   fontFamily: "EB Garamond",
   color: "$orange",
@@ -16,8 +18,6 @@ export const Heading = styled("div", {
   },
   defaultVariants: { size: "md" },
 });
-
-const TextVariants = { bold: { true: { fontWeight: "bold" } } };
 
 export const Text = styled("p", {
   fontFamily: "Iosevka SS05",
