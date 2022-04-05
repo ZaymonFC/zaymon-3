@@ -3,7 +3,7 @@ import { styled } from "../Stitches";
 import Badge from "./Badge";
 import { VSpacer } from "./Spacers";
 import Stack from "./Stack";
-import { Heading, Link, SubLink, SubText, Text } from "./Typography";
+import { Heading, SubLink, SubText, Text } from "./Typography";
 
 const Inlines = styled("div", {
   "> *": {
@@ -69,7 +69,7 @@ const ProjectEntry = ({
       </Stack>
 
       <Stack
-        spacing={{ "@initial": "sm", "@bp1": undefined }}
+        spacing={{ "@initial": "sm", "@bp1": "none" }}
         direction={{ "@initial": "column", "@bp1": "row" }}
         justify={"spaceBetween"}
       >
@@ -77,7 +77,7 @@ const ProjectEntry = ({
         {link && <SubLink href={link}>{link}</SubLink>}
       </Stack>
 
-      <VSpacer size="md" />
+      <VSpacer size="sm" />
       <Text>{description}</Text>
 
       <Inlines>

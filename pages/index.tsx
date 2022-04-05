@@ -86,7 +86,7 @@ const Letter = () => (
 );
 
 const Projects = () => (
-  <Stack direction="column">
+  <Stack spacing="lg" direction="column">
     <ProjectEntry
       title="LetterDesk"
       from="2021"
@@ -218,14 +218,14 @@ const Home: NextPage = () => {
             <VSpacer size={"xl"} />
 
             <SectionHeader title={"Projects."} />
-            <VSpacer size={"xl"} />
+            <VSpacer size={"lg"} />
             <Projects />
 
             <VSpacer size={"xl"} />
             <VSpacer size={"xl"} />
 
             <SectionHeader title={"Work."} />
-            <VSpacer size="xl" />
+            <VSpacer size="lg" />
             <WorkEntries />
 
             {/* <Stack spacing="lg" direction="column">
