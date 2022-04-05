@@ -5,7 +5,7 @@ import { styled } from "../Stitches";
 
 const Underneath = styled("div", {
   position: "fixed",
-  top: -20, // Account for parallax
+  top: -80, // Account for parallax
   left: 0,
   pointerEvents: "none",
 
@@ -29,7 +29,7 @@ const mapWidthToNoiseFreq = (width: number) => {
 };
 
 export const BackgroundNoise = () => {
-  const parallax: any = useParallax({ speed: 10 });
+  const parallax: any = useParallax({ speed: 5 });
 
   const { width } = useWindowDimensions();
   const baseFreq = useMemo(() => mapWidthToNoiseFreq(width), [width]);
