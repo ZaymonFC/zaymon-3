@@ -161,7 +161,6 @@ const WorkEntries = () => (
 const SectionHeader = ({ title }: { title: string }) => (
   <>
     <Heading size="lg">{title}</Heading>
-    <VSpacer size="xs" />
     <Separator />
   </>
 );
@@ -178,11 +177,11 @@ const Home: NextPage = () => {
         <BackgroundNoise />
         <Padding size="md">
           <Page>
-            <VSpacer size={"md"} />
-            <Heading style={{ textAlign: "center" }} size="md">
-              zaymon.dev
-            </Heading>
-            <VSpacer size={"xl"} />
+            <Padding size={{ "@initial": "lg", "@bp1": "xl" }}>
+              <Heading style={{ textAlign: "center" }} size="md">
+                zaymon.dev
+              </Heading>
+            </Padding>
 
             <Letter />
 

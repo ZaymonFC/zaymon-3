@@ -43,6 +43,10 @@ const Time = ({ from, to }: any) => {
   );
 };
 
+const Role = styled(Text, {
+  color: "$orange",
+});
+
 const ProjectEntry = ({
   title,
   from,
@@ -53,7 +57,7 @@ const ProjectEntry = ({
   technologies,
 }: ProjectEntryProps) => (
   <div>
-    <Stack spacing="sm" direction="column">
+    <Stack spacing="none" direction="column">
       <Stack
         justify={{ "@initial": "spaceBetween", "@bp1": undefined }}
         align={{ "@initial": "start", "@bp1": "end" }}
@@ -69,11 +73,11 @@ const ProjectEntry = ({
         direction={{ "@initial": "column", "@bp1": "row" }}
         justify={"spaceBetween"}
       >
-        {position && <Text>{position}</Text>}
+        {position && <Role>{position}</Role>}
         {link && <SubLink href={link}>{link}</SubLink>}
       </Stack>
 
-      <VSpacer size="xs" />
+      <VSpacer size="md" />
       <Text>{description}</Text>
 
       <Inlines>

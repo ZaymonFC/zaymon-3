@@ -22,6 +22,7 @@ const shadows = {
 export const { styled, css, getCssText } = createStitches({
   theme: {
     colors: {
+      background: "rgb(20, 18, 32)",
       gray500: "hsl(206,10%,76%)",
       blue500: "hsl(206,100%,50%)",
       purple500: "hsl(252,78%,60%)",
