@@ -5,19 +5,6 @@ import { VSpacer } from "./Spacers";
 import Stack from "./Stack";
 import { Heading, Link, SubLink, SubText, Text } from "./Typography";
 
-const Left = styled("div", {
-  width: 100,
-  paddingTop: 10, // HACK. Workout how to make this nicer.
-
-  variants: {
-    hide: { true: { display: "none" }, false: { display: "block" } },
-  },
-});
-
-const Right = styled("div", {
-  width: "100%",
-});
-
 const Inlines = styled("div", {
   "> *": {
     display: "inline-block",
@@ -86,6 +73,7 @@ const ProjectEntry = ({
         {link && <SubLink href={link}>{link}</SubLink>}
       </Stack>
 
+      <VSpacer size="xs" />
       <Text>{description}</Text>
 
       <Inlines>
