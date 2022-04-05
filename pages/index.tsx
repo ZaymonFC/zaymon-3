@@ -97,8 +97,7 @@ const Projects = () => (
       technologies={[
         "Clojure",
         "Reitit",
-        "HugSQL",
-        "Mount",
+        "PostgreSQL",
         "Malli ",
         "React",
         "TypeScript",
