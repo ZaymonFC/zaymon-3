@@ -1,13 +1,17 @@
-import { format, intervalToDuration } from "date-fns";
+import { format, formatDuration, intervalToDuration } from "date-fns";
 import { styled } from "../Stitches";
 import Badge from "./Badge";
 import { VSpacer } from "./Spacers";
 import Stack from "./Stack";
-import { Heading, Link, SubText, Text } from "./Typography";
+import { Heading, Link, SubLink, SubText, Text } from "./Typography";
 
 const Left = styled("div", {
   width: 100,
   paddingTop: 10, // HACK. Workout how to make this nicer.
+
+  variants: {
+    hide: { true: { display: "none" }, false: { display: "block" } },
+  },
 });
 
 const Right = styled("div", {
@@ -32,6 +36,26 @@ type ProjectEntryProps = {
   technologies: string[];
 };
 
+const Time = ({ from, to }: any) => {
+  const [fromDate, toDate] = [
+    new Date(from),
+    to === "now" ? new Date() : new Date(to),
+  ];
+
+  const duration = intervalToDuration({ start: fromDate, end: toDate });
+
+  return (
+    <>
+      <SubText>
+        {format(fromDate, "MMM yyyy")}
+        {" to "}
+        {to === "now" ? "Present" : format(toDate, "MMM yyyy")} (
+        {formatDuration(duration, { format: ["years", "months"] })})
+      </SubText>
+    </>
+  );
+};
+
 const ProjectEntry = ({
   title,
   from,
@@ -40,53 +64,37 @@ const ProjectEntry = ({
   link,
   position,
   technologies,
-}: ProjectEntryProps) => {
-  const [fromDate, toDate] = [
-    new Date(from),
-    to === "now" ? new Date() : new Date(to),
-  ];
+}: ProjectEntryProps) => (
+  <div>
+    <Stack spacing="sm" direction="column">
+      <Stack
+        justify={{ "@initial": "spaceBetween", "@bp1": undefined }}
+        align={{ "@initial": "start", "@bp1": "end" }}
+        direction={{ "@initial": "column", "@bp1": "row" }}
+        spacing="none"
+      >
+        <Heading size="md">{title}</Heading>
+        <Time {...{ from, to }}></Time>
+      </Stack>
 
-  // const duration = intervalToDuration({ start: fromDate, end: toDate });
+      <Stack
+        spacing={{ "@initial": "sm", "@bp1": undefined }}
+        direction={{ "@initial": "column", "@bp1": "row" }}
+        justify={"spaceBetween"}
+      >
+        {position && <Text>{position}</Text>}
+        {link && <SubLink href={link}>{link}</SubLink>}
+      </Stack>
 
-  return (
-    <Stack spacing="lg">
-      <Left>
-        <SubText>
-          {format(fromDate, "MMM yyyy")}
-          {" to "}
-          {to === "now" ? "Present" : format(toDate, "MMM yyyy")}
-        </SubText>
-        <VSpacer size="md" />
-        {/* <SubText>
-            {formatDuration(duration, { format: ["years", "months"] })}
-          </SubText> */}
-      </Left>
-      <Right>
-        <Stack direction="column" spacing="none">
-          <Stack justify={"spaceBetween"} align="end">
-            <Heading size="md">{title}</Heading>
-            <Stack spacing="sm">
-              {position && <Text>{position}</Text>}
+      <Text>{description}</Text>
 
-              {link && (
-                <>
-                  <Text>-</Text>
-                  <Link href={link}>{link}</Link>
-                </>
-              )}
-            </Stack>
-          </Stack>
-          <VSpacer size="sm"></VSpacer>
-          <Text>{description}</Text>
-          <Inlines>
-            {technologies.map((technology, idx) => (
-              <Badge key={idx}>{technology}</Badge>
-            ))}
-          </Inlines>
-        </Stack>
-      </Right>
+      <Inlines>
+        {technologies.map((technology, idx) => (
+          <Badge key={idx}>{technology}</Badge>
+        ))}
+      </Inlines>
     </Stack>
-  );
-};
+  </div>
+);
 
 export default ProjectEntry;

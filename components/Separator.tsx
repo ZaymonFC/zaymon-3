@@ -1,8 +1,8 @@
-import { styled } from "@stitches/react";
 import * as SeparatorPrimitive from "@radix-ui/react-separator";
+import { styled } from "../Stitches";
 
 const StyledSeparator = styled(SeparatorPrimitive.Root, {
-  backgroundColor: "white",
+  backgroundColor: "$orange",
   "&[data-orientation=horizontal]": { height: 1, width: "100%" },
   "&[data-orientation=vertical]": { height: "100%", width: 1 },
 });

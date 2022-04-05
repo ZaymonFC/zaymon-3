@@ -45,3 +45,7 @@ export const Link = styled("a", {
     invert: { true: { color: "$orange", "&:hover": { color: "white" } } },
   },
 });
+
+export const SubLink = styled(Link, {
+  fontSize: "$1",
+});

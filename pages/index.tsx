@@ -4,6 +4,7 @@ import { BackgroundNoise } from "../components/BackgroundNoise";
 import Padding from "../components/Padding";
 import { Page } from "../components/Page";
 import ProjectEntry from "../components/ProjectEntry";
+import { Separator } from "../components/Separator";
 import { VSpacer } from "../components/Spacers";
 import Stack from "../components/Stack";
 import { Heading, Link, Text } from "../components/Typography";
@@ -86,7 +87,6 @@ const Letter = () => (
 
 const Projects = () => (
   <Stack direction="column">
-    <Heading>Projects.</Heading>
     <ProjectEntry
       title="LetterDesk"
       from="2021"
@@ -111,9 +111,8 @@ const Projects = () => (
   </Stack>
 );
 
-const Work = () => (
-  <Stack spacing="sm" direction="column">
-    <Heading>Work.</Heading>
+const WorkEntries = () => (
+  <Stack spacing="lg" direction="column">
     <ProjectEntry
       title="Connect Develop"
       from="2018-11-01"
@@ -160,6 +159,14 @@ const Work = () => (
   </Stack>
 );
 
+const SectionHeader = ({ title }: { title: string }) => (
+  <>
+    <Heading size="lg">{title}</Heading>
+    <VSpacer size="xs" />
+    <Separator />
+  </>
+);
+
 const Home: NextPage = () => {
   return (
     <>
@@ -172,17 +179,27 @@ const Home: NextPage = () => {
         <BackgroundNoise />
         <Padding size="md">
           <Page>
-            <VSpacer size={"xl"} />
-            {/* <Heading size="xl">Zaymon Antonio</Heading> */}
+            <VSpacer size={"md"} />
+            <Heading style={{ textAlign: "center" }} size="md">
+              zaymon.dev
+            </Heading>
             <VSpacer size={"xl"} />
 
             <Letter />
 
             <VSpacer size={"xl"} />
             <VSpacer size={"xl"} />
-            <Projects />
+
+            <SectionHeader title={"Projects."} />
             <VSpacer size={"xl"} />
-            <Work />
+            <Projects />
+
+            <VSpacer size={"xl"} />
+            <VSpacer size={"xl"} />
+
+            <SectionHeader title={"Work."} />
+            <VSpacer size="xl" />
+            <WorkEntries />
 
             {/* <Stack spacing="lg" direction="column">
             <Panel shadow="lg">

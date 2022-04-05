@@ -20,7 +20,7 @@ const Stack = styled("div", {
       end: { alignItems: "flex-end" },
     },
     spacing: {
-      none: { $$gap: 0 },
+      none: {},
       sm: {
         $$gap: "$space$4",
       },
@@ -29,6 +29,9 @@ const Stack = styled("div", {
       },
       lg: {
         $$gap: "$space$6",
+      },
+      xl: {
+        $$gap: "$space$7",
       },
     },
     direction: {
