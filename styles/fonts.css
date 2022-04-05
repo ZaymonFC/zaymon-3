@@ -39,41 +39,35 @@
   font-family: 'Iosevka SS05';
   font-style: normal;
   font-weight: 700;
-  src: local(''),
-       url('./fonts/iosevka-ss05-bold.ttf') format('ttf');
+  src: url('./fonts/iosevka-ss05-bold.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Iosevka SS05';
   font-style: italic;
   font-weight: 700;
-  src: local(''),
-       url('./fonts/iosevka-ss05-bolditalic.ttf') format('ttf');
+  src: url('./fonts/iosevka-ss05-bolditalic.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Iosevka SS05';
   font-style: italic;
   font-weight: 400;
-  src: local(''),
-       url('./fonts/iosevka-ss05-italic.ttf') format('ttf');
+  src: url('./fonts/iosevka-ss05-italic.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Iosevka SS05';
-  font-style: 400;
-  font-weight: 300;
-  src: local(''),
-       url('./fonts/iosevka-ss05-regular.ttf') format('ttf');
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/iosevka-ss05-regular.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Iosevka SS05';
   font-style: normal;
   font-weight: 600;
-  src: local(''),
-       url('./fonts/iosevka-ss05-semibold.ttf') format('ttf');
+  src: url('./fonts/iosevka-ss05-semibold.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Iosevka SS05';
   font-style: italic;
   font-weight: 600;
-  src: local(''),
-       url('./fonts/iosevka-ss05-semibolditalic.ttf') format('ttf');
+  src: url('./fonts/iosevka-ss05-semibolditalic.ttf') format('truetype');
 }
