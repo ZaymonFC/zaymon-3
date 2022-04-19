@@ -64,7 +64,7 @@ const Letter = () => (
     </Text>
     <Text>
       I{"'"}m writing a series of short posts called <em>bytes</em> for{" "}
-      <Link href="https://boundless.garden">Boundless.Garden</Link>
+      <Link href="https://boundless.garden">Boundless.Garden</Link>.
     </Text>
     <Text>
       If you{"'"}re building software that aims to make the world better, expand
@@ -166,10 +166,57 @@ const WorkEntries = () => (
   </Stack>
 );
 
+const Socials = () => {
+  return (
+    <Text>
+      Follow me on{" "}
+      <Link href="https://www.twitter.com/zaymonantonio">
+        <a>Twitter</a>
+      </Link>
+      , see my code on{" "}
+      <Link href="https://www.github.com/ZaymonFC">
+        <a>GitHub</a>
+      </Link>
+      , check out what books I{"'"}m reading on{" "}
+      <Link href="https://oku.club/user/zaymon">
+        <a>Oku.Club</a>
+      </Link>{" "}
+      or have a look at my collections on{" "}
+      <Link href="https://www.are.na/zaymon-antonio">
+        <a>Are.Na</a>
+      </Link>
+      .
+    </Text>
+  );
+};
+
+const Acknowledgements = () => {
+  return (
+    <>
+      <Text>
+        This website is built with <Link href="">NextJS</Link> and{" "}
+        <Link href="https://stitches.dev">
+          <a>StitchesJS</a>
+        </Link>
+        .
+      </Text>
+      <VSpacer size="sm" />
+      <Text>
+        The{" "}
+        <Link href="https://github.com/ZaymonFC/zaymon-3">
+          <a>source code</a>
+        </Link>{" "}
+        is public on GitHub.
+      </Text>
+    </>
+  );
+};
+
 const SectionHeader = ({ title }: { title: string }) => (
   <>
     <Heading size="lg">{title}</Heading>
     <Separator />
+    <VSpacer size="lg" />
   </>
 );
 
@@ -207,19 +254,23 @@ const Home: NextPage = () => {
 
             <Letter />
 
-            <VSpacer size={"xl"} />
-            <VSpacer size={"xl"} />
+            <VSpacer size={"xxl"} />
 
             <SectionHeader title={"Projects."} />
-            <VSpacer size={"lg"} />
             <Projects />
 
-            <VSpacer size={"xl"} />
-            <VSpacer size={"xl"} />
+            <VSpacer size={"xxl"} />
+
+            <SectionHeader title="Socials." />
+            <Socials />
+
+            <VSpacer size={"xxl"} />
 
             <SectionHeader title={"Work."} />
-            <VSpacer size="lg" />
             <WorkEntries />
+
+            <VSpacer size="xxl" />
+            <Acknowledgements />
           </Page>
         </Padding>
       </div>

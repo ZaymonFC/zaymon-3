@@ -9,6 +9,7 @@ export const VSpacer = styled("div", {
       md: { height: 16 },
       lg: { height: 24 },
       xl: { height: 32 },
+      xxl: { height: 64 },
     },
   },
   defaultVariants: {
