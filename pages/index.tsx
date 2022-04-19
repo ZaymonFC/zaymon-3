@@ -24,8 +24,6 @@ const shadowVariants = {
 };
 
 export const Panel = styled("div", {
-  // background: "rgba(255, 255, 255, 0.1)",
-
   borderRadius: "$4",
   marginLeft: "auto",
   marginRight: "auto",
@@ -70,8 +68,10 @@ const Letter = () => (
       letter writing and deep connection.
     </Text>
     <Text>
-      I{"'"}m also working on a series of short posts called <em>bytes</em>{" "}
-      <Link>here</Link> for <strong>Boundless.Garden</strong>
+      I{"'"}m writing a series of short posts called <em>bytes</em> for{" "}
+      <Link href="https://boundless.garden">
+        <strong>Boundless.Garden</strong>
+      </Link>
     </Text>
     <Text>
       If you{"'"}re building software that aims to make the world better, expand
@@ -202,7 +202,7 @@ const Home: NextPage = () => {
         <meta name="description" content="Zaymon.dev" />
         <Favicons />
       </Head>
-      <Body>
+      <div>
         <BackgroundNoise />
         <Padding size="md">
           <Page>
@@ -227,26 +227,9 @@ const Home: NextPage = () => {
             <SectionHeader title={"Work."} />
             <VSpacer size="lg" />
             <WorkEntries />
-
-            {/* <Stack spacing="lg" direction="column">
-            <Panel shadow="lg">
-              <Padding size="lg">
-                <Heading size="lg">This is me.</Heading>
-                <Text>
-                  Hey there. I{"'"}m a software engineer. I write programs. Do
-                  you need help with a program? Why? Write your own damn
-                  program. Jk this is filler text love you.
-                </Text>
-              </Padding>
-            </Panel> */}
-
-            {/* <Location /> */}
-
-            {/* <Books /> */}
-            {/* </Stack> */}
           </Page>
         </Padding>
-      </Body>
+      </div>
     </>
   );
 };

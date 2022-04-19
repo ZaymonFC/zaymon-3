@@ -20,11 +20,13 @@ const mapWidthToNoiseFreq = (width: number) => {
     { bp: 0, value: 0.08 },
     { bp: 400, value: 0.1 },
     { bp: 800, value: 0.12 },
-    { bp: 1200, value: 0.14 },
+    { bp: 1200, value: 0.2 },
     { bp: 2000, value: 0.2 },
   ];
 
-  const { value } = data.reverse().find((n) => width >= n.bp) || data[0];
+  const { value, bp } =
+    data.reverse().find((n) => width >= n.bp) || data[data.length - 1];
+
   return value;
 };
 
