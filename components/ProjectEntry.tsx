@@ -79,6 +79,7 @@ const ProjectEntry = ({
 
       <VSpacer size="sm" />
       <Text>{description}</Text>
+      <VSpacer size="xs" />
 
       <Inlines>
         {technologies.map((technology, idx) => (
