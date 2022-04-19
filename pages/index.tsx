@@ -64,9 +64,7 @@ const Letter = () => (
     </Text>
     <Text>
       I{"'"}m writing a series of short posts called <em>bytes</em> for{" "}
-      <Link href="https://boundless.garden">
-        <strong>Boundless.Garden</strong>
-      </Link>
+      <Link href="https://boundless.garden">Boundless.Garden</Link>
     </Text>
     <Text>
       If you{"'"}re building software that aims to make the world better, expand
