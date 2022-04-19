@@ -10,11 +10,6 @@ import Stack from "../components/Stack";
 import { Heading, Link, Text } from "../components/Typography";
 import { styled } from "../Stitches";
 
-const Body = styled("body", {
-  fontSize: 12,
-  fontWeight: 600,
-});
-
 const shadowVariants = {
   shadow: {
     sm: { boxShadow: "$1" },
