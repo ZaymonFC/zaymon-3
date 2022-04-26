@@ -194,7 +194,8 @@ const Acknowledgements = () => {
   return (
     <>
       <Text>
-        This website is built with <Link href="">NextJS</Link> and{" "}
+        This website is built with <Link href="https://nextjs.org">NextJS</Link>{" "}
+        and{" "}
         <Link href="https://stitches.dev">
           <a>StitchesJS</a>
         </Link>
