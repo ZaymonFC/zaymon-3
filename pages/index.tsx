@@ -85,7 +85,7 @@ const Projects = () => (
       from="2021"
       to="now"
       position={"Sole Developer"}
-      link="https://www.letterdesk.app"
+      link={["https://www.letterdesk.app", "https://roots.letterdesk.app"]}
       description="LetterDesk gives you the time and space to communicate your thoughts, feelings, stories and ideas with others without the pressure of instant messaging."
       technologies={[
         "Clojure",

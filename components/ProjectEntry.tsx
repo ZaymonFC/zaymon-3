@@ -18,7 +18,7 @@ type ProjectEntryProps = {
   from: string;
   to: string | "now";
   description: string;
-  link?: string;
+  link?: string | string[];
   position?: string;
   technologies: string[];
 };
@@ -74,7 +74,19 @@ const ProjectEntry = ({
         justify={"spaceBetween"}
       >
         {position && <Role>{position}</Role>}
-        {link && <SubLink href={link}>{link}</SubLink>}
+
+        <Stack spacing="sm" direction={{ "@initial": "column", "@bp1": "row" }}>
+          {link &&
+            (Array.isArray(link) ? (
+              link.map((link) => (
+                <SubLink key={link} href={link}>
+                  {link}
+                </SubLink>
+              ))
+            ) : (
+              <SubLink href={link}>{link}</SubLink>
+            ))}
+        </Stack>
       </Stack>
 
       <VSpacer size="sm" />
