@@ -46,7 +46,7 @@ const Letter = () => (
   <Stack direction={"column"}>
     <Heading>Dear Visitor,</Heading>
     <Text>
-      I{"'"}m a software engineer currently based in Brisbane, Australia. My
+      I{"'"}m an Australian software engineer currently based in Vancouver, Canada. My
       passion is building software that enhances human connection and
       relationships.
     </Text>
