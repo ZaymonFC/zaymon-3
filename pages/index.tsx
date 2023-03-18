@@ -121,6 +121,22 @@ const Projects = () => (
 const WorkEntries = () => (
   <Stack spacing="lg" direction="column">
     <ProjectEntry
+      title="UtilityOn"
+      from="2022-10"
+      to="now"
+      position="Senior Software Engineer"
+      description="Quick and easy electricity connections for Texas home builders."
+      technologies={[
+        "Prisma",
+        "NextJS",
+        "Typescript",
+        "PostgreSQL",
+        "Jotai",
+        "RxJs",
+      ]}
+      link="https://www.utilityon.com"
+    />
+    <ProjectEntry
       title="Connect Develop"
       from="2018-11-01"
       to="2022-02-25"
