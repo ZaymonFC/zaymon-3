@@ -29,7 +29,10 @@ const Time = ({ from, to }: any) => {
     to === "now" ? new Date() : new Date(to),
   ];
 
-  const duration = intervalToDuration({ start: fromDate, end: toDate });
+  const duration = intervalToDuration({
+    start: fromDate,
+    end: toDate,
+  });
 
   return (
     <>
@@ -43,9 +46,7 @@ const Time = ({ from, to }: any) => {
   );
 };
 
-const Role = styled(Text, {
-  color: "$orange",
-});
+const Role = styled(Text, { color: "$orange" });
 
 const ProjectEntry = ({
   title,

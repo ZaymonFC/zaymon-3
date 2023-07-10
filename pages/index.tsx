@@ -46,8 +46,8 @@ const Letter = () => (
   <Stack direction={"column"}>
     <Heading>Dear Visitor,</Heading>
     <Text>
-      I{"'"}m an Australian software engineer currently based in Vancouver, Canada. My
-      passion is building software that enhances human connection and
+      I{"'"}m an Australian software engineer currently based in Vancouver,
+      Canada. My passion is building software that enhances human connection and
       relationships.
     </Text>
     <Text>
@@ -121,6 +121,15 @@ const Projects = () => (
 const WorkEntries = () => (
   <Stack spacing="lg" direction="column">
     <ProjectEntry
+      title="The Library of Economic Possibility"
+      from="2023-03"
+      to="2023-07"
+      position="Full Stack Engineer"
+      description="Discover economic research for a better economy."
+      technologies={["Svelte", "SvelteKit", "Typescript", "DatoCMS", "GraphQL"]}
+      link="https://www.utilityon.com"
+    />
+    <ProjectEntry
       title="UtilityOn"
       from="2022-10"
       to="now"
@@ -152,7 +161,7 @@ const WorkEntries = () => (
       ]}
     />
     <ProjectEntry
-      title="Concept Safety Systems"
+      title="Locatrix"
       from="2017-01-04"
       to="2018-11-01"
       position={"Student Software Developer"}
@@ -160,6 +169,7 @@ const WorkEntries = () => (
                     Web API's and .NET web application code. Requirements analysis. Bug fixes and investigation.
                     Technology research and comparison.`}
       technologies={["C#", "TypeScript", "React", "Cypress E2E"]}
+      link="https://www.locatrix.com"
     />
     <ProjectEntry
       title="Griffith University"
