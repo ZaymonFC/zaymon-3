@@ -266,7 +266,34 @@ const Home: NextPage = () => {
     <>
       <Head>
         <title>Zaymon.dev</title>
-        <meta name="description" content="Zaymon.dev" />
+        <meta
+          name="description"
+          content="Zaymon Antonio is an Australian software engineer based in Vancouver, Canada, passionate about building software that enhances human connection and relationships. Explore LetterDesk.app, his digital space for deep connection through letter writing. Discover his projects and expertise in React, TypeScript, and Next.js on his website. Stay updated on his work and interests."
+        />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="author" content="Zaymon Antonio" />
+        <meta
+          name="keywords"
+          content="software engineer, LetterDesk.app, human connection, relationships, React, TypeScript, Next.js, javascript"
+        />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="Zaymon.dev" />
+        <meta
+          property="og:description"
+          content="Zaymon Antonio is an Australian software engineer based in Vancouver, Canada, passionate about building software that enhances human connection and relationships. Explore LetterDesk.app, a digital space for deep connection through letter writing."
+        />
+        <meta property="og:url" content="https://zaymon.dev" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Zaymon.dev" />
+        <meta property="twitter:title" content="Zaymon.dev" />
+        <meta
+          property="twitter:description"
+          content="Zaymon Antonio is an Australian software engineer based in Vancouver, Canada, passionate about building software that enhances human connection and relationships. Explore LetterDesk.app, a digital space for deep connection through letter writing."
+        />
+        <meta property="twitter:card" content="summary" />
+        <meta property="twitter:creator" content="@zaymonantonio" />
+
         <Favicons />
       </Head>
       <div>
