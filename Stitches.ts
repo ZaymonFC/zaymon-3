@@ -30,6 +30,8 @@ export const { styled, css, getCssText } = createStitches({
       red500: "hsl(352,100%,62%)",
       orange: "#ffaa48",
       shadowColor: "254deg 38% 3%",
+      type: "#fcf3e6",
+      typeHighlight: "#fcf8f2",
     },
     space: {
       1: "1px",

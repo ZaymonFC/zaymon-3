@@ -20,6 +20,7 @@ export const Heading = styled("div", {
 });
 
 export const Text = styled("p", {
+  color: "$type",
   fontFamily: "Iosevka SS05",
   fontSize: "$2",
   fontWeight: "normal",
@@ -30,13 +31,14 @@ export const Text = styled("p", {
 
 export const SubText = styled("p", {
   fontSize: "$1",
+  color: "$type",
   variants: {
     ...TextVariants,
   },
 });
 
 export const Link = styled("a", {
-  color: "white",
+  color: "$typeHighlight",
   "&:hover": {
     color: "$orange",
   },
