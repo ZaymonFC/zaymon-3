@@ -223,7 +223,7 @@ const Acknowledgements = () => {
         This website is built with <Link href="https://nextjs.org">NextJS</Link>{" "}
         and{" "}
         <Link href="https://stitches.dev">
-          <a>StitchesJS</a>
+          <a>Stitches</a>
         </Link>
         .
       </Text>
