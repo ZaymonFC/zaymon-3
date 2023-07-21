@@ -13,14 +13,15 @@ import { Heading, Link, Text } from "../components/Typography";
 import dynamic from "next/dynamic";
 import { SketchContainer } from "../components/SketchContainer";
 import { Fade } from "../components/Fade";
+import { ComponentType } from "react";
 
 const randomSketches = ["circles"];
 
 const randomSketch: any =
   randomSketches[Math.floor(Math.random() * randomSketches.length)];
 
-const DynamicSketch = dynamic(
-  () => import("../components/Sketch").then((mod) => mod.SketchManager),
+const DynamicSketch: ComponentType<any> = dynamic(
+  () => import("../components/Sketch").then((mod) => mod.SketchManager as any),
   { ssr: false, loading: () => <SketchContainer sketch={randomSketch} /> }
 );
 
