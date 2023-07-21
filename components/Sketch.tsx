@@ -160,7 +160,11 @@ export const CircleSketch = () => {
     }
   };
 
-  return <Sketch setup={setup} draw={draw} />;
+  const windowResized = (p5: any) => {
+    p5.resizeCanvas(p5.windowWidth, 220);
+  };
+
+  return <Sketch setup={setup} draw={draw} windowResized={windowResized} />;
 };
 
 export const SketchManager = ({
