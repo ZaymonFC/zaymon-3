@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import { styled } from "../Stitches";
 import { BackgroundNoise } from "../components/BackgroundNoise";
 import Padding from "../components/Padding";
 import { Page } from "../components/Page";
@@ -8,7 +9,20 @@ import { Separator } from "../components/Separator";
 import { VSpacer } from "../components/Spacers";
 import Stack from "../components/Stack";
 import { Heading, Link, Text } from "../components/Typography";
-import { styled } from "../Stitches";
+
+import dynamic from "next/dynamic";
+import { SketchContainer } from "../components/SketchContainer";
+import { Fade } from "../components/Fade";
+
+const randomSketches = ["circles"];
+
+const randomSketch: any =
+  randomSketches[Math.floor(Math.random() * randomSketches.length)];
+
+const DynamicSketch = dynamic(
+  () => import("../components/Sketch").then((mod) => mod.SketchManager),
+  { ssr: false, loading: () => <SketchContainer sketch={randomSketch} /> }
+);
 
 const shadowVariants = {
   shadow: {
@@ -298,35 +312,39 @@ const Home: NextPage = () => {
       </Head>
       <div>
         <BackgroundNoise />
-        <Padding size="md">
-          <Page>
-            <Padding size={{ "@initial": "lg", "@bp1": "xl" }}>
+        <DynamicSketch sketch={randomSketch} />
+
+        <Fade duration="medium">
+          <Padding size="md">
+            <Page>
+              {/* <Padding size={{ "@initial": "lg", "@bp1": "xl" }}>
               <Heading style={{ textAlign: "center" }} size="md">
                 zaymon.dev
               </Heading>
-            </Padding>
+            </Padding> */}
 
-            <Letter />
+              <Letter />
 
-            <VSpacer size={"xxl"} />
+              <VSpacer size={"xxl"} />
 
-            <SectionHeader title={"Projects."} />
-            <Projects />
+              <SectionHeader title={"Projects."} />
+              <Projects />
 
-            <VSpacer size={"xxl"} />
+              <VSpacer size={"xxl"} />
 
-            <SectionHeader title="Socials." />
-            <Socials />
+              <SectionHeader title="Socials." />
+              <Socials />
 
-            <VSpacer size={"xxl"} />
+              <VSpacer size={"xxl"} />
 
-            <SectionHeader title={"Work."} />
-            <WorkEntries />
+              <SectionHeader title={"Work."} />
+              <WorkEntries />
 
-            <VSpacer size="xxl" />
-            <Acknowledgements />
-          </Page>
-        </Padding>
+              <VSpacer size="xxl" />
+              <Acknowledgements />
+            </Page>
+          </Padding>
+        </Fade>
       </div>
     </>
   );

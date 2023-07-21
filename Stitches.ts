@@ -19,7 +19,7 @@ const shadows = {
       `,
 };
 
-export const { styled, css, getCssText } = createStitches({
+export const { styled, css, getCssText, keyframes } = createStitches({
   theme: {
     colors: {
       background: "rgb(20, 18, 32)",
