@@ -116,7 +116,9 @@ export const RecursiveRectangles = () => {
 
 /// --- Circle Sketch ---------------------------------------------------------
 export const CircleSketch = () => {
-  const circleCount = 6;
+  // Random number between 5 and 7
+  const circleCount = Math.floor(Math.random() * 3) + 5;
+
   const circleDiameter = 30;
   const goldenRatio = (1 + Math.sqrt(5)) / 2;
 
