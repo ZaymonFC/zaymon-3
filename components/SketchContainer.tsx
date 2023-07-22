@@ -4,7 +4,7 @@ export const SketchContainer = styled("div", {
   variants: {
     sketch: {
       circles: {
-        marginBlock: "$7",
+        marginBlock: "$6",
         height: 220,
       },
       rectangles: {

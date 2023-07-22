@@ -114,10 +114,20 @@ export const RecursiveRectangles = () => {
   );
 };
 
+const lerpRange = (
+  value: number,
+  x1: number,
+  y1: number,
+  x2: number,
+  y2: number
+) => {
+  return ((value - x1) * (y2 - x2)) / (y1 - x1) + x2;
+};
+
 /// --- Circle Sketch ---------------------------------------------------------
 export const CircleSketch = () => {
   // Random number between 5 and 7
-  const circleCount = Math.floor(Math.random() * 3) + 5;
+  const circleCount = Math.floor(Math.random() * 3) + 6;
 
   const circleDiameter = 30;
   const goldenRatio = (1 + Math.sqrt(5)) / 2;
@@ -140,8 +150,11 @@ export const CircleSketch = () => {
   };
 
   const draw = (p5: any) => {
+    p5.clear();
     for (let i = 0; i < circleCount; i++) {
       let x = ((i * p5.width * 0.6) / circleCount) * goldenRatio;
+
+      const strokeCircleX = x + (p5.mouseX - p5.width / 2) * 0.003;
 
       let diameter =
         circleDiameter * p5.pow(goldenRatio, i) * randomDiameters[i];
@@ -149,11 +162,12 @@ export const CircleSketch = () => {
       // Clamp the diameter to the canvas height
       diameter = p5.min(diameter, p5.height * 0.98);
 
-      p5.ellipse(x, p5.height / 2, diameter, diameter);
+      p5.ellipse(strokeCircleX, p5.height / 2, diameter, diameter);
 
       if (fullCirclePositions[i]) {
+        const fullCircleX = x + (p5.mouseX - p5.width / 2) * 0.01;
         p5.fill("#F1AF5D");
-        p5.circle(x, p5.height / 2, diameter / 2);
+        p5.circle(fullCircleX, p5.height / 2, diameter / 2);
         p5.noFill();
       }
 
