@@ -4,7 +4,6 @@ import { SketchContainer } from "./SketchContainer";
 import { useCallback, useState } from "react";
 
 // --- Recursive Rectangles ---------------------------------------------------
-
 const colors = [
   "#003f5c",
   "#2f4b7c",
@@ -85,8 +84,8 @@ export const RecursiveRectangles = () => {
   const [iteration, setIteration] = useState(0);
 
   const setup = (p5: any, canvasParentRef: any) => {
-    p5.pixelDensity(2);
     p5.createCanvas(p5.windowWidth, 280).parent(canvasParentRef);
+    p5.pixelDensity(2);
     p5.strokeWeight(1);
     p5.noFill();
     p5.frameRate(6);
@@ -130,8 +129,8 @@ export const CircleSketch = () => {
   let fullCirclePositions: boolean[] = [];
 
   const setup = (p5: any, canvasParentRef: Element) => {
-    p5.pixelDensity(8);
     p5.createCanvas(p5.windowWidth, 220).parent(canvasParentRef);
+    p5.pixelDensity(4);
     p5.stroke("#F1AF5D");
     p5.strokeWeight(2);
     p5.noFill();
@@ -166,8 +165,8 @@ export const CircleSketch = () => {
       }
 
       // Draw a horizontal line through the center of the circles
-      p5.line(0, p5.height * 0.5, p5.width, p5.height * 0.5);
     }
+    p5.line(0, p5.height * 0.5, p5.width, p5.height * 0.5);
   };
 
   const windowResized = (p5: any) => {
