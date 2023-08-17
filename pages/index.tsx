@@ -139,15 +139,15 @@ const WorkEntries = () => (
       title="The Library of Economic Possibility"
       from="2023-03"
       to="2023-07"
-      position="Full Stack Engineer"
+      position="Freelance Software Engineer"
       description="Discover economic research for a better economy."
       technologies={["Svelte", "SvelteKit", "Typescript", "DatoCMS", "GraphQL"]}
-      link="https://www.utilityon.com"
+      link="https://www.economicpossibility.org/"
     />
     <ProjectEntry
       title="UtilityOn"
       from="2022-10"
-      to="now"
+      to="2023-05"
       position="Senior Software Engineer"
       description="Quick and easy electricity connections for Texas home builders."
       technologies={[
