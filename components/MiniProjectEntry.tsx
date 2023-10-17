@@ -1,4 +1,3 @@
-import { format, formatDuration, intervalToDuration } from "date-fns";
 import { styled } from "../Stitches";
 import Badge from "./Badge";
 import { VSpacer } from "./Spacers";
@@ -15,44 +14,17 @@ const Inlines = styled("div", {
 
 type ProjectEntryProps = {
   title: string;
-  from: string;
-  to: string | "now";
+  date: string;
   description: string;
   link?: string | string[];
-  position?: string;
   technologies: string[];
 };
 
-const Time = ({ from, to }: any) => {
-  const [fromDate, toDate] = [
-    new Date(from),
-    to === "now" ? new Date() : new Date(to),
-  ];
-
-  const duration = intervalToDuration({
-    start: fromDate,
-    end: toDate,
-  });
-
-  return (
-    <SubText>
-      {format(fromDate, "MMM yyyy")}
-      {" to "}
-      {to === "now" ? "Present" : format(toDate, "MMM yyyy")} (
-      {formatDuration(duration, { format: ["years", "months"] })})
-    </SubText>
-  );
-};
-
-const Role = styled(Text, { color: "$orange" });
-
-const ProjectEntry = ({
+const MiniProjectEntry = ({
   title,
-  from,
-  to,
+  date,
   description,
   link,
-  position,
   technologies,
 }: ProjectEntryProps) => (
   <div>
@@ -60,11 +32,11 @@ const ProjectEntry = ({
       <Stack
         justify={{ "@initial": "spaceBetween", "@bp1": undefined }}
         align={{ "@initial": "start", "@bp1": "end" }}
-        direction={{ "@initial": "column", "@bp1": "row" }}
+        direction={"row"}
         spacing="none"
       >
         <Heading size="md">{title}</Heading>
-        <Time {...{ from, to }}></Time>
+        <Text>{date}</Text>
       </Stack>
 
       <Stack
@@ -72,8 +44,6 @@ const ProjectEntry = ({
         direction={{ "@initial": "column", "@bp1": "row" }}
         justify={"spaceBetween"}
       >
-        {position && <Role>{position}</Role>}
-
         <Stack spacing="sm" direction={{ "@initial": "column", "@bp1": "row" }}>
           {link &&
             (Array.isArray(link) ? (
@@ -101,4 +71,4 @@ const ProjectEntry = ({
   </div>
 );
 
-export default ProjectEntry;
+export default MiniProjectEntry;
