@@ -14,6 +14,7 @@ import dynamic from "next/dynamic";
 import { SketchContainer } from "../components/SketchContainer";
 import { Fade } from "../components/Fade";
 import { ComponentType } from "react";
+import MiniProjectEntry from "../components/MiniProjectEntry";
 
 const randomSketches = ["circles"];
 
@@ -78,7 +79,7 @@ const Letter = () => (
       letter writing and deep connection.
     </Text>
     <Text>
-      I{"'"}m writing a series of short posts called <em>bytes</em> for{" "}
+      I{"'"}m writing for{" "}
       <Link href="https://boundless.garden">Boundless.Garden</Link>.
     </Text>
     <Text>
@@ -93,7 +94,7 @@ const Letter = () => (
   </Stack>
 );
 
-const Projects = () => (
+const OngoingProjects = () => (
   <Stack spacing="lg" direction="column">
     <ProjectEntry
       title="LetterDesk"
@@ -121,14 +122,66 @@ const Projects = () => (
       to="now"
       position={"Developer / Writer"}
       link="https://www.boundless.garden"
-      description="Boundless Garden is a place for me to let my guard down and tend to my thoughts. Currently, this consists of a series of essays documenting my personal journey."
+      description={`Boundless Garden is a place for me to explore my life and mind through writing.
+          It's a bespoke blog written from scratch in NextJS, featuring a custom MDX renderer, design system, bibliography system—inspired by bibTeX, 3D graphics, and more.
+        `}
       technologies={[
-        "React",
         "Typescript",
         "NextJs",
+        "React",
+        "react-three-fibre",
+        "MDX",
         "StitchesJS",
-        "ReactThreeFibre",
       ]}
+    />
+  </Stack>
+);
+
+const Projects = () => (
+  <Stack spacing="lg" direction="column">
+    <MiniProjectEntry
+      title="Iosevka"
+      link={"https://github.com/ZaymonFC/iosevka/"}
+      description="An iOS implementation of the word game Lexica."
+      technologies={["Swift", "SwiftUI", "Combine", "ObservableStore", "Tries"]}
+      date="2023"
+    />
+    <MiniProjectEntry
+      title="Research for Lex.Page"
+      description={`Explored solutions for building unified diffs for rich text.
+      Implemented a solution that given two versions of a prose-mirror document, generates a new diff-document, highlighting differences in text, formatting and markup.`}
+      technologies={[
+        "React",
+        "TipTap",
+        "ProseMirror",
+        "Yjs",
+        "json-diff-patch",
+
+        "data structures and algorithms",
+      ]}
+      link={"https://lex.page/"}
+      date="2023"
+    />
+    <MiniProjectEntry
+      title="Connect-4 Advanced 3D"
+      link={"https://github.com/ZaymonFC/Connect4-3D-R3F"}
+      description="A 3D implementation of Connect-Four Advanced (4x4x4) playable in the browser implemented in react-three-fiber."
+      technologies={["react", "react-three-fiber", "jotai"]}
+      date="2022"
+    />
+    <MiniProjectEntry
+      title="mac-os-key-repeat"
+      link={"https://github.com/ZaymonFC/mac-os-key-repeat"}
+      description="A simple tool to test Mac OS key-repeat settings without restarting your computer more than once."
+      technologies={["NextJS", "rxjs", "StitchesJS"]}
+      date="2022"
+    />
+    <MiniProjectEntry
+      title="befunge-rust"
+      link={"https://github.com/ZaymonFC/befunge-rust"}
+      description="An interpreter for a significant subset of the esolang 'Befunge'."
+      technologies={["Rust", "Interpreters"]}
+      date="2022"
     />
   </Stack>
 );
@@ -166,6 +219,7 @@ const WorkEntries = () => (
       to="2022-02-25"
       position="Software Engineer"
       description="Creating beautiful, human-friendly digital experiences that solve problems for businesses and consumers at the intersection of the property and energy sectors."
+      link="https://www.connectdevelop.com/"
       technologies={[
         "F#",
         ".NET Core",
@@ -325,16 +379,20 @@ const Home: NextPage = () => {
             </Padding> */}
 
               <Letter />
+              <VSpacer size={"xxl"} />
+
+              <SectionHeader title="Socials." />
+              <Socials />
+
+              <VSpacer size={"xxl"} />
+
+              <SectionHeader title={"Ongoing Projects."} />
+              <OngoingProjects />
 
               <VSpacer size={"xxl"} />
 
               <SectionHeader title={"Projects."} />
               <Projects />
-
-              <VSpacer size={"xxl"} />
-
-              <SectionHeader title="Socials." />
-              <Socials />
 
               <VSpacer size={"xxl"} />
 
