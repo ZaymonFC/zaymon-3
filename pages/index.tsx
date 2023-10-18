@@ -148,7 +148,7 @@ const Projects = () => (
     />
     <MiniProjectEntry
       title="Research for Lex.Page"
-      description={`Explored solutions for comparing rich text documents in a unified way.
+      description={`Explored solutions for building unified diffs for rich text.
       Implemented a solution that given two versions of a prose-mirror document, generates a new diff-document, highlighting differences in text, formatting and markup.`}
       technologies={[
         "React",
@@ -163,7 +163,7 @@ const Projects = () => (
       date="2023"
     />
     <MiniProjectEntry
-      title="Connect-Four Advanced (3D)"
+      title="Connect-4 Advanced 3D"
       link={"https://github.com/ZaymonFC/Connect4-3D-R3F"}
       description="A 3D implementation of Connect-Four Advanced (4x4x4) playable in the browser implemented in react-three-fiber."
       technologies={["react", "react-three-fiber", "jotai"]}
@@ -173,13 +173,13 @@ const Projects = () => (
       title="mac-os-key-repeat"
       link={"https://github.com/ZaymonFC/mac-os-key-repeat"}
       description="A simple tool to test Mac OS key-repeat settings without restarting your computer more than once."
-      technologies={["NextJS", "rxjs", "typescript", "StitchesJS"]}
+      technologies={["NextJS", "rxjs", "StitchesJS"]}
       date="2022"
     />
     <MiniProjectEntry
       title="befunge-rust"
       link={"https://github.com/ZaymonFC/befunge-rust"}
-      description="An implementation of a subset of the esolang 'Befunge'."
+      description="An interpreter for a significant subset of the esolang 'Befunge'."
       technologies={["Rust", "Interpreters"]}
       date="2022"
     />

@@ -31,7 +31,7 @@ const MiniProjectEntry = ({
     <Stack spacing="none" direction="column">
       <Stack
         justify={{ "@initial": "spaceBetween", "@bp1": undefined }}
-        align={{ "@initial": "start", "@bp1": "end" }}
+        align={{ "@initial": "center", "@bp1": "end" }}
         direction={"row"}
         spacing="none"
       >
