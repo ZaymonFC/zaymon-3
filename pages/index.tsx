@@ -189,6 +189,15 @@ const Projects = () => (
 const WorkEntries = () => (
   <Stack spacing="lg" direction="column">
     <ProjectEntry
+      title="DXOS"
+      from="2024-03"
+      to="now"
+      position="Software Engineer"
+      description="Building a decentralized, real-time collaborative platform with peer-to-peer sync, offline-first capabilities, and extensible plugin architecture."
+      technologies={["TypeScript", "React", "AutoMerge", "Lit"]}
+      link="https://dxos.org/"
+    />
+    <ProjectEntry
       title="The Library of Economic Possibility"
       from="2023-03"
       to="2023-07"
