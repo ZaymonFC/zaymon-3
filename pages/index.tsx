@@ -274,8 +274,12 @@ const Socials = () => {
   return (
     <Text>
       Follow me on{" "}
+      <Link href="https://bsky.app/profile/boundless.garden">
+        <a>Bluesky</a>
+      </Link>
+      {" "}and{" "}
       <Link href="https://www.twitter.com/zaymonantonio">
-        <a>Twitter</a>
+        <a>X</a>
       </Link>
       , see my code on{" "}
       <Link href="https://www.github.com/ZaymonFC">
