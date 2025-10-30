@@ -23,7 +23,7 @@ const randomSketch: any =
 
 const DynamicSketch: ComponentType<any> = dynamic(
   () => import("../components/Sketch").then((mod) => mod.SketchManager as any),
-  { ssr: false, loading: () => <SketchContainer sketch={randomSketch} /> }
+  { ssr: false, loading: () => <SketchContainer sketch={randomSketch} /> },
 );
 
 const shadowVariants = {
@@ -191,7 +191,7 @@ const WorkEntries = () => (
     <ProjectEntry
       title="DXOS"
       from="2024-03"
-      to="now"
+      to="2025-07"
       position="Software Engineer"
       description="Building a decentralized, real-time collaborative platform with peer-to-peer sync, offline-first capabilities, and extensible plugin architecture."
       technologies={["TypeScript", "React", "AutoMerge", "Lit"]}
@@ -276,8 +276,8 @@ const Socials = () => {
       Follow me on{" "}
       <Link href="https://bsky.app/profile/boundless.garden">
         <a>Bluesky</a>
-      </Link>
-      {" "}and{" "}
+      </Link>{" "}
+      and{" "}
       <Link href="https://www.twitter.com/zaymonantonio">
         <a>X</a>
       </Link>
