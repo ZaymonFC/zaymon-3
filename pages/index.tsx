@@ -73,16 +73,6 @@ const Letter = () => (
       should aim to <em>expand</em> human awareness over profit maxing.
     </Text>
     <Text>
-      I currently spend my time building{" "}
-      <Link href="https://www.letterdesk.app">LetterDesk.app</Link>, a digital
-      space that allows people to explore human experience together through
-      letter writing and deep connection.
-    </Text>
-    <Text>
-      I{"'"}m writing for{" "}
-      <Link href="https://boundless.garden">Boundless.Garden</Link>.
-    </Text>
-    <Text>
       If you{"'"}re building software that aims to make the world better, expand
       how people think, or offers a new perspective on the human experience and
       you would like to talk to me, please{" "}
