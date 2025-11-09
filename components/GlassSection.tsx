@@ -6,6 +6,11 @@ export const GlassSection = styled("div", {
   borderRadius: "$3",
   padding: "$5",
   marginBottom: "$6",
+  backgroundImage: `
+    linear-gradient(rgba(241, 175, 93, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(241, 175, 93, 0.02) 1px, transparent 1px)
+  `,
+  backgroundSize: "14px 14px",
 
   variants: {
     spacing: {

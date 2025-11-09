@@ -1,6 +1,8 @@
 import { styled } from "../Stitches";
 
 export const SketchContainer = styled("div", {
+  overflow: "visible",
+
   variants: {
     sketch: {
       circles: {

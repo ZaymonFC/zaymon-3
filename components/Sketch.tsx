@@ -132,9 +132,10 @@ export const CircleSketch = () => {
     p5.createCanvas(p5.windowWidth, 220).parent(canvasParentRef);
     p5.pixelDensity(4);
     p5.stroke("#F1AF5D");
-    p5.strokeWeight(2);
+    p5.strokeWeight(3);
     p5.noFill();
     p5.smooth();
+    p5.blendMode(p5.ADD);
 
     for (let i = 0; i < circleCount; i++) {
       randomDiameters[i] = p5.random(0.3, 1.2); // Random scale factor between 0.8 and 1.2
@@ -144,8 +145,11 @@ export const CircleSketch = () => {
 
   const draw = (p5: any) => {
     p5.clear();
+
+    // Draw main elements with glow
     for (let i = 0; i < circleCount; i++) {
-      let x = ((i * p5.width * 0.6) / circleCount) * goldenRatio;
+      // Offset to avoid circle at origin
+      let x = ((i * p5.width * 0.6) / circleCount) * goldenRatio + 80;
 
       const strokeCircleX = x + (p5.mouseX * (i / 10) - p5.width / 2) * 0.003;
 
@@ -163,9 +167,9 @@ export const CircleSketch = () => {
         p5.circle(fullCircleX, p5.height / 2, diameter / 2);
         p5.noFill();
       }
-
-      // Draw a horizontal line through the center of the circles
     }
+
+    // Draw horizontal line
     p5.line(0, p5.height * 0.5, p5.width, p5.height * 0.5);
   };
 
