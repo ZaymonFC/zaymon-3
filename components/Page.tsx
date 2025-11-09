@@ -11,7 +11,7 @@ export const Page = styled("div", {
 
   fontSize: 18,
 
-  fontFamily: "Iosevka SS05",
+  fontFamily: "Departure Mono",
   color: "white",
 
   minHeight: "100vh",

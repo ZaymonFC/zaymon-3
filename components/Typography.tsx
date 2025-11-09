@@ -21,7 +21,7 @@ export const Heading = styled("div", {
 
 export const Text = styled("p", {
   color: "$type",
-  fontFamily: "Iosevka SS05",
+  fontFamily: "Departure Mono",
   fontSize: "$2",
   fontWeight: "normal",
   variants: {
