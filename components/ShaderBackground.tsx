@@ -34,16 +34,32 @@ const fragmentShaderSource = `
 
   // Bayer matrix (4x4)
   float bayer4x4(vec2 position) {
-      int x = int(mod(position.x, 4.0));
-      int y = int(mod(position.y, 4.0));
+      vec2 pos = mod(position, 4.0);
+      int x = int(pos.x);
+      int y = int(pos.y);
 
-      float bayerMatrix[16];
-      bayerMatrix[0] = 0.0/16.0; bayerMatrix[1] = 8.0/16.0; bayerMatrix[2] = 2.0/16.0; bayerMatrix[3] = 10.0/16.0;
-      bayerMatrix[4] = 12.0/16.0; bayerMatrix[5] = 4.0/16.0; bayerMatrix[6] = 14.0/16.0; bayerMatrix[7] = 6.0/16.0;
-      bayerMatrix[8] = 3.0/16.0; bayerMatrix[9] = 11.0/16.0; bayerMatrix[10] = 1.0/16.0; bayerMatrix[11] = 9.0/16.0;
-      bayerMatrix[12] = 15.0/16.0; bayerMatrix[13] = 7.0/16.0; bayerMatrix[14] = 13.0/16.0; bayerMatrix[15] = 5.0/16.0;
-
-      return bayerMatrix[y * 4 + x];
+      // Use if-else chain instead of array indexing
+      if (y == 0) {
+          if (x == 0) return 0.0/16.0;
+          if (x == 1) return 8.0/16.0;
+          if (x == 2) return 2.0/16.0;
+          return 10.0/16.0;
+      } else if (y == 1) {
+          if (x == 0) return 12.0/16.0;
+          if (x == 1) return 4.0/16.0;
+          if (x == 2) return 14.0/16.0;
+          return 6.0/16.0;
+      } else if (y == 2) {
+          if (x == 0) return 3.0/16.0;
+          if (x == 1) return 11.0/16.0;
+          if (x == 2) return 1.0/16.0;
+          return 9.0/16.0;
+      } else {
+          if (x == 0) return 15.0/16.0;
+          if (x == 1) return 7.0/16.0;
+          if (x == 2) return 13.0/16.0;
+          return 5.0/16.0;
+      }
   }
 
   mat2 Rot(float a) {

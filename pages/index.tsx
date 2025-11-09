@@ -15,6 +15,7 @@ import { SketchContainer } from "../components/SketchContainer";
 import { Fade } from "../components/Fade";
 import { ComponentType } from "react";
 import MiniProjectEntry from "../components/MiniProjectEntry";
+import { ShaderBackground } from "../components/ShaderBackground";
 
 const randomSketches = ["circles"];
 
@@ -369,6 +370,7 @@ const Home: NextPage = () => {
         <Favicons />
       </Head>
       <div>
+        <ShaderBackground />
         <BackgroundNoise />
         <DynamicSketch sketch={randomSketch} />
 

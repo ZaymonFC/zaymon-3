@@ -8,6 +8,7 @@ const Underneath = styled("div", {
   top: -80, // Account for parallax
   left: 0,
   pointerEvents: "none",
+  zIndex: -2,
 
   svg: {
     height: "120vh", // Account for parallax
