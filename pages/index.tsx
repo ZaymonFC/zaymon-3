@@ -16,6 +16,7 @@ import { Fade } from "../components/Fade";
 import { ComponentType } from "react";
 import MiniProjectEntry from "../components/MiniProjectEntry";
 import { ShaderBackground } from "../components/ShaderBackground";
+import { GlassSection } from "../components/GlassSection";
 
 const randomSketches = ["circles"];
 
@@ -383,29 +384,33 @@ const Home: NextPage = () => {
               </Heading>
             </Padding> */}
 
-              <Letter />
-              <VSpacer size={"xxl"} />
+              <GlassSection>
+                <Letter />
+              </GlassSection>
 
-              <SectionHeader title="Socials." />
-              <Socials />
+              <GlassSection>
+                <SectionHeader title="Socials." />
+                <Socials />
+              </GlassSection>
 
-              <VSpacer size={"xxl"} />
+              <GlassSection>
+                <SectionHeader title={"Ongoing Projects."} />
+                <OngoingProjects />
+              </GlassSection>
 
-              <SectionHeader title={"Ongoing Projects."} />
-              <OngoingProjects />
+              <GlassSection>
+                <SectionHeader title={"Projects."} />
+                <Projects />
+              </GlassSection>
 
-              <VSpacer size={"xxl"} />
+              <GlassSection>
+                <SectionHeader title={"Work."} />
+                <WorkEntries />
+              </GlassSection>
 
-              <SectionHeader title={"Projects."} />
-              <Projects />
-
-              <VSpacer size={"xxl"} />
-
-              <SectionHeader title={"Work."} />
-              <WorkEntries />
-
-              <VSpacer size="xxl" />
-              <Acknowledgements />
+              <GlassSection>
+                <Acknowledgements />
+              </GlassSection>
             </Page>
           </Padding>
         </Fade>
