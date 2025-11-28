@@ -119,7 +119,7 @@ const fragmentShaderSource = `
       float aspectRatio = iResolution.x / iResolution.y;
 
       vec2 tuv = uv - .6;
-      float degree = noise(vec2(iTime*.01, tuv.x*tuv.y));
+      float degree = noise(vec2(iTime*.005, tuv.x*tuv.y));
       tuv.y *= 1./aspectRatio;
       tuv.x *= .4/aspectRatio;
       tuv *= Rot(radians((degree-.5)*1080.+180.));
@@ -127,7 +127,7 @@ const fragmentShaderSource = `
 
       float frequency = 35.;
       float amplitude = 7.;
-      float speed = iTime * .5;
+      float speed = iTime * .25;
       tuv.x += sin(tuv.y*frequency+speed)/amplitude;
       tuv.y += sin(tuv.x*frequency*1.5+speed)/(amplitude*.5);
 
@@ -136,7 +136,7 @@ const fragmentShaderSource = `
       vec3 rust = vec3(220, 70, 60) / vec3(255);
       vec3 darkGreen = vec3(30, 40, 10) / vec3(255);
 
-      float cycle = sin(iTime * 0.5);
+      float cycle = sin(iTime * 0.25);
       float t = (sign(cycle) * pow(abs(cycle), 0.6) + 1.) / 2.;
 
       vec3 color1 = mix(cream, rust, t);

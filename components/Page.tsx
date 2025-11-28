@@ -9,7 +9,7 @@ export const Page = styled("div", {
   paddingRight: "$5",
   paddingBottom: 64,
 
-  fontSize: 18,
+  fontSize: 16,
 
   fontFamily: "Departure Mono",
   color: "white",
