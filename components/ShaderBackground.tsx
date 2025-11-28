@@ -274,9 +274,20 @@ export const ShaderBackground: React.FC = () => {
     handleResize();
     window.addEventListener('resize', handleResize);
 
-    // Animation loop
-    const render = () => {
+    // Animation loop at 30fps
+    let lastFrameTime = 0;
+    const fps = 30;
+    const frameInterval = 1000 / fps;
+
+    const render = (currentFrameTime: number) => {
       if (!gl || !program || !canvas) return;
+
+      animationFrameRef.current = requestAnimationFrame(render);
+
+      const elapsed = currentFrameTime - lastFrameTime;
+      if (elapsed < frameInterval) return;
+
+      lastFrameTime = currentFrameTime - (elapsed % frameInterval);
 
       const currentTime = (Date.now() - startTimeRef.current) / 1000;
 
@@ -284,11 +295,9 @@ export const ShaderBackground: React.FC = () => {
       gl.uniform1f(iTimeLocation, currentTime);
 
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-
-      animationFrameRef.current = requestAnimationFrame(render);
     };
 
-    render();
+    render(0);
 
     // Cleanup
     return () => {
