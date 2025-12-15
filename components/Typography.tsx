@@ -4,7 +4,7 @@ const TextVariants = { bold: { true: { fontWeight: "bold" } } };
 
 export const Heading = styled("div", {
   fontFamily: "EB Garamond",
-  color: "$orange",
+  color: "$type",
   fontWeight: 700,
   lineHeight: 1.5,
   variants: {
@@ -21,7 +21,7 @@ export const Heading = styled("div", {
 
 export const Text = styled("p", {
   color: "$type",
-  fontFamily: "Departure Mono",
+  fontFamily: "Iosevka SS05, Söhne Mono, menlo, monospace",
   fontSize: "$2",
   fontWeight: "normal",
   variants: {
@@ -30,6 +30,7 @@ export const Text = styled("p", {
 });
 
 export const SubText = styled("p", {
+  fontFamily: "Iosevka SS05, Söhne Mono, menlo, monospace",
   fontSize: "$1",
   color: "$type",
   variants: {
@@ -38,13 +39,14 @@ export const SubText = styled("p", {
 });
 
 export const Link = styled("a", {
+  fontFamily: "Iosevka SS05, Söhne Mono, menlo, monospace",
   color: "$typeHighlight",
   "&:hover": {
-    color: "$orange",
+    color: "$type",
   },
   textDecoration: "underline",
   variants: {
-    invert: { true: { color: "$orange", "&:hover": { color: "white" } } },
+    invert: { true: { color: "$type", "&:hover": { color: "white" } } },
   },
 });
 

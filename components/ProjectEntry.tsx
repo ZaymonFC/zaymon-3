@@ -44,7 +44,7 @@ const Time = ({ from, to }: any) => {
   );
 };
 
-const Role = styled(Text, { color: "$orange" });
+const Role = styled(Text, { color: "$type" });
 
 const ProjectEntry = ({
   title,

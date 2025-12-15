@@ -16,7 +16,8 @@ import { Fade } from "../components/Fade";
 import { ComponentType } from "react";
 import MiniProjectEntry from "../components/MiniProjectEntry";
 import { ShaderBackground } from "../components/ShaderBackground";
-import { GlassSection } from "../components/GlassSection";
+import { GlassCard } from "../components/GlassCard";
+import { DebugGrid } from "../components/DebugGrid";
 
 const randomSketches = ["circles"];
 
@@ -52,7 +53,7 @@ export const Panel = styled("div", {
         borderStyle: "solid",
       },
       strong: {
-        borderColor: "$orange",
+        borderColor: "$type",
         borderWidth: 2,
         borderStyle: "solid",
       },
@@ -62,7 +63,6 @@ export const Panel = styled("div", {
 
 const Letter = () => (
   <Stack direction={"column"}>
-    <Heading>Dear Visitor,</Heading>
     <Text>
       I{"'"}m an Australian software engineer currently based in Vancouver,
       Canada. My passion is building software that enhances human connection and
@@ -139,22 +139,6 @@ const Projects = () => (
       date="2023"
     />
     <MiniProjectEntry
-      title="Research for Lex.Page"
-      description={`Explored solutions for building unified diffs for rich text.
-      Implemented a solution that given two versions of a prose-mirror document, generates a new diff-document, highlighting differences in text, formatting and markup.`}
-      technologies={[
-        "React",
-        "TipTap",
-        "ProseMirror",
-        "Yjs",
-        "json-diff-patch",
-
-        "data structures and algorithms",
-      ]}
-      link={"https://lex.page/"}
-      date="2023"
-    />
-    <MiniProjectEntry
       title="Connect-4 Advanced 3D"
       link={"https://github.com/ZaymonFC/Connect4-3D-R3F"}
       description="A 3D implementation of Connect-Four Advanced (4x4x4) playable in the browser implemented in react-three-fiber."
@@ -197,6 +181,22 @@ const WorkEntries = () => (
       description="Discover economic research for a better economy."
       technologies={["Svelte", "SvelteKit", "Typescript", "DatoCMS", "GraphQL"]}
       link="https://www.economicpossibility.org/"
+    />
+    <ProjectEntry
+      title="Lex.Page"
+      from="2023"
+      to="2023"
+      position="Research & Development"
+      description="Explored solutions for building unified diffs for rich text. Implemented a solution that given two versions of a prose-mirror document, generates a new diff-document, highlighting differences in text, formatting and markup."
+      technologies={[
+        "React",
+        "TipTap",
+        "ProseMirror",
+        "Yjs",
+        "json-diff-patch",
+        "data structures and algorithms",
+      ]}
+      link="https://lex.page/"
     />
     <ProjectEntry
       title="UtilityOn"
@@ -373,7 +373,7 @@ const Home: NextPage = () => {
       <div>
         <ShaderBackground />
         <BackgroundNoise />
-        <DynamicSketch sketch={randomSketch} />
+        <DebugGrid opacity="subtle" />
 
         <Fade duration="medium">
           <Padding size="md">
@@ -384,33 +384,29 @@ const Home: NextPage = () => {
               </Heading>
             </Padding> */}
 
-              <GlassSection>
+              <GlassCard title="Dear Visitor">
                 <Letter />
-              </GlassSection>
+              </GlassCard>
 
-              <GlassSection>
-                <SectionHeader title="Socials." />
+              <GlassCard title="Socials">
                 <Socials />
-              </GlassSection>
+              </GlassCard>
 
-              <GlassSection>
-                <SectionHeader title={"Ongoing Projects."} />
+              <GlassCard title="Ongoing Projects">
                 <OngoingProjects />
-              </GlassSection>
+              </GlassCard>
 
-              <GlassSection>
-                <SectionHeader title={"Projects."} />
+              <GlassCard title="Projects">
                 <Projects />
-              </GlassSection>
+              </GlassCard>
 
-              <GlassSection>
-                <SectionHeader title={"Work."} />
+              <GlassCard title="Work">
                 <WorkEntries />
-              </GlassSection>
+              </GlassCard>
 
-              <GlassSection>
+              <GlassCard>
                 <Acknowledgements />
-              </GlassSection>
+              </GlassCard>
             </Page>
           </Padding>
         </Fade>
