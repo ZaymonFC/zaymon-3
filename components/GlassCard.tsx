@@ -15,11 +15,12 @@ const CardRoot = styled("fieldset", {
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: "rgb(240, 240, 220)",
+    backgroundColor: "rgb(100, 100, 255)",
     backdropFilter: "blur(10px)",
-    mixBlendMode: "exclusion",
+    mixBlendMode: "difference",
     pointerEvents: "none",
     zIndex: 0,
+    opacity: 0.9,
   },
 
   "&::after": {
@@ -29,7 +30,7 @@ const CardRoot = styled("fieldset", {
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: "rgba(255, 255, 255, 0.4)",
+    backgroundColor: "rgba(240, 240, 250, 0.7)",
     pointerEvents: "none",
     zIndex: 0,
   },
