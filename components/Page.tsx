@@ -5,9 +5,8 @@ export const Page = styled("div", {
   marginLeft: "auto",
   marginRight: "auto",
 
-  paddingLeft: "$5",
-  paddingRight: "$5",
-  paddingBottom: 64,
+  paddingInline: "$5",
+  paddingBlock: "$7",
 
   fontSize: 16,
 

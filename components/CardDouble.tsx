@@ -52,7 +52,7 @@ const CardTitle = styled("h2", {
   fontSize: "$2",
   fontWeight: 400,
   margin: 0,
-  color: "$type",
+  color: "$typeHighlight",
   textTransform: "uppercase",
   letterSpacing: "1px",
   whiteSpace: "nowrap",

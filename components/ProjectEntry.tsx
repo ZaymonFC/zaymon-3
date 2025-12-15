@@ -29,6 +29,14 @@ const Time = ({ from, to }: any) => {
     to === "now" ? new Date() : new Date(to),
   ];
 
+  const fromFormatted = format(fromDate, "MMM yyyy");
+  const toFormatted = to === "now" ? "Present" : format(toDate, "MMM yyyy");
+
+  // If from and to are the same, just show the single date
+  if (fromFormatted === toFormatted) {
+    return <SubText>{fromFormatted}</SubText>;
+  }
+
   const duration = intervalToDuration({
     start: fromDate,
     end: toDate,
@@ -36,9 +44,9 @@ const Time = ({ from, to }: any) => {
 
   return (
     <SubText>
-      {format(fromDate, "MMM yyyy")}
+      {fromFormatted}
       {" to "}
-      {to === "now" ? "Present" : format(toDate, "MMM yyyy")} (
+      {toFormatted} (
       {formatDuration(duration, { format: ["years", "months"] })})
     </SubText>
   );

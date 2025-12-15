@@ -15,8 +15,8 @@ const CardRoot = styled("fieldset", {
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: "rgb(220, 220, 220)",
-    backdropFilter: "blur(8px)",
+    backgroundColor: "rgb(240, 240, 220)",
+    backdropFilter: "blur(10px)",
     mixBlendMode: "exclusion",
     pointerEvents: "none",
     zIndex: 0,
@@ -43,10 +43,10 @@ const CardRoot = styled("fieldset", {
   variants: {
     borderStyle: {
       single: {
-        border: "2px solid $type",
+        border: "2px solid $typeHighlight",
       },
       double: {
-        border: "2px double $type",
+        border: "2px double $typeHighlight",
       },
     },
   },
@@ -66,8 +66,8 @@ const CardLegend = styled("legend", {
   padding: "0 1ch",
   position: "relative",
   zIndex: 1,
-  border: "2px solid $type",
-  backgroundColor: "$type",
+  border: "2px solid $typeHighlight",
+  backgroundColor: "$typeHighlight",
 });
 
 const ContentWrapper = styled("div", {

@@ -12,6 +12,10 @@ const Inlines = styled("div", {
   },
 });
 
+const DateText = styled(Text, {
+  color: "$type",
+});
+
 type ProjectEntryProps = {
   title: string;
   date: string;
@@ -36,7 +40,7 @@ const MiniProjectEntry = ({
         spacing="none"
       >
         <Heading size="md">{title}</Heading>
-        <Text>{date}</Text>
+        <DateText>{date}</DateText>
       </Stack>
 
       <Stack
