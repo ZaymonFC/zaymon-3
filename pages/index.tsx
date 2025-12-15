@@ -404,7 +404,7 @@ const Home: NextPage = () => {
                 <WorkEntries />
               </GlassCard>
 
-              <GlassCard>
+              <GlassCard title="source">
                 <Acknowledgements />
               </GlassCard>
             </Page>

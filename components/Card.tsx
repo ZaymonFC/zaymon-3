@@ -60,7 +60,7 @@ const CardChildren = styled("section", {
 });
 
 // Component
-interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+interface CardProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
   children?: React.ReactNode;
   title?: string | React.ReactNode;
   mode?: "left" | "right" | "default";
