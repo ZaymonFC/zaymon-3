@@ -30,7 +30,7 @@ const CardRoot = styled("fieldset", {
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: "rgba(240, 240, 250, 0.7)",
+    backgroundColor: "rgba(240, 240, 250, 0.78)",
     pointerEvents: "none",
     zIndex: 0,
   },

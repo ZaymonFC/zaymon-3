@@ -19,34 +19,38 @@ const shadows = {
       `,
 };
 
+const physicalColors = {
+  darkNavy: "rgb(20, 20, 110)",
+  lightNavy: "rgb(50, 90, 180)",
+  deepPurple: "rgb(20, 18, 32)",
+
+  gray500: "hsl(206,10%,76%)",
+  blue500: "hsl(206,100%,50%)",
+  purple500: "hsl(252,78%,60%)",
+  green500: "hsl(148,60%,60%)",
+  red500: "hsl(352,100%,62%)",
+  orange: "#ffaa48",
+
+  // Utility colors
+  cream: "#fcf3e6",
+  shadowBase: "254deg 38% 3%",
+} as const;
+
+const semanticColors = {
+  background: "$deepPurple",
+  type: "$darkNavy",
+  typeHighlight: "$lightNavy",
+  shadowColor: "$shadowBase",
+} as const;
+
+const colors = {
+  ...physicalColors,
+  ...semanticColors,
+} as const;
+
 export const { styled, css, getCssText, keyframes } = createStitches({
   theme: {
-    colors: {
-      // ===== Physical Color Tokens =====
-      // Navy palette (active colors)
-      darkNavy: "rgb(20, 20, 110)",
-      lightNavy: "rgb(50, 90, 180)",
-      deepPurple: "rgb(20, 18, 32)",
-
-      // Additional palette (reserved for future use)
-      gray500: "hsl(206,10%,76%)",
-      blue500: "hsl(206,100%,50%)",
-      purple500: "hsl(252,78%,60%)",
-      green500: "hsl(148,60%,60%)",
-      red500: "hsl(352,100%,62%)",
-      orange: "#ffaa48",
-
-      // Utility colors
-      cream: "#fcf3e6",
-      shadowBase: "254deg 38% 3%",
-
-      // ===== Semantic Tokens =====
-      // Purpose-based tokens that reference physical colors
-      background: "$deepPurple",
-      type: "$darkNavy",
-      typeHighlight: "$lightNavy",
-      shadowColor: "$shadowBase",
-    },
+    colors,
     space: {
       1: "1px",
       2: "2px",
