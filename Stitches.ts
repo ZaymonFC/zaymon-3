@@ -20,7 +20,7 @@ const shadows = {
 };
 
 const physicalColors = {
-  darkNavy: "rgb(20, 20, 110)",
+  darkNavy: "rgb(20, 30, 120)",
   lightNavy: "rgb(50, 90, 180)",
   deepPurple: "rgb(20, 18, 32)",
 

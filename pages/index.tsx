@@ -80,7 +80,6 @@ const Letter = () => (
       you would like to talk to me, please{" "}
       <Link href="mailto:zaymon.antonio@protonmail.com">get in touch</Link>.
     </Text>
-    <VSpacer size="md" />
     <Text>Regards,</Text>
     <Text> Zaymon Antonio</Text>
   </Stack>
