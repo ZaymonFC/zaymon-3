@@ -376,41 +376,43 @@ const Home: NextPage = () => {
         <ShaderBackground />
         <BackgroundNoise />
 
-        <Fade duration="medium">
-          <Padding size="md">
-            <Page>
-              {/* <Padding size={{ "@initial": "lg", "@bp1": "xl" }}>
+        <main>
+          <Fade duration="medium">
+            <Padding size="md">
+              <Page>
+                {/* <Padding size={{ "@initial": "lg", "@bp1": "xl" }}>
               <Heading style={{ textAlign: "center" }} size="md">
                 zaymon.dev
               </Heading>
             </Padding> */}
 
-              <GlassCard title="Dear Visitor">
-                <Letter />
-              </GlassCard>
+                <GlassCard title="Dear Visitor">
+                  <Letter />
+                </GlassCard>
 
-              <GlassCard title="Socials">
-                <Socials />
-              </GlassCard>
+                <GlassCard title="Socials">
+                  <Socials />
+                </GlassCard>
 
-              <GlassCard title="Ongoing Projects">
-                <OngoingProjects />
-              </GlassCard>
+                <GlassCard title="Ongoing Projects">
+                  <OngoingProjects />
+                </GlassCard>
 
-              <GlassCard title="Projects">
-                <Projects />
-              </GlassCard>
+                <GlassCard title="Projects">
+                  <Projects />
+                </GlassCard>
 
-              <GlassCard title="Work">
-                <WorkEntries />
-              </GlassCard>
+                <GlassCard title="Work">
+                  <WorkEntries />
+                </GlassCard>
 
-              <GlassCard title="source">
-                <Acknowledgements />
-              </GlassCard>
-            </Page>
-          </Padding>
-        </Fade>
+                <GlassCard title="source">
+                  <Acknowledgements />
+                </GlassCard>
+              </Page>
+            </Padding>
+          </Fade>
+        </main>
       </div>
     </>
   );
