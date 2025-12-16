@@ -17,7 +17,6 @@ import { ComponentType } from "react";
 import MiniProjectEntry from "../components/MiniProjectEntry";
 import { ShaderBackground } from "../components/ShaderBackground";
 import { GlassCard } from "../components/GlassCard";
-import { DebugGrid } from "../components/DebugGrid";
 
 const randomSketches = ["circles"];
 
@@ -372,7 +371,6 @@ const Home: NextPage = () => {
       <div>
         <ShaderBackground />
         <BackgroundNoise />
-        <DebugGrid opacity="subtle" />
 
         <Fade duration="medium">
           <Padding size="md">

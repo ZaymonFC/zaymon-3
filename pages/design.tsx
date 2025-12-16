@@ -13,7 +13,6 @@ import { Card } from "../components/Card";
 import { CardDouble } from "../components/CardDouble";
 import { Button } from "../components/Button";
 import { ActionBar } from "../components/ActionBar";
-import { DebugGrid } from "../components/DebugGrid";
 
 const Typography = () => (
   <div>
@@ -144,7 +143,6 @@ const LetterDeskEntry = () => (
 const DesignRoot = () => {
   return (
     <Page>
-      <DebugGrid opacity="subtle" />
       <VSpacer size="lg" />
       <Stack direction="column">
         <SectionHeader title="Typography." />
