@@ -113,8 +113,9 @@ const fragmentShaderSource = `
       return (adjustedValue > threshold) ? 1.0 : 0.0;
   }
 
-  // Extract color generation into reusable function
-  vec3 getColorAt(vec2 uv) {
+  void main() {
+      vec2 fragCoord = gl_FragCoord.xy;
+      vec2 uv = fragCoord / iResolution.xy;
       float aspectRatio = iResolution.x / iResolution.y;
 
       vec2 tuv = uv - .6;
@@ -142,39 +143,7 @@ const fragmentShaderSource = `
       vec3 color2 = mix(warmOrange, darkGreen, t);
 
       vec3 layer1 = mix(color2, color1, smoothstep(-.3, .2, (tuv*Rot(radians(-5.))).x));
-      return mix(layer1, color2, smoothstep(.5, -.3, tuv.y));
-  }
-
-  void main() {
-      vec2 fragCoord = gl_FragCoord.xy;
-      vec2 uv = fragCoord / iResolution.xy;
-
-      // Grid cell calculations for glass tile effect
-      vec2 cellSize = vec2(32.0, 64.0);  // Monospace character aspect ratio (1:2)
-      vec2 cellCoord = floor(fragCoord / cellSize);
-      vec2 cellUV = fract(fragCoord / cellSize);
-
-      // Sample center of cell (1-point sampling for best performance)
-      vec2 cellCenter = (cellCoord + 0.5) * cellSize;
-      vec3 avgColor = getColorAt(cellCenter / iResolution.xy);
-
-      // Get base color for this fragment
-      vec3 color = getColorAt(uv);
-
-      // Calculate cell brightness for glass tile effect
-      float cellBrightness = dot(avgColor, vec3(0.299, 0.587, 0.114));
-      // Threshold at 0.5: cells brighter than 50% get boosted, darker cells get diminished
-      float contrastBoost = (cellBrightness - 0.5) * 0.10;  // 10% contrast enhancement
-
-      // Apply glass tile effect
-      color = color + contrastBoost;
-
-      // Draw subtle grid lines at cell edges
-      float gridThickness = 1.0;
-      vec2 cellEdge = step(gridThickness / cellSize, cellUV);
-      float isGridLine = 1.0 - (cellEdge.x * cellEdge.y);
-      vec3 gridColor = vec3(0.99, 0.95, 0.90);  // Cream color from CSS grid
-      color = mix(color, gridColor, isGridLine * 0.05);  // 0.05 opacity for grid lines
+      vec3 color = mix(layer1, color2, smoothstep(.5, -.3, tuv.y));
 
       // Calculate brightness
       float brightness = dot(color, vec3(0.299, 0.587, 0.114));
