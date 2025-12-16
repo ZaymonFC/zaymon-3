@@ -92,7 +92,7 @@ export const RecursiveRectangles = () => {
   };
 
   const draw = useCallback(
-    (p5) => {
+    (p5: any) => {
       if (iteration < count) {
         subdivide();
         setIteration(iteration + 1);

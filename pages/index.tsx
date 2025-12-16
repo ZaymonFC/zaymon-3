@@ -265,23 +265,23 @@ const Socials = () => {
     <Text>
       Follow me on{" "}
       <Link href="https://bsky.app/profile/boundless.garden">
-        <a>Bluesky</a>
+        Bluesky
       </Link>{" "}
       and{" "}
       <Link href="https://www.twitter.com/zaymonantonio">
-        <a>X</a>
+        X
       </Link>
       , see my code on{" "}
       <Link href="https://www.github.com/ZaymonFC">
-        <a>GitHub</a>
+        GitHub
       </Link>
       , check out what books I{"'"}m reading on{" "}
       <Link href="https://oku.club/user/zaymon">
-        <a>Oku.Club</a>
+        Oku.Club
       </Link>{" "}
       or have a look at my collections on{" "}
       <Link href="https://www.are.na/zaymon-antonio">
-        <a>Are.Na</a>
+        Are.Na
       </Link>
       .
     </Text>
@@ -292,10 +292,14 @@ const Acknowledgements = () => {
   return (
     <>
       <Text>
-        This website is built with <Link href="https://nextjs.org">NextJS</Link>{" "}
-        and{" "}
+        This website is built with <Link href="https://nextjs.org">NextJS</Link>
+        ,{" "}
         <Link href="https://stitches.dev">
-          <a>Stitches</a>
+          Stitches
+        </Link>
+        , and{" "}
+        <Link href="https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API">
+          WebGL
         </Link>
         .
       </Text>
@@ -303,7 +307,7 @@ const Acknowledgements = () => {
       <Text>
         The{" "}
         <Link href="https://github.com/ZaymonFC/zaymon-3">
-          <a>source code</a>
+          source code
         </Link>{" "}
         is public on GitHub.
       </Text>
