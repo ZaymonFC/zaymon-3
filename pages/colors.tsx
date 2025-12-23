@@ -6,7 +6,7 @@ import {
 } from "../lib/colorSpaceDetection";
 import type { Gamut } from "@ch-ui/colors";
 
-export default function PaletteTest() {
+export default function Colors() {
   // Interactive state for palette configuration
   const [lightness, setLightness] = useState(0.43);
   const [chroma, setChroma] = useState(0.4);
@@ -219,96 +219,6 @@ export default function PaletteTest() {
         </div>
       </div>
 
-      {/* Color Space Support Info */}
-      {colorSpaceInfo && (
-        <div
-          style={{
-            background: "#1a1a1a",
-            padding: "20px",
-            borderRadius: "8px",
-            marginBottom: "30px",
-            border: "1px solid #333",
-          }}
-        >
-          <h2 style={{ marginTop: 0 }}>Color Space Support</h2>
-          <div style={{ marginBottom: "15px" }}>
-            <strong>Browser detected best gamut:</strong>{" "}
-            <span
-              style={{
-                color: "#4CAF50",
-                fontWeight: "bold",
-                textTransform: "uppercase",
-              }}
-            >
-              {colorSpaceInfo.best}
-            </span>
-          </div>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
-              gap: "15px",
-            }}
-          >
-            <div>
-              <div style={{ fontSize: "12px", color: "#999" }}>sRGB</div>
-              <div
-                style={{
-                  fontSize: "20px",
-                  color: colorSpaceInfo.srgb ? "#4CAF50" : "#f44336",
-                }}
-              >
-                {colorSpaceInfo.srgb ? "✓ Supported" : "✗ Not supported"}
-              </div>
-            </div>
-            <div>
-              <div style={{ fontSize: "12px", color: "#999" }}>Display P3</div>
-              <div
-                style={{
-                  fontSize: "20px",
-                  color: colorSpaceInfo.p3 ? "#4CAF50" : "#f44336",
-                }}
-              >
-                {colorSpaceInfo.p3 ? "✓ Supported" : "✗ Not supported"}
-              </div>
-            </div>
-            <div>
-              <div style={{ fontSize: "12px", color: "#999" }}>Rec. 2020</div>
-              <div
-                style={{
-                  fontSize: "20px",
-                  color: colorSpaceInfo.rec2020 ? "#4CAF50" : "#f44336",
-                }}
-              >
-                {colorSpaceInfo.rec2020 ? "✓ Supported" : "✗ Not supported"}
-              </div>
-            </div>
-          </div>
-          <div
-            style={{
-              marginTop: "15px",
-              fontSize: "12px",
-              color: "#888",
-              lineHeight: "1.6",
-            }}
-          >
-            <p>
-              <strong>Detection:</strong> Uses{" "}
-              <code>window.matchMedia("(color-gamut: ...)")</code> - the same
-              method CSS @media queries use to check your display capabilities.
-            </p>
-            <p style={{ marginBottom: 0 }}>
-              <strong>Color spaces:</strong>
-              <br />• <strong>sRGB</strong>: Standard gamut (all displays)
-              <br />• <strong>Display P3</strong>: ~25% wider than sRGB (modern
-              displays)
-              <br />• <strong>Rec. 2020</strong>: Ultra-wide gamut (HDR
-              displays)
-            </p>
-          </div>
-        </div>
-      )}
-
       {/* Palette Visualization */}
       <h2>Palette</h2>
       <div
@@ -429,6 +339,96 @@ export default function PaletteTest() {
           </p>
         </div>
       </div>
+
+      {/* Color Space Support Info */}
+      {colorSpaceInfo && (
+        <div
+          style={{
+            background: "#1a1a1a",
+            padding: "20px",
+            borderRadius: "8px",
+            marginTop: "40px",
+            border: "1px solid #333",
+          }}
+        >
+          <h2 style={{ marginTop: 0 }}>Color Space Support</h2>
+          <div style={{ marginBottom: "15px" }}>
+            <strong>Browser detected best gamut:</strong>{" "}
+            <span
+              style={{
+                color: "#4CAF50",
+                fontWeight: "bold",
+                textTransform: "uppercase",
+              }}
+            >
+              {colorSpaceInfo.best}
+            </span>
+          </div>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(3, 1fr)",
+              gap: "15px",
+            }}
+          >
+            <div>
+              <div style={{ fontSize: "12px", color: "#999" }}>sRGB</div>
+              <div
+                style={{
+                  fontSize: "20px",
+                  color: colorSpaceInfo.srgb ? "#4CAF50" : "#f44336",
+                }}
+              >
+                {colorSpaceInfo.srgb ? "✓ Supported" : "✗ Not supported"}
+              </div>
+            </div>
+            <div>
+              <div style={{ fontSize: "12px", color: "#999" }}>Display P3</div>
+              <div
+                style={{
+                  fontSize: "20px",
+                  color: colorSpaceInfo.p3 ? "#4CAF50" : "#f44336",
+                }}
+              >
+                {colorSpaceInfo.p3 ? "✓ Supported" : "✗ Not supported"}
+              </div>
+            </div>
+            <div>
+              <div style={{ fontSize: "12px", color: "#999" }}>Rec. 2020</div>
+              <div
+                style={{
+                  fontSize: "20px",
+                  color: colorSpaceInfo.rec2020 ? "#4CAF50" : "#f44336",
+                }}
+              >
+                {colorSpaceInfo.rec2020 ? "✓ Supported" : "✗ Not supported"}
+              </div>
+            </div>
+          </div>
+          <div
+            style={{
+              marginTop: "15px",
+              fontSize: "12px",
+              color: "#888",
+              lineHeight: "1.6",
+            }}
+          >
+            <p>
+              <strong>Detection:</strong> Uses{" "}
+              <code>window.matchMedia("(color-gamut: ...)")</code> - the same
+              method CSS @media queries use to check your display capabilities.
+            </p>
+            <p style={{ marginBottom: 0 }}>
+              <strong>Color spaces:</strong>
+              <br />• <strong>sRGB</strong>: Standard gamut (all displays)
+              <br />• <strong>Display P3</strong>: ~25% wider than sRGB (modern
+              displays)
+              <br />• <strong>Rec. 2020</strong>: Ultra-wide gamut (HDR
+              displays)
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
