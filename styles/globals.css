@@ -1,7 +1,9 @@
 /*
   1. Use a more-intuitive box-sizing model.
 */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 /*
@@ -11,14 +13,15 @@
   margin: 0;
 }
 html {
-  background-color: #21240A;
+  background-color: #21240a;
 }
 /*
   3. Allow percentage-based heights in the application
 */
-html, body {
-  background-image: linear-gradient(185deg, #21240A, rgb(45, 48, 21));
-  min-height: '100vh'
+html,
+body {
+  background-image: linear-gradient(185deg, #21240a, rgb(45, 48, 21));
+  min-height: "100vh";
 }
 
 /*
@@ -33,26 +36,40 @@ body {
 /*
   6. Improve media defaults
 */
-img, picture, video, canvas, svg {
+img,
+picture,
+video,
+canvas,
+svg {
   display: block;
   max-width: 100%;
 }
 /*
   7. Remove built-in form typography styles
 */
-input, button, textarea, select {
+input,
+button,
+textarea,
+select {
   font: inherit;
 }
 /*
   8. Avoid text overflows
 */
-p, h1, h2, h3, h4, h5, h6 {
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   overflow-wrap: break-word;
 }
 
 /*
   9. Create a root stacking context
 */
-#root, #__next {
+#root,
+#__next {
   isolation: isolate;
 }

@@ -105,7 +105,13 @@ export const Button: React.FC<ButtonProps> = ({
   }
 
   return (
-    <ButtonBase theme={theme} role="button" tabIndex={0} disabled={isDisabled} {...rest}>
+    <ButtonBase
+      theme={theme}
+      role="button"
+      tabIndex={0}
+      disabled={isDisabled}
+      {...rest}
+    >
       {children}
     </ButtonBase>
   );

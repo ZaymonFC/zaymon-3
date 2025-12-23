@@ -66,7 +66,10 @@ const CardChildren = styled("section", {
 });
 
 // Component
-interface CardDoubleProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
+interface CardDoubleProps extends Omit<
+  React.HTMLAttributes<HTMLDivElement>,
+  "title"
+> {
   children?: React.ReactNode;
   title?: string | React.ReactNode;
   mode?: "left" | "right" | "default";

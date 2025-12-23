@@ -1,14 +1,14 @@
-import React, { useEffect, useRef } from 'react';
-import { styled } from '../Stitches';
+import React, { useEffect, useRef } from "react";
+import { styled } from "../Stitches";
 
-const Canvas = styled('canvas', {
-  position: 'fixed',
+const Canvas = styled("canvas", {
+  position: "fixed",
   top: 0,
   left: 0,
-  width: '100vw',
-  height: '100vh',
+  width: "100vw",
+  height: "100vh",
   zIndex: -1,
-  pointerEvents: 'none',
+  pointerEvents: "none",
 });
 
 const vertexShaderSource = `
@@ -192,9 +192,9 @@ export const ShaderBackground: React.FC = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const gl = canvas.getContext('webgl');
+    const gl = canvas.getContext("webgl");
     if (!gl) {
-      console.error('WebGL not supported');
+      console.error("WebGL not supported");
       return;
     }
     glRef.current = gl;
@@ -204,7 +204,7 @@ export const ShaderBackground: React.FC = () => {
     const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
 
     if (!vertexShader || !fragmentShader) {
-      console.error('Failed to create shaders');
+      console.error("Failed to create shaders");
       return;
     }
 
@@ -212,7 +212,10 @@ export const ShaderBackground: React.FC = () => {
     gl.compileShader(vertexShader);
 
     if (!gl.getShaderParameter(vertexShader, gl.COMPILE_STATUS)) {
-      console.error('Vertex shader compilation error:', gl.getShaderInfoLog(vertexShader));
+      console.error(
+        "Vertex shader compilation error:",
+        gl.getShaderInfoLog(vertexShader),
+      );
       return;
     }
 
@@ -220,14 +223,17 @@ export const ShaderBackground: React.FC = () => {
     gl.compileShader(fragmentShader);
 
     if (!gl.getShaderParameter(fragmentShader, gl.COMPILE_STATUS)) {
-      console.error('Fragment shader compilation error:', gl.getShaderInfoLog(fragmentShader));
+      console.error(
+        "Fragment shader compilation error:",
+        gl.getShaderInfoLog(fragmentShader),
+      );
       return;
     }
 
     // Link program
     const program = gl.createProgram();
     if (!program) {
-      console.error('Failed to create program');
+      console.error("Failed to create program");
       return;
     }
 
@@ -236,7 +242,7 @@ export const ShaderBackground: React.FC = () => {
     gl.linkProgram(program);
 
     if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-      console.error('Program linking error:', gl.getProgramInfoLog(program));
+      console.error("Program linking error:", gl.getProgramInfoLog(program));
       return;
     }
 
@@ -246,21 +252,16 @@ export const ShaderBackground: React.FC = () => {
     // Set up geometry (full-screen quad)
     const positionBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-    const positions = new Float32Array([
-      -1, -1,
-       1, -1,
-      -1,  1,
-       1,  1,
-    ]);
+    const positions = new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]);
     gl.bufferData(gl.ARRAY_BUFFER, positions, gl.STATIC_DRAW);
 
-    const positionLocation = gl.getAttribLocation(program, 'position');
+    const positionLocation = gl.getAttribLocation(program, "position");
     gl.enableVertexAttribArray(positionLocation);
     gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
 
     // Get uniform locations
-    const iResolutionLocation = gl.getUniformLocation(program, 'iResolution');
-    const iTimeLocation = gl.getUniformLocation(program, 'iTime');
+    const iResolutionLocation = gl.getUniformLocation(program, "iResolution");
+    const iTimeLocation = gl.getUniformLocation(program, "iTime");
 
     // Resize handler
     const handleResize = () => {
@@ -272,7 +273,7 @@ export const ShaderBackground: React.FC = () => {
     };
 
     handleResize();
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     // Animation loop at 30fps
     let lastFrameTime = 0;
@@ -301,7 +302,7 @@ export const ShaderBackground: React.FC = () => {
 
     // Cleanup
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }

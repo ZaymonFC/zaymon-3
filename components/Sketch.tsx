@@ -35,7 +35,7 @@ function splitRectangle([x, y, width, height, generation]: [
   number,
   number,
   number,
-  number
+  number,
 ]) {
   let splitAxis = "x";
 
@@ -103,7 +103,7 @@ export const RecursiveRectangles = () => {
         p5.rect(x, y, width, height);
       });
     },
-    [count, iteration, setIteration]
+    [count, iteration, setIteration],
   );
 
   return (

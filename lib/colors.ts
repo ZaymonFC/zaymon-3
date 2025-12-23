@@ -4,10 +4,29 @@ import {
   getOklabVectorsFromLuminosities,
   oklabVectorToValue,
   type Gamut,
-  type HelicalArcConfig
-} from '@ch-ui/colors';
+  type HelicalArcConfig,
+} from "@ch-ui/colors";
 
-export type PaletteShade = 50 | 100 | 150 | 200 | 250 | 300 | 350 | 400 | 450 | 500 | 550 | 600 | 650 | 700 | 750 | 800 | 850 | 900 | 950;
+export type PaletteShade =
+  | 50
+  | 100
+  | 150
+  | 200
+  | 250
+  | 300
+  | 350
+  | 400
+  | 450
+  | 500
+  | 550
+  | 600
+  | 650
+  | 700
+  | 750
+  | 800
+  | 850
+  | 900
+  | 950;
 
 export type Palette = Record<PaletteShade, string>;
 
@@ -34,7 +53,7 @@ export function generatePalette(config: PaletteConfig): Palette {
     lowerCp = 1,
     upperCp = 1,
     torsion = 0,
-    gamut = 'p3'
+    gamut = "p3",
   } = config;
 
   // Configuration for the palette arc
@@ -47,14 +66,14 @@ export function generatePalette(config: PaletteConfig): Palette {
 
   // Shade numbers we want to generate
   const shadeNumbers: PaletteShade[] = [
-    50, 100, 150, 200, 250, 300, 350, 400, 450, 500,
-    550, 600, 650, 700, 750, 800, 850, 900, 950
+    50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750,
+    800, 850, 900, 950,
   ];
 
   // Convert shade numbers to luminosity values (0-1 range)
   // Formula: L = (1000 - shade) / 1000
   // So shade 50 → L=0.95 (very light), shade 950 → L=0.05 (very dark)
-  const luminosities = shadeNumbers.map(shade => (1000 - shade) / 1000);
+  const luminosities = shadeNumbers.map((shade) => (1000 - shade) / 1000);
 
   // Generate the helical arc
   const arc = helicalArcFromConfig(helicalConfig);
@@ -63,7 +82,10 @@ export function generatePalette(config: PaletteConfig): Palette {
   const constellation = constellationFromHelicalArc(arc, 32);
 
   // Get oklab vectors at our specific luminosity values
-  const oklabVectors = getOklabVectorsFromLuminosities(luminosities, constellation);
+  const oklabVectors = getOklabVectorsFromLuminosities(
+    luminosities,
+    constellation,
+  );
 
   // Convert to CSS color strings and build the palette object
   const palette = {} as Palette;
@@ -85,8 +107,14 @@ export function generatePalette(config: PaletteConfig): Palette {
  * const tokens = paletteToTokens(bluePalette, 'blue');
  * // Returns: { blue50: "...", blue100: "...", ... blue950: "..." }
  */
-export function paletteToTokens(palette: Palette, prefix: string): Record<string, string> {
+export function paletteToTokens(
+  palette: Palette,
+  prefix: string,
+): Record<string, string> {
   return Object.fromEntries(
-    Object.entries(palette).map(([shade, color]) => [`${prefix}${shade}`, color])
+    Object.entries(palette).map(([shade, color]) => [
+      `${prefix}${shade}`,
+      color,
+    ]),
   );
 }

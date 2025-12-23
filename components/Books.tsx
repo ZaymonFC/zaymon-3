@@ -37,7 +37,7 @@ const loadBooksFromRss = (feed: string): Promise<Book[]> => {
 const calculateReadingGoal = (books: Book[]) => {
   const goal = 30;
   const books2022 = books.filter(
-    (book) => "2022" === format(new Date(book.readDate), "yyyy")
+    (book) => "2022" === format(new Date(book.readDate), "yyyy"),
   ).length;
 
   return { goal, progress: books2022 };
@@ -51,7 +51,7 @@ const useBooks = () => {
   useEffect(() => {
     loadBooksFromRss("https://oku.club/rss/collection/TsUf5").then(setRead);
     loadBooksFromRss("https://oku.club/rss/collection/j7MJU").then(
-      setCurrentlyReading
+      setCurrentlyReading,
     );
   }, [setRead, setCurrentlyReading]);
 

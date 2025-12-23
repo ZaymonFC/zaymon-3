@@ -75,8 +75,8 @@ const SRCLComponents = () => (
 
       <CardDouble title="Double Border Card">
         <Text>
-          This variant uses CSS double borders instead of box-shadows for a
-          more pronounced retro aesthetic.
+          This variant uses CSS double borders instead of box-shadows for a more
+          pronounced retro aesthetic.
         </Text>
       </CardDouble>
     </Stack>

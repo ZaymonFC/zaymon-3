@@ -264,26 +264,13 @@ const Socials = () => {
   return (
     <Text>
       Follow me on{" "}
-      <Link href="https://bsky.app/profile/boundless.garden">
-        Bluesky
-      </Link>{" "}
-      and{" "}
-      <Link href="https://www.twitter.com/zaymonantonio">
-        X
-      </Link>
-      , see my code on{" "}
-      <Link href="https://www.github.com/ZaymonFC">
-        GitHub
-      </Link>
-      , check out what books I{"'"}m reading on{" "}
-      <Link href="https://oku.club/user/zaymon">
-        Oku.Club
-      </Link>{" "}
-      or have a look at my collections on{" "}
-      <Link href="https://www.are.na/zaymon-antonio">
-        Are.Na
-      </Link>
-      .
+      <Link href="https://bsky.app/profile/boundless.garden">Bluesky</Link> and{" "}
+      <Link href="https://www.twitter.com/zaymonantonio">X</Link>, see my code
+      on <Link href="https://www.github.com/ZaymonFC">GitHub</Link>, check out
+      what books I{"'"}m reading on{" "}
+      <Link href="https://oku.club/user/zaymon">Oku.Club</Link> or have a look
+      at my collections on{" "}
+      <Link href="https://www.are.na/zaymon-antonio">Are.Na</Link>.
     </Text>
   );
 };
@@ -293,11 +280,7 @@ const Acknowledgements = () => {
     <>
       <Text>
         This website is built with <Link href="https://nextjs.org">NextJS</Link>
-        ,{" "}
-        <Link href="https://stitches.dev">
-          Stitches
-        </Link>
-        , and{" "}
+        , <Link href="https://stitches.dev">Stitches</Link>, and{" "}
         <Link href="https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API">
           WebGL
         </Link>
@@ -305,10 +288,12 @@ const Acknowledgements = () => {
       </Text>
       <VSpacer size="sm" />
       <Text>
-        The{" "}
-        <Link href="https://github.com/ZaymonFC/zaymon-3">
-          source code
-        </Link>{" "}
+        Design tokens and colors from{" "}
+        <Link href="https://github.com/ch-ui-dev/ch-ui">@ch-ui</Link>.
+      </Text>
+      <VSpacer size="sm" />
+      <Text>
+        The <Link href="https://github.com/ZaymonFC/zaymon-3">source code</Link>{" "}
         is public on GitHub.
       </Text>
     </>

@@ -5,6 +5,7 @@
 This project uses **pnpm**, not npm or yarn.
 
 Use pnpm commands:
+
 - `pnpm install` - Install dependencies
 - `pnpm add <package>` - Add a package
 - `pnpm update <package>` - Update a package
@@ -13,6 +14,7 @@ Use pnpm commands:
 ## Recent Updates (2025-12-16)
 
 Updated to latest versions to address security vulnerabilities:
+
 - Next.js: 12.1.0 → 16.0.10
 - React: 17.0.2 → 19.2.3
 - React DOM: 17.0.2 → 19.2.3

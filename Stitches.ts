@@ -5,7 +5,7 @@ import { generatePalette, paletteToTokens } from "./lib/colors";
 const bluePalette = generatePalette({
   lightness: 0.43,
   chroma: 0.4,
-  hue: 276,
+  hue: 281,
   lowerCp: 1,
   upperCp: 1,
   torsion: -12,

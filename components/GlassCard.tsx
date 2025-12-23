@@ -78,8 +78,10 @@ const ContentWrapper = styled("div", {
 });
 
 // Component
-interface GlassCardProps
-  extends Omit<React.HTMLAttributes<HTMLFieldSetElement>, "title"> {
+interface GlassCardProps extends Omit<
+  React.HTMLAttributes<HTMLFieldSetElement>,
+  "title"
+> {
   children?: React.ReactNode;
   title?: string | React.ReactNode;
   mode?: "left" | "right" | "default";
