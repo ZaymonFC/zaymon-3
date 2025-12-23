@@ -46,8 +46,8 @@ const Time = ({ from, to }: any) => {
     <SubText>
       {fromFormatted}
       {" to "}
-      {toFormatted} (
-      {formatDuration(duration, { format: ["years", "months"] })})
+      {toFormatted} ({formatDuration(duration, { format: ["years", "months"] })}
+      )
     </SubText>
   );
 };

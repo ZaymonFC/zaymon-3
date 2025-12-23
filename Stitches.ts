@@ -1,4 +1,16 @@
 import { createStitches } from "@stitches/react";
+import { generatePalette, paletteToTokens } from "./lib/colors";
+
+// Generate perceptually uniform blue palette
+const bluePalette = generatePalette({
+  lightness: 0.43,
+  chroma: 0.4,
+  hue: 276,
+  lowerCp: 1,
+  upperCp: 1,
+  torsion: -12,
+  gamut: "p3",
+});
 
 const shadows = {
   1: `
@@ -20,12 +32,10 @@ const shadows = {
 };
 
 const physicalColors = {
-  darkNavy: "rgb(20, 30, 120)",
-  lightNavy: "rgb(50, 90, 180)",
-  deepPurple: "rgb(20, 18, 32)",
+  // Generated blue palette (perceptually uniform)
+  ...paletteToTokens(bluePalette, "blue"),
 
   gray500: "hsl(206,10%,76%)",
-  blue500: "hsl(206,100%,50%)",
   purple500: "hsl(252,78%,60%)",
   green500: "hsl(148,60%,60%)",
   red500: "hsl(352,100%,62%)",
@@ -37,9 +47,10 @@ const physicalColors = {
 } as const;
 
 const semanticColors = {
-  background: "$deepPurple",
-  type: "$darkNavy",
-  typeHighlight: "$lightNavy",
+  background: "$blue950",
+  type: "$blue800",
+  typeHighlight: "$blue600",
+  legendTitle: "$blue50",
   shadowColor: "$shadowBase",
 } as const;
 
