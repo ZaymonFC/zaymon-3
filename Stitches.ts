@@ -1,16 +1,31 @@
 import { createStitches } from "@stitches/react";
-import { generatePalette, paletteToTokens } from "./lib/colors";
+import { generatePalette, paletteToTokens, type Palette } from "./lib/colors";
 
-// Generate perceptually uniform blue palette
-const bluePalette = generatePalette({
+// Supported gamuts for CSS media queries
+export type SupportedGamut = "srgb" | "p3" | "rec2020";
+
+// Generate perceptually uniform blue palettes for all gamuts at build time
+const bluePaletteConfig = {
   lightness: 0.43,
   chroma: 0.4,
   hue: 281,
   lowerCp: 1,
   upperCp: 1,
   torsion: -12,
-  gamut: "p3",
-});
+} as const;
+
+// Generate palettes for all three supported gamuts
+const bluePalettes: Record<SupportedGamut, Palette> = {
+  srgb: generatePalette({ ...bluePaletteConfig, gamut: "srgb" }),
+  p3: generatePalette({ ...bluePaletteConfig, gamut: "p3" }),
+  rec2020: generatePalette({ ...bluePaletteConfig, gamut: "rec2020" }),
+};
+
+// Use P3 as the default palette (will be overridden by media queries in CSS)
+const bluePalette = bluePalettes.p3;
+
+// Export palettes for CSS generation
+export { bluePalettes };
 
 const shadows = {
   1: `
@@ -32,7 +47,6 @@ const shadows = {
 };
 
 const physicalColors = {
-  // Generated blue palette (perceptually uniform)
   ...paletteToTokens(bluePalette, "blue"),
 
   gray500: "hsl(206,10%,76%)",
