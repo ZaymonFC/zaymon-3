@@ -118,12 +118,22 @@ const fragmentShaderSource = `
       vec2 uv = fragCoord / iResolution.xy;
       float aspectRatio = iResolution.x / iResolution.y;
 
+      // Center coordinates and apply aspect ratio correction
       vec2 tuv = uv - .6;
+
+      // Apply aspect ratio correction that works on all screen sizes
+      // Use min(1.0, aspectRatio) to prevent extreme squishing on portrait mode
+      float correctedAspect = max(aspectRatio, 1.0 / aspectRatio);
+      if (aspectRatio < 1.0) {
+          // Portrait mode (mobile)
+          tuv.x *= aspectRatio;
+      } else {
+          // Landscape mode
+          tuv.y /= aspectRatio;
+      }
+
       float degree = noise(vec2(iTime*.005, tuv.x*tuv.y));
-      tuv.y *= 1./aspectRatio;
-      tuv.x *= .4/aspectRatio;
       tuv *= Rot(radians((degree-.5)*1080.+180.));
-      tuv.y *= aspectRatio;
 
       float frequency = 35.;
       float amplitude = 7.;
