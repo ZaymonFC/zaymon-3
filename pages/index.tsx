@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import NextLink from "next/link";
 import { styled } from "../Stitches";
 import { BackgroundNoise } from "../components/BackgroundNoise";
 import Padding from "../components/Padding";
@@ -59,6 +60,29 @@ export const Panel = styled("div", {
     },
   },
 });
+
+const legendButtonStyles = {
+  fontFamily: "Iosevka SS05, Söhne Mono, menlo, monospace",
+  fontSize: "$2",
+  fontWeight: 400,
+  color: "$legendTitle",
+  textTransform: "uppercase",
+  letterSpacing: "2px",
+  padding: "0 1ch",
+  border: "2px solid $typeHighlight",
+  backgroundColor: "$typeHighlight",
+  cursor: "pointer",
+  transition: "200ms ease all",
+  textDecoration: "none",
+  display: "inline-block",
+
+  "&:hover": {
+    opacity: 0.8,
+  },
+};
+
+const LegendButton = styled("button", legendButtonStyles);
+const LegendLink = styled("a", legendButtonStyles);
 
 const Letter = () => (
   <Stack direction={"column"}>
@@ -390,6 +414,16 @@ const Home: NextPage = () => {
                 <GlassCard title="source">
                   <Acknowledgements />
                 </GlassCard>
+
+                <VSpacer size="lg" />
+
+                <Stack direction="row" spacing="md">
+                  <NextLink href="/colors" passHref legacyBehavior>
+                    <LegendLink>color playground</LegendLink>
+                  </NextLink>
+                  <LegendButton>vibe out</LegendButton>
+                  <LegendButton>explore</LegendButton>
+                </Stack>
               </Page>
             </Padding>
           </Fade>

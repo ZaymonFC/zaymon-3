@@ -4,6 +4,8 @@ import { ParallaxProvider } from "react-scroll-parallax";
 import { ShaderBackground } from "../components/ShaderBackground";
 import { GamutIndicator } from "../components/GamutIndicator";
 import { logColorSpaceInfo } from "../lib/colorSpaceDetection";
+// Import paletteState to initialize the observer at module level
+import "../lib/paletteState";
 import "../styles/fonts.css";
 import "../styles/globals.css";
 

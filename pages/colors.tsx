@@ -66,10 +66,31 @@ export default function Colors() {
           borderRadius: "8px",
           marginBottom: "30px",
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+          gridTemplateColumns:
+            "repeat(auto-fit, minmax(min(100%, 250px), 1fr))",
           gap: "20px",
         }}
       >
+        <div>
+          <label
+            style={{ display: "block", marginBottom: "8px", fontSize: "14px" }}
+          >
+            Hue: <strong>{hue}°</strong>
+          </label>
+          <input
+            type="range"
+            min="0"
+            max="360"
+            step="1"
+            value={hue}
+            onChange={(e) => setHue(parseInt(e.target.value))}
+            style={{ width: "100%", maxWidth: "100%", boxSizing: "border-box" }}
+          />
+          <div style={{ fontSize: "11px", color: "#666", marginTop: "4px" }}>
+            Color angle (0=red, 120=green, 240=blue)
+          </div>
+        </div>
+
         <div>
           <label
             style={{ display: "block", marginBottom: "8px", fontSize: "14px" }}
@@ -83,7 +104,7 @@ export default function Colors() {
             step="0.01"
             value={lightness}
             onChange={(e) => setLightness(parseFloat(e.target.value))}
-            style={{ width: "100%" }}
+            style={{ width: "100%", maxWidth: "100%", boxSizing: "border-box" }}
           />
           <div style={{ fontSize: "11px", color: "#666", marginTop: "4px" }}>
             Key color lightness (0 = black, 1 = white)
@@ -103,30 +124,10 @@ export default function Colors() {
             step="0.01"
             value={chroma}
             onChange={(e) => setChroma(parseFloat(e.target.value))}
-            style={{ width: "100%" }}
+            style={{ width: "100%", maxWidth: "100%", boxSizing: "border-box" }}
           />
           <div style={{ fontSize: "11px", color: "#666", marginTop: "4px" }}>
             Colorfulness/saturation intensity
-          </div>
-        </div>
-
-        <div>
-          <label
-            style={{ display: "block", marginBottom: "8px", fontSize: "14px" }}
-          >
-            Hue: <strong>{hue}°</strong>
-          </label>
-          <input
-            type="range"
-            min="0"
-            max="360"
-            step="1"
-            value={hue}
-            onChange={(e) => setHue(parseInt(e.target.value))}
-            style={{ width: "100%" }}
-          />
-          <div style={{ fontSize: "11px", color: "#666", marginTop: "4px" }}>
-            Color angle (0=red, 120=green, 240=blue)
           </div>
         </div>
 
@@ -143,7 +144,7 @@ export default function Colors() {
             step="0.05"
             value={lowerCp}
             onChange={(e) => setLowerCp(parseFloat(e.target.value))}
-            style={{ width: "100%" }}
+            style={{ width: "100%", maxWidth: "100%", boxSizing: "border-box" }}
           />
           <div style={{ fontSize: "11px", color: "#666", marginTop: "4px" }}>
             Dark curve control (1 = straight)
@@ -163,7 +164,7 @@ export default function Colors() {
             step="0.05"
             value={upperCp}
             onChange={(e) => setUpperCp(parseFloat(e.target.value))}
-            style={{ width: "100%" }}
+            style={{ width: "100%", maxWidth: "100%", boxSizing: "border-box" }}
           />
           <div style={{ fontSize: "11px", color: "#666", marginTop: "4px" }}>
             Light curve control (1 = straight)
@@ -183,7 +184,7 @@ export default function Colors() {
             step="1"
             value={torsion}
             onChange={(e) => setTorsion(parseInt(e.target.value))}
-            style={{ width: "100%" }}
+            style={{ width: "100%", maxWidth: "100%", boxSizing: "border-box" }}
           />
           <div style={{ fontSize: "11px", color: "#666", marginTop: "4px" }}>
             Hue rotation to prevent color shifts
@@ -201,6 +202,8 @@ export default function Colors() {
             onChange={(e) => setGamut(e.target.value as Gamut)}
             style={{
               width: "100%",
+              maxWidth: "100%",
+              boxSizing: "border-box",
               padding: "8px",
               fontSize: "14px",
               backgroundColor: "#333",
@@ -367,7 +370,8 @@ export default function Colors() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
+              gridTemplateColumns:
+                "repeat(auto-fit, minmax(min(100%, 150px), 1fr))",
               gap: "15px",
             }}
           >

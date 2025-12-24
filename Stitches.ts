@@ -14,6 +14,36 @@ const bluePaletteConfig = {
   torsion: -12,
 } as const;
 
+// Gold palette (82° hue)
+const goldPaletteConfig = {
+  lightness: 0.43,
+  chroma: 0.4,
+  hue: 82,
+  lowerCp: 1,
+  upperCp: 1,
+  torsion: -12,
+} as const;
+
+// Red palette (27° hue)
+const redPaletteConfig = {
+  lightness: 0.43,
+  chroma: 0.4,
+  hue: 27,
+  lowerCp: 1,
+  upperCp: 1,
+  torsion: -12,
+} as const;
+
+// Aqua palette (166° hue)
+const aquaPaletteConfig = {
+  lightness: 0.43,
+  chroma: 0.4,
+  hue: 166,
+  lowerCp: 1,
+  upperCp: 1,
+  torsion: -12,
+} as const;
+
 // Generate palettes for all three supported gamuts
 const bluePalettes: Record<SupportedGamut, Palette> = {
   srgb: generatePalette({ ...bluePaletteConfig, gamut: "srgb" }),
@@ -21,11 +51,32 @@ const bluePalettes: Record<SupportedGamut, Palette> = {
   rec2020: generatePalette({ ...bluePaletteConfig, gamut: "rec2020" }),
 };
 
+const goldPalettes: Record<SupportedGamut, Palette> = {
+  srgb: generatePalette({ ...goldPaletteConfig, gamut: "srgb" }),
+  p3: generatePalette({ ...goldPaletteConfig, gamut: "p3" }),
+  rec2020: generatePalette({ ...goldPaletteConfig, gamut: "rec2020" }),
+};
+
+const redPalettes: Record<SupportedGamut, Palette> = {
+  srgb: generatePalette({ ...redPaletteConfig, gamut: "srgb" }),
+  p3: generatePalette({ ...redPaletteConfig, gamut: "p3" }),
+  rec2020: generatePalette({ ...redPaletteConfig, gamut: "rec2020" }),
+};
+
+const aquaPalettes: Record<SupportedGamut, Palette> = {
+  srgb: generatePalette({ ...aquaPaletteConfig, gamut: "srgb" }),
+  p3: generatePalette({ ...aquaPaletteConfig, gamut: "p3" }),
+  rec2020: generatePalette({ ...aquaPaletteConfig, gamut: "rec2020" }),
+};
+
 // Use P3 as the default palette (will be overridden by media queries in CSS)
 const bluePalette = bluePalettes.p3;
+const goldPalette = goldPalettes.p3;
+const redPalette = redPalettes.p3;
+const aquaPalette = aquaPalettes.p3;
 
 // Export palettes for CSS generation
-export { bluePalettes };
+export { bluePalettes, goldPalettes, redPalettes, aquaPalettes };
 
 const shadows = {
   1: `
@@ -48,6 +99,10 @@ const shadows = {
 
 const physicalColors = {
   ...paletteToTokens(bluePalette, "blue"),
+  ...paletteToTokens(goldPalette, "gold"),
+  ...paletteToTokens(redPalette, "red"),
+  ...paletteToTokens(aquaPalette, "aqua"),
+  ...paletteToTokens(bluePalette, "primary"),
 
   gray500: "hsl(206,10%,76%)",
   purple500: "hsl(252,78%,60%)",
@@ -61,10 +116,10 @@ const physicalColors = {
 } as const;
 
 const semanticColors = {
-  background: "$blue950",
-  type: "$blue800",
-  typeHighlight: "$blue600",
-  legendTitle: "$blue50",
+  background: "$primary950",
+  type: "$primary800",
+  typeHighlight: "$primary600",
+  legendTitle: "$primary50",
   shadowColor: "$shadowBase",
 } as const;
 

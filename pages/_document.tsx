@@ -1,10 +1,22 @@
 import { Html, Head, Main, NextScript } from "next/document";
-import { getCssText, bluePalettes } from "../Stitches";
+import {
+  getCssText,
+  bluePalettes,
+  goldPalettes,
+  redPalettes,
+  aquaPalettes,
+} from "../Stitches";
 import { generateGamutCSS } from "../lib/gamutStyles";
 
 export default function Document() {
   // Generate CSS with media queries for gamut-specific colors
-  const gamutCSS = generateGamutCSS(bluePalettes, "blue");
+  // Third argument (true) enables primary palette alias generation
+  const blueCSS = generateGamutCSS(bluePalettes, "blue", true);
+  const goldCSS = generateGamutCSS(goldPalettes, "gold", false);
+  const redCSS = generateGamutCSS(redPalettes, "red", false);
+  const aquaCSS = generateGamutCSS(aquaPalettes, "aqua", false);
+
+  const gamutCSS = [blueCSS, goldCSS, redCSS, aquaCSS].join("\n\n");
 
   return (
     <Html lang="en">
