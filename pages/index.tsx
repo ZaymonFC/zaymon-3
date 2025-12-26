@@ -14,10 +14,12 @@ import { Heading, Link, Text } from "../components/Typography";
 import dynamic from "next/dynamic";
 import { SketchContainer } from "../components/SketchContainer";
 import { Fade } from "../components/Fade";
-import { ComponentType } from "react";
+import { ComponentType, useState, useEffect } from "react";
 import MiniProjectEntry from "../components/MiniProjectEntry";
 import { ShaderBackground } from "../components/ShaderBackground";
 import { GlassCard } from "../components/GlassCard";
+import { useAtom } from "jotai";
+import { currentPaletteAtom, type PaletteName } from "../lib/paletteState";
 
 const randomSketches = ["circles"];
 
@@ -83,6 +85,30 @@ const legendButtonStyles = {
 
 const LegendButton = styled("button", legendButtonStyles);
 const LegendLink = styled("a", legendButtonStyles);
+
+const StopVibingButton = styled("button", {
+  ...legendButtonStyles,
+  position: "fixed",
+  top: "$4",
+  left: "$4",
+  zIndex: 1000,
+});
+
+const UIContainer = styled("div", {
+  transition: "opacity 1s ease-out",
+  variants: {
+    visible: {
+      true: {
+        opacity: 1,
+        pointerEvents: "auto",
+      },
+      false: {
+        opacity: 0,
+        pointerEvents: "none",
+      },
+    },
+  },
+});
 
 const Letter = () => (
   <Stack direction={"column"}>
@@ -343,6 +369,38 @@ const Favicons = () => (
 );
 
 const Home: NextPage = () => {
+  const [currentPalette, setCurrentPalette] = useAtom(currentPaletteAtom);
+  const [isVibingOut, setIsVibingOut] = useState(false);
+
+  // TODO: Derive this from the available palettes
+  const palettes: PaletteName[] = ["blue", "gold", "red"];
+
+  const cycleTheme = () => {
+    const currentIndex = palettes.indexOf(currentPalette);
+    const nextIndex = (currentIndex + 1) % palettes.length;
+    setCurrentPalette(palettes[nextIndex]);
+  };
+
+  const vibeOut = () => {
+    setIsVibingOut(true);
+  };
+
+  const stopVibing = () => {
+    setIsVibingOut(false);
+  };
+
+  useEffect(() => {
+    if (isVibingOut) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isVibingOut]);
+
   return (
     <>
       <Head>
@@ -381,52 +439,72 @@ const Home: NextPage = () => {
         <ShaderBackground />
         <BackgroundNoise />
 
+        {isVibingOut && (
+          <StopVibingButton onClick={stopVibing}>quit vibing</StopVibingButton>
+        )}
+
         <main>
-          <Fade duration="medium">
-            <Padding size="md">
-              <Page>
-                {/* <Padding size={{ "@initial": "lg", "@bp1": "xl" }}>
+          <UIContainer visible={!isVibingOut}>
+            <Fade duration="medium">
+              <Padding
+                size="md"
+                css={{
+                  paddingTop: "$2",
+                  "@bp1": {
+                    paddingTop: "$4",
+                  },
+                }}
+              >
+                <Page>
+                  {/* <Padding size={{ "@initial": "lg", "@bp1": "xl" }}>
               <Heading style={{ textAlign: "center" }} size="md">
                 zaymon.dev
               </Heading>
             </Padding> */}
 
-                <GlassCard title="Dear Visitor">
-                  <Letter />
-                </GlassCard>
+                  <GlassCard title="Dear Visitor">
+                    <Letter />
+                  </GlassCard>
 
-                <GlassCard title="Socials">
-                  <Socials />
-                </GlassCard>
+                  <GlassCard title="Socials">
+                    <Socials />
+                  </GlassCard>
 
-                <GlassCard title="Ongoing Projects">
-                  <OngoingProjects />
-                </GlassCard>
+                  <GlassCard title="Ongoing Projects">
+                    <OngoingProjects />
+                  </GlassCard>
 
-                <GlassCard title="Projects">
-                  <Projects />
-                </GlassCard>
+                  <GlassCard title="Projects">
+                    <Projects />
+                  </GlassCard>
 
-                <GlassCard title="Work">
-                  <WorkEntries />
-                </GlassCard>
+                  <GlassCard title="Work">
+                    <WorkEntries />
+                  </GlassCard>
 
-                <GlassCard title="source">
-                  <Acknowledgements />
-                </GlassCard>
+                  <GlassCard title="source">
+                    <Acknowledgements />
+                  </GlassCard>
 
-                <VSpacer size="lg" />
+                  <VSpacer size="lg" />
 
-                <Stack direction="row" spacing="md">
-                  <NextLink href="/colors" passHref legacyBehavior>
-                    <LegendLink>color playground</LegendLink>
-                  </NextLink>
-                  <LegendButton>vibe out</LegendButton>
-                  <LegendButton>explore</LegendButton>
-                </Stack>
-              </Page>
-            </Padding>
-          </Fade>
+                  <Stack
+                    direction="row"
+                    spacing="md"
+                    css={{ flexWrap: "wrap" }}
+                  >
+                    <LegendButton onClick={cycleTheme}>
+                      cycle theme
+                    </LegendButton>
+                    <NextLink href="/colors" passHref legacyBehavior>
+                      <LegendLink>color playground</LegendLink>
+                    </NextLink>
+                    <LegendButton onClick={vibeOut}>vibe out</LegendButton>
+                  </Stack>
+                </Page>
+              </Padding>
+            </Fade>
+          </UIContainer>
         </main>
       </div>
     </>

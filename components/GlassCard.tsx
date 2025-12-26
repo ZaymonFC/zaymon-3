@@ -4,9 +4,13 @@ import * as React from "react";
 // Styled components
 const CardRoot = styled("fieldset", {
   position: "relative",
-  marginBottom: "$6",
+  marginBottom: "$5",
   padding: "$5",
   display: "block",
+
+  "@bp1": {
+    marginBottom: "$6",
+  },
 
   "&::before": {
     content: '""',

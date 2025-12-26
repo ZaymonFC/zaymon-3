@@ -6,7 +6,7 @@ export const Page = styled("div", {
   marginRight: "auto",
 
   paddingInline: "$5",
-  paddingBlock: "$7",
+  paddingBlock: "$4",
 
   fontSize: 16,
 
@@ -14,4 +14,8 @@ export const Page = styled("div", {
   color: "white",
 
   minHeight: "100vh",
+
+  "@bp1": {
+    paddingBlock: "$7",
+  },
 });

@@ -7,26 +7,12 @@ import {
   type HelicalArcConfig,
 } from "@ch-ui/colors";
 
-export type PaletteShade =
-  | 50
-  | 100
-  | 150
-  | 200
-  | 250
-  | 300
-  | 350
-  | 400
-  | 450
-  | 500
-  | 550
-  | 600
-  | 650
-  | 700
-  | 750
-  | 800
-  | 850
-  | 900
-  | 950;
+const shadeNumbers = [
+  50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800,
+  850, 900, 950,
+] as const;
+
+export type PaletteShade = (typeof shadeNumbers)[number];
 
 export type Palette = Record<PaletteShade, string>;
 
@@ -63,12 +49,6 @@ export function generatePalette(config: PaletteConfig): Palette {
     upperCp,
     torsion,
   };
-
-  // Shade numbers we want to generate
-  const shadeNumbers: PaletteShade[] = [
-    50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750,
-    800, 850, 900, 950,
-  ];
 
   // Convert shade numbers to luminosity values (0-1 range)
   // Formula: L = (1000 - shade) / 1000

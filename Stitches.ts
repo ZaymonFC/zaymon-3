@@ -1,10 +1,8 @@
 import { createStitches } from "@stitches/react";
 import { generatePalette, paletteToTokens, type Palette } from "./lib/colors";
 
-// Supported gamuts for CSS media queries
 export type SupportedGamut = "srgb" | "p3" | "rec2020";
 
-// Generate perceptually uniform blue palettes for all gamuts at build time
 const bluePaletteConfig = {
   lightness: 0.43,
   chroma: 0.4,
@@ -14,7 +12,6 @@ const bluePaletteConfig = {
   torsion: -12,
 } as const;
 
-// Gold palette (82° hue)
 const goldPaletteConfig = {
   lightness: 0.43,
   chroma: 0.4,
@@ -24,7 +21,6 @@ const goldPaletteConfig = {
   torsion: -12,
 } as const;
 
-// Red palette (27° hue)
 const redPaletteConfig = {
   lightness: 0.43,
   chroma: 0.4,
@@ -34,17 +30,6 @@ const redPaletteConfig = {
   torsion: -12,
 } as const;
 
-// Aqua palette (166° hue)
-const aquaPaletteConfig = {
-  lightness: 0.43,
-  chroma: 0.4,
-  hue: 166,
-  lowerCp: 1,
-  upperCp: 1,
-  torsion: -12,
-} as const;
-
-// Generate palettes for all three supported gamuts
 const bluePalettes: Record<SupportedGamut, Palette> = {
   srgb: generatePalette({ ...bluePaletteConfig, gamut: "srgb" }),
   p3: generatePalette({ ...bluePaletteConfig, gamut: "p3" }),
@@ -63,20 +48,12 @@ const redPalettes: Record<SupportedGamut, Palette> = {
   rec2020: generatePalette({ ...redPaletteConfig, gamut: "rec2020" }),
 };
 
-const aquaPalettes: Record<SupportedGamut, Palette> = {
-  srgb: generatePalette({ ...aquaPaletteConfig, gamut: "srgb" }),
-  p3: generatePalette({ ...aquaPaletteConfig, gamut: "p3" }),
-  rec2020: generatePalette({ ...aquaPaletteConfig, gamut: "rec2020" }),
-};
-
 // Use P3 as the default palette (will be overridden by media queries in CSS)
 const bluePalette = bluePalettes.p3;
 const goldPalette = goldPalettes.p3;
 const redPalette = redPalettes.p3;
-const aquaPalette = aquaPalettes.p3;
 
-// Export palettes for CSS generation
-export { bluePalettes, goldPalettes, redPalettes, aquaPalettes };
+export { bluePalettes, goldPalettes, redPalettes };
 
 const shadows = {
   1: `
@@ -101,7 +78,6 @@ const physicalColors = {
   ...paletteToTokens(bluePalette, "blue"),
   ...paletteToTokens(goldPalette, "gold"),
   ...paletteToTokens(redPalette, "red"),
-  ...paletteToTokens(aquaPalette, "aqua"),
   ...paletteToTokens(bluePalette, "primary"),
 
   gray500: "hsl(206,10%,76%)",
