@@ -89,13 +89,13 @@ const LegendLink = styled("a", legendButtonStyles);
 const StopVibingButton = styled("button", {
   ...legendButtonStyles,
   position: "fixed",
-  top: "$4",
+  bottom: "$4",
   left: "$4",
   zIndex: 1000,
 });
 
 const UIContainer = styled("div", {
-  transition: "opacity 1s ease-out",
+  transition: "opacity 0.3s ease-out",
   variants: {
     visible: {
       true: {
@@ -401,6 +401,17 @@ const Home: NextPage = () => {
     };
   }, [isVibingOut]);
 
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isVibingOut) {
+        stopVibing();
+      }
+    };
+
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, [isVibingOut]);
+
   return (
     <>
       <Head>
@@ -440,7 +451,9 @@ const Home: NextPage = () => {
         <BackgroundNoise />
 
         {isVibingOut && (
-          <StopVibingButton onClick={stopVibing}>quit vibing</StopVibingButton>
+          <StopVibingButton onClick={stopVibing}>
+            Quit vibing (esc)
+          </StopVibingButton>
         )}
 
         <main>

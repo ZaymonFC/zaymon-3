@@ -121,16 +121,18 @@ const fragmentShaderSource = `
       // Center coordinates and apply aspect ratio correction
       vec2 tuv = uv - .6;
 
-      // Apply aspect ratio correction that works on all screen sizes
-      // Use min(1.0, aspectRatio) to prevent extreme squishing on portrait mode
-      float correctedAspect = max(aspectRatio, 1.0 / aspectRatio);
+      // Apply aspect ratio correction only for portrait mode (mobile)
       if (aspectRatio < 1.0) {
-          // Portrait mode (mobile)
           tuv.x *= aspectRatio;
-      } else {
-          // Landscape mode
-          tuv.y /= aspectRatio;
       }
+
+      // Zoom in
+      tuv /= 1.8;
+
+      // Add noise-based displacement to break up circular pattern
+      float displacementX = noise(vec2(tuv.x * 3.0, iTime * 0.02));
+      float displacementY = noise(vec2(tuv.y * 3.0, iTime * 0.02 + 100.0));
+      tuv += vec2(displacementX - 0.5, displacementY - 0.5) * 0.8;
 
       float degree = noise(vec2(iTime*.005, tuv.x*tuv.y));
       tuv *= Rot(radians((degree-.5)*1080.+180.));
