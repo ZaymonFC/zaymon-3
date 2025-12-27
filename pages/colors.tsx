@@ -5,6 +5,7 @@ import {
   getColorSpaceSupport,
 } from "../lib/colorSpaceDetection";
 import type { Gamut } from "@ch-ui/colors";
+import { LegendButton } from "../components/LegendButton";
 
 export default function Colors() {
   // Interactive state for palette configuration
@@ -51,17 +52,45 @@ export default function Colors() {
     color: generatedPalette[shade],
   }));
 
+  // Get colors from the palette
+  const accentColor = generatedPalette[300];
+  const lightTextColor = generatedPalette[50];
+  const darkPanelColor = generatedPalette[900];
+
   return (
-    <div style={{ padding: "40px", fontFamily: "monospace", color: "white" }}>
-      <h1>Palette Test - Interactive</h1>
-      <p style={{ color: "#999", marginBottom: "30px" }}>
+    <div
+      style={{
+        padding: "40px",
+        fontFamily: "monospace",
+        color: lightTextColor,
+        position: "relative",
+      }}
+    >
+      <style jsx>{`
+        input[type="range"] {
+          accent-color: ${accentColor};
+        }
+        .subheading-text {
+          color: ${lightTextColor};
+          opacity: 0.6;
+        }
+        .helper-text {
+          color: ${lightTextColor};
+          opacity: 0.4;
+        }
+      `}</style>
+      <LegendButton href="/" fixed position="topLeft">
+        Home
+      </LegendButton>
+      <h1 style={{ marginTop: "40px" }}>Palette Test - Interactive</h1>
+      <p className="subheading-text" style={{ marginBottom: "30px" }}>
         Using @ch-ui/colors for perceptually uniform color generation
       </p>
 
       {/* Interactive Controls */}
       <div
         style={{
-          background: "#222",
+          background: darkPanelColor,
           padding: "20px",
           borderRadius: "8px",
           marginBottom: "30px",
@@ -86,7 +115,7 @@ export default function Colors() {
             onChange={(e) => setHue(parseInt(e.target.value))}
             style={{ width: "100%", maxWidth: "100%", boxSizing: "border-box" }}
           />
-          <div style={{ fontSize: "11px", color: "#666", marginTop: "4px" }}>
+          <div className="helper-text" style={{ fontSize: "11px", marginTop: "4px" }}>
             Color angle (0=red, 120=green, 240=blue)
           </div>
         </div>
@@ -106,7 +135,7 @@ export default function Colors() {
             onChange={(e) => setLightness(parseFloat(e.target.value))}
             style={{ width: "100%", maxWidth: "100%", boxSizing: "border-box" }}
           />
-          <div style={{ fontSize: "11px", color: "#666", marginTop: "4px" }}>
+          <div className="helper-text" style={{ fontSize: "11px", marginTop: "4px" }}>
             Key color lightness (0 = black, 1 = white)
           </div>
         </div>
@@ -126,7 +155,7 @@ export default function Colors() {
             onChange={(e) => setChroma(parseFloat(e.target.value))}
             style={{ width: "100%", maxWidth: "100%", boxSizing: "border-box" }}
           />
-          <div style={{ fontSize: "11px", color: "#666", marginTop: "4px" }}>
+          <div className="helper-text" style={{ fontSize: "11px", marginTop: "4px" }}>
             Colorfulness/saturation intensity
           </div>
         </div>
@@ -146,7 +175,7 @@ export default function Colors() {
             onChange={(e) => setLowerCp(parseFloat(e.target.value))}
             style={{ width: "100%", maxWidth: "100%", boxSizing: "border-box" }}
           />
-          <div style={{ fontSize: "11px", color: "#666", marginTop: "4px" }}>
+          <div className="helper-text" style={{ fontSize: "11px", marginTop: "4px" }}>
             Dark curve control (1 = straight)
           </div>
         </div>
@@ -166,7 +195,7 @@ export default function Colors() {
             onChange={(e) => setUpperCp(parseFloat(e.target.value))}
             style={{ width: "100%", maxWidth: "100%", boxSizing: "border-box" }}
           />
-          <div style={{ fontSize: "11px", color: "#666", marginTop: "4px" }}>
+          <div className="helper-text" style={{ fontSize: "11px", marginTop: "4px" }}>
             Light curve control (1 = straight)
           </div>
         </div>
@@ -186,7 +215,7 @@ export default function Colors() {
             onChange={(e) => setTorsion(parseInt(e.target.value))}
             style={{ width: "100%", maxWidth: "100%", boxSizing: "border-box" }}
           />
-          <div style={{ fontSize: "11px", color: "#666", marginTop: "4px" }}>
+          <div className="helper-text" style={{ fontSize: "11px", marginTop: "4px" }}>
             Hue rotation to prevent color shifts
           </div>
         </div>
@@ -207,7 +236,7 @@ export default function Colors() {
               padding: "8px",
               fontSize: "14px",
               backgroundColor: "#333",
-              color: "white",
+              color: lightTextColor,
               border: "1px solid #555",
               borderRadius: "4px",
             }}
@@ -216,7 +245,7 @@ export default function Colors() {
             <option value="p3">Display P3 (wide gamut)</option>
             <option value="srgb">sRGB (standard)</option>
           </select>
-          <div style={{ fontSize: "11px", color: "#666", marginTop: "4px" }}>
+          <div className="helper-text" style={{ fontSize: "11px", marginTop: "4px" }}>
             Color space for output values
           </div>
         </div>
@@ -287,7 +316,7 @@ export default function Colors() {
             >
               {color}
             </div>
-            <div style={{ fontSize: "11px", color: "#999" }}>
+            <div className="subheading-text" style={{ fontSize: "11px" }}>
               L={luminosity.toFixed(2)}
             </div>
           </div>
@@ -298,12 +327,12 @@ export default function Colors() {
         <h2>Configuration</h2>
         <pre
           style={{
-            background: "#222",
+            background: darkPanelColor,
             padding: "15px",
             borderRadius: "4px",
             fontSize: "12px",
             overflow: "auto",
-            color: "white",
+            color: lightTextColor,
           }}
         >
           {`{
@@ -347,7 +376,7 @@ export default function Colors() {
       {colorSpaceInfo && (
         <div
           style={{
-            background: "#1a1a1a",
+            background: darkPanelColor,
             padding: "20px",
             borderRadius: "8px",
             marginTop: "40px",
@@ -376,7 +405,7 @@ export default function Colors() {
             }}
           >
             <div>
-              <div style={{ fontSize: "12px", color: "#999" }}>sRGB</div>
+              <div className="subheading-text" style={{ fontSize: "12px" }}>sRGB</div>
               <div
                 style={{
                   fontSize: "20px",
@@ -387,7 +416,7 @@ export default function Colors() {
               </div>
             </div>
             <div>
-              <div style={{ fontSize: "12px", color: "#999" }}>Display P3</div>
+              <div className="subheading-text" style={{ fontSize: "12px" }}>Display P3</div>
               <div
                 style={{
                   fontSize: "20px",
@@ -398,7 +427,7 @@ export default function Colors() {
               </div>
             </div>
             <div>
-              <div style={{ fontSize: "12px", color: "#999" }}>Rec. 2020</div>
+              <div className="subheading-text" style={{ fontSize: "12px" }}>Rec. 2020</div>
               <div
                 style={{
                   fontSize: "20px",
@@ -410,10 +439,10 @@ export default function Colors() {
             </div>
           </div>
           <div
+            className="helper-text"
             style={{
               marginTop: "15px",
               fontSize: "12px",
-              color: "#888",
               lineHeight: "1.6",
             }}
           >
