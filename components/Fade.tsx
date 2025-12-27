@@ -11,7 +11,7 @@ export const Fade = styled("div", {
   variants: {
     duration: {
       short: {
-        animation: `${fadeInKeyframes} 0.2s ease-in-out`,
+        animation: `${fadeInKeyframes} 0.15s ease-in-out`,
       },
       medium: {
         animation: `${fadeInKeyframes} 0.5s ease-in-out`,

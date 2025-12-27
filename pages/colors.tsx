@@ -6,6 +6,7 @@ import {
 } from "../lib/colorSpaceDetection";
 import type { Gamut } from "@ch-ui/colors";
 import { LegendButton } from "../components/LegendButton";
+import { Fade } from "../components/Fade";
 
 export default function Colors() {
   // Interactive state for palette configuration
@@ -58,15 +59,16 @@ export default function Colors() {
   const darkPanelColor = generatedPalette[900];
 
   return (
-    <div
-      style={{
-        padding: "40px",
-        fontFamily: "monospace",
-        color: lightTextColor,
-        position: "relative",
-      }}
-    >
-      <style jsx>{`
+    <Fade duration="short">
+      <div
+        style={{
+          padding: "40px",
+          fontFamily: "monospace",
+          color: lightTextColor,
+          position: "relative",
+        }}
+      >
+        <style jsx>{`
         input[type="range"] {
           accent-color: ${accentColor};
         }
@@ -463,5 +465,6 @@ export default function Colors() {
         </div>
       )}
     </div>
+    </Fade>
   );
 }
