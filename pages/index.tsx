@@ -16,7 +16,6 @@ import { SketchContainer } from "../components/SketchContainer";
 import { Fade } from "../components/Fade";
 import { ComponentType, useState, useEffect } from "react";
 import MiniProjectEntry from "../components/MiniProjectEntry";
-import { ShaderBackground } from "../components/ShaderBackground";
 import { GlassCard } from "../components/GlassCard";
 import { useAtom } from "jotai";
 import { currentPaletteAtom, type PaletteName } from "../lib/paletteState";
@@ -418,7 +417,6 @@ const Home: NextPage = () => {
         <Favicons />
       </Head>
       <div>
-        <ShaderBackground />
         <BackgroundNoise />
 
         {isVibingOut && (
