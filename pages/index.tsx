@@ -20,6 +20,7 @@ import { ShaderBackground } from "../components/ShaderBackground";
 import { GlassCard } from "../components/GlassCard";
 import { useAtom } from "jotai";
 import { currentPaletteAtom, type PaletteName } from "../lib/paletteState";
+import { LegendButton } from "../components/LegendButton";
 
 const randomSketches = ["circles"];
 
@@ -63,36 +64,6 @@ export const Panel = styled("div", {
   },
 });
 
-const legendButtonStyles = {
-  fontFamily: "Iosevka SS05, Söhne Mono, menlo, monospace",
-  fontSize: "$2",
-  fontWeight: 400,
-  color: "$legendTitle",
-  textTransform: "uppercase",
-  letterSpacing: "2px",
-  padding: "0 1ch",
-  border: "2px solid $typeHighlight",
-  backgroundColor: "$typeHighlight",
-  cursor: "pointer",
-  transition: "200ms ease all",
-  textDecoration: "none",
-  display: "inline-block",
-
-  "&:hover": {
-    opacity: 0.8,
-  },
-};
-
-const LegendButton = styled("button", legendButtonStyles);
-const LegendLink = styled("a", legendButtonStyles);
-
-const StopVibingButton = styled("button", {
-  ...legendButtonStyles,
-  position: "fixed",
-  bottom: "$4",
-  left: "$4",
-  zIndex: 1000,
-});
 
 const UIContainer = styled("div", {
   transition: "opacity 0.3s ease-out",
@@ -451,9 +422,9 @@ const Home: NextPage = () => {
         <BackgroundNoise />
 
         {isVibingOut && (
-          <StopVibingButton onClick={stopVibing}>
+          <LegendButton onClick={stopVibing} fixed position="bottomLeft">
             Quit vibing (esc)
-          </StopVibingButton>
+          </LegendButton>
         )}
 
         <main>
@@ -509,9 +480,9 @@ const Home: NextPage = () => {
                     <LegendButton onClick={cycleTheme}>
                       cycle theme
                     </LegendButton>
-                    <NextLink href="/colors" passHref legacyBehavior>
-                      <LegendLink>color playground</LegendLink>
-                    </NextLink>
+                    <LegendButton href="/colors">
+                      color playground
+                    </LegendButton>
                     <LegendButton onClick={vibeOut}>vibe out</LegendButton>
                   </Stack>
                 </Page>
