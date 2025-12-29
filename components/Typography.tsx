@@ -3,17 +3,17 @@ import { styled } from "../Stitches";
 const TextVariants = { bold: { true: { fontWeight: "bold" } } };
 
 export const Heading = styled("div", {
-  fontFamily: "EB Garamond",
+  fontFamily: "BBH Bartle",
   color: "$typeHighlight",
-  fontWeight: 700,
+  fontWeight: 500,
   lineHeight: 1.5,
   variants: {
     size: {
-      sm: { fontSize: "$3" },
-      md: { fontSize: "$4" },
-      lg: { fontSize: "$5" },
-      xl: { fontSize: "$6" },
-      hero: { fontSize: "$7" },
+      sm: { fontSize: "$2" },
+      md: { fontSize: "$3" },
+      lg: { fontSize: "$4" },
+      xl: { fontSize: "$5" },
+      hero: { fontSize: "$6" },
     },
   },
   defaultVariants: { size: "md" },
