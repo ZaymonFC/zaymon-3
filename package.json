@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "prettier --write ."
+    "prettier": "prettier --write ."
   },
   "dependencies": {
     "@ch-ui/colors": "^1.2.1",
