@@ -7,6 +7,146 @@ import {
 import type { Gamut } from "@ch-ui/colors";
 import { LegendButton } from "../components/LegendButton";
 import { Fade } from "../components/Fade";
+import { styled } from "../Stitches";
+import { Heading, Text, SubText } from "../components/Typography";
+
+const Container = styled("div", {
+  padding: "$7",
+  fontFamily: "Iosevka SS05, Söhne Mono, menlo, monospace",
+  position: "relative",
+});
+
+const PageHeading = styled(Heading, {
+  marginTop: "$7",
+});
+
+const Subheading = styled(SubText, {
+  marginBottom: "$6",
+  opacity: 0.6,
+});
+
+const ControlPanel = styled("div", {
+  padding: "$6",
+  borderRadius: "$4",
+  marginBottom: "$6",
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 250px), 1fr))",
+  gap: "$6",
+});
+
+const ControlGroup = styled("div", {});
+
+const Label = styled("label", {
+  display: "block",
+  marginBottom: "$4",
+  fontSize: "$2",
+});
+
+const HelperText = styled("div", {
+  fontSize: "$1",
+  marginTop: "$3",
+  opacity: 0.4,
+});
+
+const RangeInput = styled("input", {
+  width: "100%",
+  maxWidth: "100%",
+  boxSizing: "border-box",
+});
+
+const Select = styled("select", {
+  width: "100%",
+  maxWidth: "100%",
+  boxSizing: "border-box",
+  padding: "$4",
+  fontSize: "$2",
+  backgroundColor: "#333",
+  border: "$borderWidths$1 solid #555",
+  borderRadius: "$3",
+});
+
+const SectionHeading = styled(Heading, {
+  marginTop: "$6",
+  marginBottom: "$5",
+});
+
+const PaletteGrid = styled("div", {
+  display: "flex",
+  gap: "$3",
+  flexWrap: "wrap",
+});
+
+const PaletteSwatch = styled("div", {
+  width: "60px",
+  height: "120px",
+  display: "flex",
+  alignItems: "flex-end",
+  justifyContent: "center",
+  padding: "$4",
+  fontSize: "$1",
+  fontWeight: "bold",
+});
+
+const DetailRow = styled("div", {
+  display: "flex",
+  gap: "$6",
+  marginBottom: "$4",
+  alignItems: "center",
+});
+
+const ShadeLabel = styled("div", {
+  width: "60px",
+  fontWeight: "bold",
+});
+
+const ColorSwatch = styled("div", {
+  width: "40px",
+  height: "20px",
+  border: "$borderWidths$1 solid #ccc",
+});
+
+const ColorValue = styled("div", {
+  flex: 1,
+  fontSize: "$2",
+  fontFamily: "Iosevka SS05, Söhne Mono, menlo, monospace",
+});
+
+const LuminosityLabel = styled(SubText, {
+  fontSize: "$1",
+  opacity: 0.6,
+});
+
+const CodeBlock = styled("pre", {
+  padding: "$5",
+  borderRadius: "$3",
+  fontSize: "$1",
+  overflow: "auto",
+});
+
+const InfoPanel = styled("div", {
+  padding: "$6",
+  borderRadius: "$4",
+  border: "$borderWidths$1 solid #333",
+});
+
+const InfoGrid = styled("div", {
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 150px), 1fr))",
+  gap: "$5",
+});
+
+const StatusLabel = styled("div", {
+  fontSize: "$1",
+});
+
+const StatusValue = styled("div", {
+  fontSize: "20px",
+});
+
+const InfoText = styled("div", {
+  fontSize: "$1",
+  lineHeight: "1.6",
+});
 
 export default function Colors() {
   // Interactive state for palette configuration
@@ -60,289 +200,192 @@ export default function Colors() {
 
   return (
     <Fade duration="short">
-      <div
-        style={{
-          padding: "40px",
-          fontFamily: "Iosevka SS05, Söhne Mono, menlo, monospace",
-          color: lightTextColor,
-          position: "relative",
-        }}
-      >
+      <Container style={{ color: lightTextColor }}>
         <style jsx>{`
-        input[type="range"] {
-          accent-color: ${accentColor};
-        }
-        .subheading-text {
-          color: ${lightTextColor};
-          opacity: 0.6;
-        }
-        .helper-text {
-          color: ${lightTextColor};
-          opacity: 0.4;
-        }
-        h1, h2 {
-          font-family: "BBH Bartle", "EB Garamond", serif;
-          font-weight: 500;
-        }
-      `}</style>
-      <LegendButton href="/" fixed position="topLeft">
-        Home
-      </LegendButton>
-      <h1 style={{ marginTop: "40px" }}>Palette Test - Interactive</h1>
-      <p className="subheading-text" style={{ marginBottom: "30px" }}>
-        Using @ch-ui/colors for perceptually uniform color generation
-      </p>
+          input[type="range"] {
+            accent-color: ${accentColor};
+          }
+        `}</style>
+        <LegendButton href="/" fixed position="topLeft">
+          Home
+        </LegendButton>
+        <PageHeading as="h1" size="xl">
+          Palette Test - Interactive
+        </PageHeading>
+        <Subheading style={{ color: lightTextColor }}>
+          Using @ch-ui/colors for perceptually uniform color generation
+        </Subheading>
 
-      {/* Interactive Controls */}
-      <div
-        style={{
-          background: darkPanelColor,
-          padding: "20px",
-          borderRadius: "8px",
-          marginBottom: "30px",
-          display: "grid",
-          gridTemplateColumns:
-            "repeat(auto-fit, minmax(min(100%, 250px), 1fr))",
-          gap: "20px",
-        }}
-      >
-        <div>
-          <label
-            style={{ display: "block", marginBottom: "8px", fontSize: "14px" }}
-          >
-            Hue: <strong>{hue}°</strong>
-          </label>
-          <input
-            type="range"
-            min="0"
-            max="360"
-            step="1"
-            value={hue}
-            onChange={(e) => setHue(parseInt(e.target.value))}
-            style={{ width: "100%", maxWidth: "100%", boxSizing: "border-box" }}
-          />
-          <div className="helper-text" style={{ fontSize: "11px", marginTop: "4px" }}>
-            Color angle (0=red, 120=green, 240=blue)
-          </div>
-        </div>
-
-        <div>
-          <label
-            style={{ display: "block", marginBottom: "8px", fontSize: "14px" }}
-          >
-            Lightness: <strong>{lightness.toFixed(2)}</strong>
-          </label>
-          <input
-            type="range"
-            min="0"
-            max="1"
-            step="0.01"
-            value={lightness}
-            onChange={(e) => setLightness(parseFloat(e.target.value))}
-            style={{ width: "100%", maxWidth: "100%", boxSizing: "border-box" }}
-          />
-          <div className="helper-text" style={{ fontSize: "11px", marginTop: "4px" }}>
-            Key color lightness (0 = black, 1 = white)
-          </div>
-        </div>
-
-        <div>
-          <label
-            style={{ display: "block", marginBottom: "8px", fontSize: "14px" }}
-          >
-            Chroma: <strong>{chroma.toFixed(2)}</strong>
-          </label>
-          <input
-            type="range"
-            min="0"
-            max="0.4"
-            step="0.01"
-            value={chroma}
-            onChange={(e) => setChroma(parseFloat(e.target.value))}
-            style={{ width: "100%", maxWidth: "100%", boxSizing: "border-box" }}
-          />
-          <div className="helper-text" style={{ fontSize: "11px", marginTop: "4px" }}>
-            Colorfulness/saturation intensity
-          </div>
-        </div>
-
-        <div>
-          <label
-            style={{ display: "block", marginBottom: "8px", fontSize: "14px" }}
-          >
-            Lower CP: <strong>{lowerCp.toFixed(2)}</strong>
-          </label>
-          <input
-            type="range"
-            min="0"
-            max="2"
-            step="0.05"
-            value={lowerCp}
-            onChange={(e) => setLowerCp(parseFloat(e.target.value))}
-            style={{ width: "100%", maxWidth: "100%", boxSizing: "border-box" }}
-          />
-          <div className="helper-text" style={{ fontSize: "11px", marginTop: "4px" }}>
-            Dark curve control (1 = straight)
-          </div>
-        </div>
-
-        <div>
-          <label
-            style={{ display: "block", marginBottom: "8px", fontSize: "14px" }}
-          >
-            Upper CP: <strong>{upperCp.toFixed(2)}</strong>
-          </label>
-          <input
-            type="range"
-            min="0"
-            max="2"
-            step="0.05"
-            value={upperCp}
-            onChange={(e) => setUpperCp(parseFloat(e.target.value))}
-            style={{ width: "100%", maxWidth: "100%", boxSizing: "border-box" }}
-          />
-          <div className="helper-text" style={{ fontSize: "11px", marginTop: "4px" }}>
-            Light curve control (1 = straight)
-          </div>
-        </div>
-
-        <div>
-          <label
-            style={{ display: "block", marginBottom: "8px", fontSize: "14px" }}
-          >
-            Torsion: <strong>{torsion}</strong>
-          </label>
-          <input
-            type="range"
-            min="-50"
-            max="50"
-            step="1"
-            value={torsion}
-            onChange={(e) => setTorsion(parseInt(e.target.value))}
-            style={{ width: "100%", maxWidth: "100%", boxSizing: "border-box" }}
-          />
-          <div className="helper-text" style={{ fontSize: "11px", marginTop: "4px" }}>
-            Hue rotation to prevent color shifts
-          </div>
-        </div>
-
-        <div>
-          <label
-            style={{ display: "block", marginBottom: "8px", fontSize: "14px" }}
-          >
-            Gamut: <strong>{gamut}</strong>
-          </label>
-          <select
-            value={gamut}
-            onChange={(e) => setGamut(e.target.value as Gamut)}
-            style={{
-              width: "100%",
-              maxWidth: "100%",
-              boxSizing: "border-box",
-              padding: "8px",
-              fontSize: "14px",
-              backgroundColor: "#333",
-              color: lightTextColor,
-              border: "1px solid #555",
-              borderRadius: "4px",
-            }}
-          >
-            <option value="rec2020">Rec. 2020 (ultra-wide gamut)</option>
-            <option value="p3">Display P3 (wide gamut)</option>
-            <option value="srgb">sRGB (standard)</option>
-          </select>
-          <div className="helper-text" style={{ fontSize: "11px", marginTop: "4px" }}>
-            Color space for output values
-          </div>
-        </div>
-      </div>
-
-      {/* Palette Visualization */}
-      <h2>Palette</h2>
-      <div
-        style={{
-          display: "flex",
-          gap: "4px",
-          marginTop: "20px",
-          flexWrap: "wrap",
-        }}
-      >
-        {palette.map(({ shade, color }) => (
-          <div
-            key={shade}
-            style={{
-              width: "60px",
-              height: "120px",
-              backgroundColor: color,
-              display: "flex",
-              alignItems: "flex-end",
-              justifyContent: "center",
-              padding: "8px",
-              fontSize: "12px",
-              color: shade < 500 ? "#000" : "#fff",
-              fontWeight: "bold",
-            }}
-          >
-            {shade}
-          </div>
-        ))}
-      </div>
-
-      <div style={{ marginTop: "40px" }}>
-        <h2>Palette Details</h2>
-        <div style={{ fontSize: "12px", marginBottom: "10px" }}>
-          <strong>Gamut:</strong> {gamut} | <strong>Shades:</strong>{" "}
-          {palette.length}
-        </div>
-        {palette.map(({ shade, luminosity, color }) => (
-          <div
-            key={shade}
-            style={{
-              display: "flex",
-              gap: "20px",
-              marginBottom: "8px",
-              alignItems: "center",
-            }}
-          >
-            <div style={{ width: "60px", fontWeight: "bold" }}>{shade}</div>
-            <div
-              style={{
-                width: "40px",
-                height: "20px",
-                backgroundColor: color,
-                border: "1px solid #ccc",
-              }}
+        {/* Interactive Controls */}
+        <ControlPanel style={{ background: darkPanelColor }}>
+          <ControlGroup>
+            <Label>
+              Hue: <strong>{hue}°</strong>
+            </Label>
+            <RangeInput
+              type="range"
+              min="0"
+              max="360"
+              step="1"
+              value={hue}
+              onChange={(e) => setHue(parseInt(e.target.value))}
             />
-            <div
+            <HelperText style={{ color: lightTextColor }}>
+              Color angle (0=red, 120=green, 240=blue)
+            </HelperText>
+          </ControlGroup>
+
+          <ControlGroup>
+            <Label>
+              Lightness: <strong>{lightness.toFixed(2)}</strong>
+            </Label>
+            <RangeInput
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value={lightness}
+              onChange={(e) => setLightness(parseFloat(e.target.value))}
+            />
+            <HelperText style={{ color: lightTextColor }}>
+              Key color lightness (0 = black, 1 = white)
+            </HelperText>
+          </ControlGroup>
+
+          <ControlGroup>
+            <Label>
+              Chroma: <strong>{chroma.toFixed(2)}</strong>
+            </Label>
+            <RangeInput
+              type="range"
+              min="0"
+              max="0.4"
+              step="0.01"
+              value={chroma}
+              onChange={(e) => setChroma(parseFloat(e.target.value))}
+            />
+            <HelperText style={{ color: lightTextColor }}>
+              Colorfulness/saturation intensity
+            </HelperText>
+          </ControlGroup>
+
+          <ControlGroup>
+            <Label>
+              Lower CP: <strong>{lowerCp.toFixed(2)}</strong>
+            </Label>
+            <RangeInput
+              type="range"
+              min="0"
+              max="2"
+              step="0.05"
+              value={lowerCp}
+              onChange={(e) => setLowerCp(parseFloat(e.target.value))}
+            />
+            <HelperText style={{ color: lightTextColor }}>
+              Dark curve control (1 = straight)
+            </HelperText>
+          </ControlGroup>
+
+          <ControlGroup>
+            <Label>
+              Upper CP: <strong>{upperCp.toFixed(2)}</strong>
+            </Label>
+            <RangeInput
+              type="range"
+              min="0"
+              max="2"
+              step="0.05"
+              value={upperCp}
+              onChange={(e) => setUpperCp(parseFloat(e.target.value))}
+            />
+            <HelperText style={{ color: lightTextColor }}>
+              Light curve control (1 = straight)
+            </HelperText>
+          </ControlGroup>
+
+          <ControlGroup>
+            <Label>
+              Torsion: <strong>{torsion}</strong>
+            </Label>
+            <RangeInput
+              type="range"
+              min="-50"
+              max="50"
+              step="1"
+              value={torsion}
+              onChange={(e) => setTorsion(parseInt(e.target.value))}
+            />
+            <HelperText style={{ color: lightTextColor }}>
+              Hue rotation to prevent color shifts
+            </HelperText>
+          </ControlGroup>
+
+          <ControlGroup>
+            <Label>
+              Gamut: <strong>{gamut}</strong>
+            </Label>
+            <Select
+              value={gamut}
+              onChange={(e) => setGamut(e.target.value as Gamut)}
+              style={{ color: lightTextColor }}
+            >
+              <option value="rec2020">Rec. 2020 (ultra-wide gamut)</option>
+              <option value="p3">Display P3 (wide gamut)</option>
+              <option value="srgb">sRGB (standard)</option>
+            </Select>
+            <HelperText style={{ color: lightTextColor }}>
+              Color space for output values
+            </HelperText>
+          </ControlGroup>
+        </ControlPanel>
+
+        {/* Palette Visualization */}
+        <SectionHeading as="h2" size="lg">
+          Palette
+        </SectionHeading>
+        <PaletteGrid>
+          {palette.map(({ shade, color }) => (
+            <PaletteSwatch
+              key={shade}
               style={{
-                flex: 1,
-                fontSize: "13px",
-                fontFamily: "Iosevka SS05, Söhne Mono, menlo, monospace",
+                backgroundColor: color,
+                color: shade < 500 ? "#000" : "#fff",
               }}
             >
-              {color}
-            </div>
-            <div className="subheading-text" style={{ fontSize: "11px" }}>
-              L={luminosity.toFixed(2)}
-            </div>
-          </div>
-        ))}
-      </div>
+              {shade}
+            </PaletteSwatch>
+          ))}
+        </PaletteGrid>
 
-      <div style={{ marginTop: "40px" }}>
-        <h2>Configuration</h2>
-        <pre
-          style={{
-            background: darkPanelColor,
-            padding: "15px",
-            borderRadius: "4px",
-            fontSize: "12px",
-            overflow: "auto",
-            color: lightTextColor,
-            marginTop: "15px",
-          }}
-        >
-          {`{
+        <div>
+          <SectionHeading as="h2" size="lg">
+            Palette Details
+          </SectionHeading>
+          <Text css={{ marginBottom: "$5" }}>
+            <strong>Gamut:</strong> {gamut} | <strong>Shades:</strong>{" "}
+            {palette.length}
+          </Text>
+          {palette.map(({ shade, luminosity, color }) => (
+            <DetailRow key={shade}>
+              <ShadeLabel>{shade}</ShadeLabel>
+              <ColorSwatch style={{ backgroundColor: color }} />
+              <ColorValue>{color}</ColorValue>
+              <LuminosityLabel>L={luminosity.toFixed(2)}</LuminosityLabel>
+            </DetailRow>
+          ))}
+        </div>
+
+        <div>
+          <SectionHeading as="h2" size="lg">
+            Configuration
+          </SectionHeading>
+          <CodeBlock
+            style={{
+              background: darkPanelColor,
+              color: lightTextColor,
+            }}
+          >
+            {`{
   lightness: ${lightness},
   chroma: ${chroma},
   hue: ${hue},
@@ -351,127 +394,108 @@ export default function Colors() {
   torsion: ${torsion},
   gamut: '${gamut}'
 }`}
-        </pre>
-        <div style={{ marginTop: "15px", fontSize: "14px", lineHeight: "1.6" }}>
-          <p>
-            <strong>lightness</strong> (0-1): The lightness of the key color
-          </p>
-          <p>
-            <strong>chroma</strong> (0-0.4): The colorfulness/saturation
-          </p>
-          <p>
-            <strong>hue</strong> (0-360): The color angle (276° = purple-blue)
-          </p>
-          <p>
-            <strong>lowerCp</strong>: Dark curve control (1 = straight)
-          </p>
-          <p>
-            <strong>upperCp</strong>: Light curve control (1 = straight)
-          </p>
-          <p>
-            <strong>torsion</strong>: Prevents undesirable color shifts (e.g.,
-            "mustard problem")
-          </p>
-          <p>
-            <strong>gamut</strong>: Color space (p3 = Display P3, srgb =
-            standard RGB)
-          </p>
-        </div>
-      </div>
-
-      {/* Color Space Support Info */}
-      {colorSpaceInfo && (
-        <div style={{ marginTop: "40px" }}>
-          <h2>Color Space Support</h2>
-          <div
-            style={{
-              background: darkPanelColor,
-              padding: "20px",
-              borderRadius: "8px",
-              marginTop: "15px",
-              border: "1px solid #333",
-            }}
-          >
-          <div style={{ marginBottom: "15px" }}>
-            <strong>Browser detected best gamut:</strong>{" "}
-            <span
-              style={{
-                color: "#4CAF50",
-                fontWeight: "bold",
-                textTransform: "uppercase",
-              }}
-            >
-              {colorSpaceInfo.best}
-            </span>
-          </div>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns:
-                "repeat(auto-fit, minmax(min(100%, 150px), 1fr))",
-              gap: "15px",
-            }}
-          >
-            <div>
-              <div className="subheading-text" style={{ fontSize: "12px" }}>sRGB</div>
-              <div
-                style={{
-                  fontSize: "20px",
-                  color: colorSpaceInfo.srgb ? "#4CAF50" : "#f44336",
-                }}
-              >
-                {colorSpaceInfo.srgb ? "✓ Supported" : "✗ Not supported"}
-              </div>
-            </div>
-            <div>
-              <div className="subheading-text" style={{ fontSize: "12px" }}>Display P3</div>
-              <div
-                style={{
-                  fontSize: "20px",
-                  color: colorSpaceInfo.p3 ? "#4CAF50" : "#f44336",
-                }}
-              >
-                {colorSpaceInfo.p3 ? "✓ Supported" : "✗ Not supported"}
-              </div>
-            </div>
-            <div>
-              <div className="subheading-text" style={{ fontSize: "12px" }}>Rec. 2020</div>
-              <div
-                style={{
-                  fontSize: "20px",
-                  color: colorSpaceInfo.rec2020 ? "#4CAF50" : "#f44336",
-                }}
-              >
-                {colorSpaceInfo.rec2020 ? "✓ Supported" : "✗ Not supported"}
-              </div>
-            </div>
-          </div>
-          <div
-            className="helper-text"
-            style={{
-              marginTop: "15px",
-              fontSize: "12px",
-              lineHeight: "1.6",
-            }}
-          >
+          </CodeBlock>
+          <InfoText css={{ marginTop: "$5" }}>
             <p>
-              <strong>Detection:</strong> Uses{" "}
-              <code>window.matchMedia("(color-gamut: ...)")</code> - the same
-              method CSS @media queries use to check your display capabilities.
+              <strong>lightness</strong> (0-1): The lightness of the key color
             </p>
-            <p style={{ marginBottom: 0 }}>
-              <strong>Color spaces:</strong>
-              <br />• <strong>sRGB</strong>: Standard gamut (all displays)
-              <br />• <strong>Display P3</strong>: ~25% wider than sRGB (modern
-              displays)
-              <br />• <strong>Rec. 2020</strong>: Ultra-wide gamut (HDR
-              displays)
+            <p>
+              <strong>chroma</strong> (0-0.4): The colorfulness/saturation
             </p>
-          </div>
-          </div>
+            <p>
+              <strong>hue</strong> (0-360): The color angle (276° = purple-blue)
+            </p>
+            <p>
+              <strong>lowerCp</strong>: Dark curve control (1 = straight)
+            </p>
+            <p>
+              <strong>upperCp</strong>: Light curve control (1 = straight)
+            </p>
+            <p>
+              <strong>torsion</strong>: Prevents undesirable color shifts (e.g.,
+              "mustard problem")
+            </p>
+            <p>
+              <strong>gamut</strong>: Color space (p3 = Display P3, srgb =
+              standard RGB)
+            </p>
+          </InfoText>
         </div>
-      )}
-    </div>
+
+        {/* Color Space Support Info */}
+        {colorSpaceInfo && (
+          <div>
+            <SectionHeading as="h2" size="lg">
+              Color Space Support
+            </SectionHeading>
+            <InfoPanel style={{ background: darkPanelColor }}>
+              <Text css={{ marginBottom: "$5" }}>
+                <strong>Browser detected best gamut:</strong>{" "}
+                <span
+                  style={{
+                    color: "#4CAF50",
+                    fontWeight: "bold",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  {colorSpaceInfo.best}
+                </span>
+              </Text>
+              <InfoGrid>
+                <div>
+                  <StatusLabel>sRGB</StatusLabel>
+                  <StatusValue
+                    style={{
+                      color: colorSpaceInfo.srgb ? "#4CAF50" : "#f44336",
+                    }}
+                  >
+                    {colorSpaceInfo.srgb ? "✓ Supported" : "✗ Not supported"}
+                  </StatusValue>
+                </div>
+                <div>
+                  <StatusLabel>Display P3</StatusLabel>
+                  <StatusValue
+                    style={{
+                      color: colorSpaceInfo.p3 ? "#4CAF50" : "#f44336",
+                    }}
+                  >
+                    {colorSpaceInfo.p3 ? "✓ Supported" : "✗ Not supported"}
+                  </StatusValue>
+                </div>
+                <div>
+                  <StatusLabel>Rec. 2020</StatusLabel>
+                  <StatusValue
+                    style={{
+                      color: colorSpaceInfo.rec2020 ? "#4CAF50" : "#f44336",
+                    }}
+                  >
+                    {colorSpaceInfo.rec2020 ? "✓ Supported" : "✗ Not supported"}
+                  </StatusValue>
+                </div>
+              </InfoGrid>
+              <InfoText
+                css={{ marginTop: "$5" }}
+                style={{ color: lightTextColor, opacity: 0.4 }}
+              >
+                <p>
+                  <strong>Detection:</strong> Uses{" "}
+                  <code>window.matchMedia("(color-gamut: ...)")</code> - the
+                  same method CSS @media queries use to check your display
+                  capabilities.
+                </p>
+                <p style={{ marginBottom: 0 }}>
+                  <strong>Color spaces:</strong>
+                  <br />• <strong>sRGB</strong>: Standard gamut (all displays)
+                  <br />• <strong>Display P3</strong>: ~25% wider than sRGB
+                  (modern displays)
+                  <br />• <strong>Rec. 2020</strong>: Ultra-wide gamut (HDR
+                  displays)
+                </p>
+              </InfoText>
+            </InfoPanel>
+          </div>
+        )}
+      </Container>
     </Fade>
   );
 }

@@ -63,7 +63,6 @@ export const Panel = styled("div", {
   },
 });
 
-
 const UIContainer = styled("div", {
   transition: "opacity 0.3s ease-out",
   variants: {
@@ -478,9 +477,7 @@ const Home: NextPage = () => {
                     <LegendButton onClick={cycleTheme}>
                       cycle theme
                     </LegendButton>
-                    <LegendButton href="/colors">
-                      color playground
-                    </LegendButton>
+                    <LegendButton href="/colors">color playground</LegendButton>
                     <LegendButton onClick={vibeOut}>vibe out</LegendButton>
                   </Stack>
                 </Page>

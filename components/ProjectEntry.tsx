@@ -69,7 +69,7 @@ const ProjectEntry = ({
         justify={{ "@initial": "spaceBetween", "@bp1": undefined }}
         align={{ "@initial": "start", "@bp1": "end" }}
         direction={{ "@initial": "column", "@bp1": "row" }}
-        spacing="none"
+        spacing="xs"
       >
         <Heading size="md">{title}</Heading>
         <Time {...{ from, to }}></Time>
