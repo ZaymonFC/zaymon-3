@@ -63,7 +63,7 @@ export default function Colors() {
       <div
         style={{
           padding: "40px",
-          fontFamily: "monospace",
+          fontFamily: "Iosevka SS05, Söhne Mono, menlo, monospace",
           color: lightTextColor,
           position: "relative",
         }}
@@ -79,6 +79,10 @@ export default function Colors() {
         .helper-text {
           color: ${lightTextColor};
           opacity: 0.4;
+        }
+        h1, h2 {
+          font-family: "BBH Bartle", "EB Garamond", serif;
+          font-weight: 500;
         }
       `}</style>
       <LegendButton href="/" fixed position="topLeft">
@@ -313,7 +317,7 @@ export default function Colors() {
               style={{
                 flex: 1,
                 fontSize: "13px",
-                fontFamily: "Monaco, monospace",
+                fontFamily: "Iosevka SS05, Söhne Mono, menlo, monospace",
               }}
             >
               {color}
@@ -335,6 +339,7 @@ export default function Colors() {
             fontSize: "12px",
             overflow: "auto",
             color: lightTextColor,
+            marginTop: "15px",
           }}
         >
           {`{
@@ -376,16 +381,17 @@ export default function Colors() {
 
       {/* Color Space Support Info */}
       {colorSpaceInfo && (
-        <div
-          style={{
-            background: darkPanelColor,
-            padding: "20px",
-            borderRadius: "8px",
-            marginTop: "40px",
-            border: "1px solid #333",
-          }}
-        >
-          <h2 style={{ marginTop: 0 }}>Color Space Support</h2>
+        <div style={{ marginTop: "40px" }}>
+          <h2>Color Space Support</h2>
+          <div
+            style={{
+              background: darkPanelColor,
+              padding: "20px",
+              borderRadius: "8px",
+              marginTop: "15px",
+              border: "1px solid #333",
+            }}
+          >
           <div style={{ marginBottom: "15px" }}>
             <strong>Browser detected best gamut:</strong>{" "}
             <span
@@ -461,6 +467,7 @@ export default function Colors() {
               <br />• <strong>Rec. 2020</strong>: Ultra-wide gamut (HDR
               displays)
             </p>
+          </div>
           </div>
         </div>
       )}

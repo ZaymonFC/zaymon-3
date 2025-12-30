@@ -5,7 +5,7 @@ const TextVariants = { bold: { true: { fontWeight: "bold" } } };
 export const Heading = styled("div", {
   fontFamily: "BBH Bartle",
   color: "$typeHighlight",
-  fontWeight: 500,
+  fontWeight: 400,
   lineHeight: 1.5,
   variants: {
     size: {
