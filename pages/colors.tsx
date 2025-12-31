@@ -11,9 +11,15 @@ import { styled } from "../Stitches";
 import { Heading, Text, SubText } from "../components/Typography";
 
 const Container = styled("div", {
-  padding: "$7",
+  paddingInline: "$5",
+  paddingBlock: "$4",
+  paddingTop: "$2",
   fontFamily: "Iosevka SS05, Söhne Mono, menlo, monospace",
   position: "relative",
+  "@bp1": {
+    paddingTop: "$7",
+    paddingBlock: "$7",
+  },
 });
 
 const PageHeading = styled(Heading, {
@@ -45,7 +51,7 @@ const Label = styled("label", {
 const HelperText = styled("div", {
   fontSize: "$1",
   marginTop: "$3",
-  opacity: 0.4,
+  opacity: 0.7,
 });
 
 const RangeInput = styled("input", {
@@ -67,7 +73,7 @@ const Select = styled("select", {
 
 const SectionHeading = styled(Heading, {
   marginTop: "$6",
-  marginBottom: "$5",
+  marginBottom: "$2",
 });
 
 const PaletteGrid = styled("div", {
@@ -119,7 +125,8 @@ const LuminosityLabel = styled(SubText, {
 const CodeBlock = styled("pre", {
   padding: "$5",
   borderRadius: "$3",
-  fontSize: "$1",
+  fontSize: "$2",
+  fontFamily: "Iosevka SS05, Söhne Mono, menlo, monospace",
   overflow: "auto",
 });
 
@@ -127,6 +134,7 @@ const InfoPanel = styled("div", {
   padding: "$6",
   borderRadius: "$4",
   border: "$borderWidths$1 solid #333",
+  fontFamily: "Iosevka SS05, Söhne Mono, menlo, monospace",
 });
 
 const InfoGrid = styled("div", {
@@ -136,7 +144,7 @@ const InfoGrid = styled("div", {
 });
 
 const StatusLabel = styled("div", {
-  fontSize: "$1",
+  fontSize: "$2",
 });
 
 const StatusValue = styled("div", {
@@ -144,7 +152,8 @@ const StatusValue = styled("div", {
 });
 
 const InfoText = styled("div", {
-  fontSize: "$1",
+  fontSize: "$2",
+  fontFamily: "Iosevka SS05, Söhne Mono, menlo, monospace",
   lineHeight: "1.6",
 });
 
@@ -209,7 +218,7 @@ export default function Colors() {
         <LegendButton href="/" fixed position="topLeft">
           Home
         </LegendButton>
-        <PageHeading as="h1" size="xl">
+        <PageHeading as="h1" size="xl" style={{ color: lightTextColor }}>
           Palette Test - Interactive
         </PageHeading>
         <Subheading style={{ color: lightTextColor }}>
@@ -340,7 +349,7 @@ export default function Colors() {
         </ControlPanel>
 
         {/* Palette Visualization */}
-        <SectionHeading as="h2" size="lg">
+        <SectionHeading as="h2" size="lg" style={{ color: lightTextColor }}>
           Palette
         </SectionHeading>
         <PaletteGrid>
@@ -358,10 +367,10 @@ export default function Colors() {
         </PaletteGrid>
 
         <div>
-          <SectionHeading as="h2" size="lg">
+          <SectionHeading as="h2" size="lg" style={{ color: lightTextColor }}>
             Palette Details
           </SectionHeading>
-          <Text css={{ marginBottom: "$5" }}>
+          <Text css={{ marginBottom: "$5" }} style={{ color: lightTextColor }}>
             <strong>Gamut:</strong> {gamut} | <strong>Shades:</strong>{" "}
             {palette.length}
           </Text>
@@ -370,13 +379,15 @@ export default function Colors() {
               <ShadeLabel>{shade}</ShadeLabel>
               <ColorSwatch style={{ backgroundColor: color }} />
               <ColorValue>{color}</ColorValue>
-              <LuminosityLabel>L={luminosity.toFixed(2)}</LuminosityLabel>
+              <LuminosityLabel style={{ color: lightTextColor }}>
+                L={luminosity.toFixed(2)}
+              </LuminosityLabel>
             </DetailRow>
           ))}
         </div>
 
         <div>
-          <SectionHeading as="h2" size="lg">
+          <SectionHeading as="h2" size="lg" style={{ color: lightTextColor }}>
             Configuration
           </SectionHeading>
           <CodeBlock
@@ -425,7 +436,7 @@ export default function Colors() {
         {/* Color Space Support Info */}
         {colorSpaceInfo && (
           <div>
-            <SectionHeading as="h2" size="lg">
+            <SectionHeading as="h2" size="lg" style={{ color: lightTextColor }}>
               Color Space Support
             </SectionHeading>
             <InfoPanel style={{ background: darkPanelColor }}>

@@ -8,7 +8,7 @@ const bluePaletteConfig = {
   chroma: 0.4,
   hue: 281,
   lowerCp: 1,
-  upperCp: 1,
+  upperCp: 0.4,
   torsion: -12,
 } as const;
 
@@ -17,7 +17,7 @@ const goldPaletteConfig = {
   chroma: 0.4,
   hue: 82,
   lowerCp: 1,
-  upperCp: 1,
+  upperCp: 0.4,
   torsion: -12,
 } as const;
 
@@ -26,7 +26,7 @@ const redPaletteConfig = {
   chroma: 0.4,
   hue: 27,
   lowerCp: 1,
-  upperCp: 1,
+  upperCp: 0.4,
   torsion: -12,
 } as const;
 
