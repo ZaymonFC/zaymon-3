@@ -1,9 +1,9 @@
-import { format, formatDuration, intervalToDuration } from "date-fns";
 import { styled } from "../Stitches";
 import Badge from "./Badge";
 import { VSpacer } from "./Spacers";
 import Stack from "./Stack";
 import { Heading, SubLink, SubText, Text } from "./Typography";
+import { useDateString } from "../hooks/useClientDate";
 
 const Inlines = styled("div", {
   "> *": {
@@ -24,32 +24,8 @@ type ProjectEntryProps = {
 };
 
 const Time = ({ from, to }: any) => {
-  const [fromDate, toDate] = [
-    new Date(from),
-    to === "now" ? new Date() : new Date(to),
-  ];
-
-  const fromFormatted = format(fromDate, "MMM yyyy");
-  const toFormatted = to === "now" ? "Present" : format(toDate, "MMM yyyy");
-
-  // If from and to are the same, just show the single date
-  if (fromFormatted === toFormatted) {
-    return <SubText>{fromFormatted}</SubText>;
-  }
-
-  const duration = intervalToDuration({
-    start: fromDate,
-    end: toDate,
-  });
-
-  return (
-    <SubText>
-      {fromFormatted}
-      {" to "}
-      {toFormatted} ({formatDuration(duration, { format: ["years", "months"] })}
-      )
-    </SubText>
-  );
+  const dateString = useDateString({ from, to });
+  return <SubText>{dateString}</SubText>;
 };
 
 const Role = styled(Text, { color: "$type" });
