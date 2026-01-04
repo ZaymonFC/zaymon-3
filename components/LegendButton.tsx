@@ -3,7 +3,7 @@ import { styled } from "../Stitches";
 import NextLink from "next/link";
 
 const legendButtonStyles = {
-  fontFamily: "Iosevka SS05, Söhne Mono, menlo, monospace",
+  fontFamily: "$mono",
   fontSize: "$2",
   fontWeight: 400,
   color: "$legendTitle",

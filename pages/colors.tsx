@@ -9,12 +9,11 @@ import { LegendButton } from "../components/LegendButton";
 import { Fade } from "../components/Fade";
 import { styled } from "../Stitches";
 import { Heading, Text, SubText } from "../components/Typography";
+import { useCopyToClipboard } from "../hooks/useCopyToClipboard";
 
 const Container = styled("div", {
   paddingInline: "$5",
-  paddingBlock: "$4",
-  paddingTop: "$2",
-  fontFamily: "Iosevka SS05, Söhne Mono, menlo, monospace",
+  fontFamily: "$mono",
   position: "relative",
   "@bp1": {
     paddingTop: "$7",
@@ -23,7 +22,7 @@ const Container = styled("div", {
 });
 
 const PageHeading = styled(Heading, {
-  marginTop: "$7",
+  marginTop: "$2",
 });
 
 const Subheading = styled(SubText, {
@@ -31,9 +30,12 @@ const Subheading = styled(SubText, {
   opacity: 0.6,
 });
 
-const ControlPanel = styled("div", {
-  padding: "$6",
-  borderRadius: "$4",
+const Panel = styled("div", {
+  padding: "$5",
+  border: "1px solid",
+});
+
+const ControlPanel = styled(Panel, {
   marginBottom: "$6",
   display: "grid",
   gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 250px), 1fr))",
@@ -66,9 +68,24 @@ const Select = styled("select", {
   boxSizing: "border-box",
   padding: "$4",
   fontSize: "$2",
-  backgroundColor: "#333",
   border: "$borderWidths$1 solid #555",
   borderRadius: "$3",
+});
+
+const Button = styled("button", {
+  padding: "$4",
+  fontSize: "$2",
+  fontFamily: "$mono",
+  fontWeight: "bold",
+  border: "1px solid",
+  cursor: "pointer",
+  transition: "all 0.2s",
+  "&:hover": {
+    opacity: 0.8,
+  },
+  "&:active": {
+    transform: "scale(0.98)",
+  },
 });
 
 const SectionHeading = styled(Heading, {
@@ -114,7 +131,7 @@ const ColorSwatch = styled("div", {
 const ColorValue = styled("div", {
   flex: 1,
   fontSize: "$2",
-  fontFamily: "Iosevka SS05, Söhne Mono, menlo, monospace",
+  fontFamily: "$mono",
 });
 
 const LuminosityLabel = styled(SubText, {
@@ -122,19 +139,8 @@ const LuminosityLabel = styled(SubText, {
   opacity: 0.6,
 });
 
-const CodeBlock = styled("pre", {
-  padding: "$5",
-  borderRadius: "$3",
-  fontSize: "$2",
-  fontFamily: "Iosevka SS05, Söhne Mono, menlo, monospace",
-  overflow: "auto",
-});
-
-const InfoPanel = styled("div", {
-  padding: "$6",
-  borderRadius: "$4",
-  border: "$borderWidths$1 solid #333",
-  fontFamily: "Iosevka SS05, Söhne Mono, menlo, monospace",
+const InfoPanel = styled(Panel, {
+  fontFamily: "$mono",
 });
 
 const InfoGrid = styled("div", {
@@ -144,17 +150,12 @@ const InfoGrid = styled("div", {
 });
 
 const StatusLabel = styled("div", {
-  fontSize: "$2",
+  fontSize: "$3",
+  textTransform: "uppercase",
 });
 
 const StatusValue = styled("div", {
-  fontSize: "20px",
-});
-
-const InfoText = styled("div", {
   fontSize: "$2",
-  fontFamily: "Iosevka SS05, Söhne Mono, menlo, monospace",
-  lineHeight: "1.6",
 });
 
 export default function Colors() {
@@ -179,6 +180,26 @@ export default function Colors() {
     // Auto-select the best supported gamut
     setGamut(detectBestColorSpace());
   }, []);
+
+  // Copy to clipboard hook
+  const { copy, buttonText } = useCopyToClipboard({
+    copyText: "Copy Palette Config",
+    copiedText: "Copied!",
+    getText: () =>
+      JSON.stringify(
+        {
+          lightness,
+          chroma,
+          hue,
+          lowerCp,
+          upperCp,
+          torsion,
+          gamut,
+        },
+        null,
+        2,
+      ),
+  });
 
   // Generate the palette using our utility
   const generatedPalette = generatePalette({
@@ -206,15 +227,12 @@ export default function Colors() {
   const accentColor = generatedPalette[300];
   const lightTextColor = generatedPalette[50];
   const darkPanelColor = generatedPalette[900];
+  const buttonColor = generatedPalette[850];
+  const borderColor = generatedPalette[800];
 
   return (
     <Fade duration="short">
       <Container style={{ color: lightTextColor }}>
-        <style jsx>{`
-          input[type="range"] {
-            accent-color: ${accentColor};
-          }
-        `}</style>
         <LegendButton href="/" fixed position="topLeft">
           Home
         </LegendButton>
@@ -226,7 +244,7 @@ export default function Colors() {
         </Subheading>
 
         {/* Interactive Controls */}
-        <ControlPanel style={{ background: darkPanelColor }}>
+        <ControlPanel style={{ background: darkPanelColor, borderColor }}>
           <ControlGroup>
             <Label>
               Hue: <strong>{hue}°</strong>
@@ -336,7 +354,7 @@ export default function Colors() {
             <Select
               value={gamut}
               onChange={(e) => setGamut(e.target.value as Gamut)}
-              style={{ color: lightTextColor }}
+              style={{ color: lightTextColor, backgroundColor: darkPanelColor }}
             >
               <option value="rec2020">Rec. 2020 (ultra-wide gamut)</option>
               <option value="p3">Display P3 (wide gamut)</option>
@@ -346,6 +364,20 @@ export default function Colors() {
               Color space for output values
             </HelperText>
           </ControlGroup>
+
+          <div style={{ gridColumn: "1 / -1" }}>
+            <Button
+              onClick={copy}
+              style={{
+                color: accentColor,
+                backgroundColor: buttonColor,
+                borderColor: accentColor,
+                width: "100%",
+              }}
+            >
+              {buttonText}
+            </Button>
+          </div>
         </ControlPanel>
 
         {/* Palette Visualization */}
@@ -386,75 +418,18 @@ export default function Colors() {
           ))}
         </div>
 
-        <div>
-          <SectionHeading as="h2" size="lg" style={{ color: lightTextColor }}>
-            Configuration
-          </SectionHeading>
-          <CodeBlock
-            style={{
-              background: darkPanelColor,
-              color: lightTextColor,
-            }}
-          >
-            {`{
-  lightness: ${lightness},
-  chroma: ${chroma},
-  hue: ${hue},
-  lowerCp: ${lowerCp},
-  upperCp: ${upperCp},
-  torsion: ${torsion},
-  gamut: '${gamut}'
-}`}
-          </CodeBlock>
-          <InfoText css={{ marginTop: "$5" }}>
-            <p>
-              <strong>lightness</strong> (0-1): The lightness of the key color
-            </p>
-            <p>
-              <strong>chroma</strong> (0-0.4): The colorfulness/saturation
-            </p>
-            <p>
-              <strong>hue</strong> (0-360): The color angle (276° = purple-blue)
-            </p>
-            <p>
-              <strong>lowerCp</strong>: Dark curve control (1 = straight)
-            </p>
-            <p>
-              <strong>upperCp</strong>: Light curve control (1 = straight)
-            </p>
-            <p>
-              <strong>torsion</strong>: Prevents undesirable color shifts (e.g.,
-              "mustard problem")
-            </p>
-            <p>
-              <strong>gamut</strong>: Color space (p3 = Display P3, srgb =
-              standard RGB)
-            </p>
-          </InfoText>
-        </div>
-
         {/* Color Space Support Info */}
         {colorSpaceInfo && (
           <div>
             <SectionHeading as="h2" size="lg" style={{ color: lightTextColor }}>
               Color Space Support
             </SectionHeading>
-            <InfoPanel style={{ background: darkPanelColor }}>
-              <Text css={{ marginBottom: "$5" }}>
-                <strong>Browser detected best gamut:</strong>{" "}
-                <span
-                  style={{
-                    color: "#4CAF50",
-                    fontWeight: "bold",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  {colorSpaceInfo.best}
-                </span>
-              </Text>
+            <InfoPanel style={{ background: darkPanelColor, borderColor }}>
               <InfoGrid>
                 <div>
-                  <StatusLabel>sRGB</StatusLabel>
+                  <StatusLabel style={{ color: accentColor }}>
+                    sRGB{colorSpaceInfo.best === "srgb" && " (detected)"}
+                  </StatusLabel>
                   <StatusValue
                     style={{
                       color: colorSpaceInfo.srgb ? "#4CAF50" : "#f44336",
@@ -462,9 +437,17 @@ export default function Colors() {
                   >
                     {colorSpaceInfo.srgb ? "✓ Supported" : "✗ Not supported"}
                   </StatusValue>
+                  <SubText
+                    css={{ marginTop: "$3", fontSize: "$1" }}
+                    style={{ color: lightTextColor, opacity: 0.7 }}
+                  >
+                    Standard gamut (all displays)
+                  </SubText>
                 </div>
                 <div>
-                  <StatusLabel>Display P3</StatusLabel>
+                  <StatusLabel style={{ color: accentColor }}>
+                    Display P3{colorSpaceInfo.best === "p3" && " (detected)"}
+                  </StatusLabel>
                   <StatusValue
                     style={{
                       color: colorSpaceInfo.p3 ? "#4CAF50" : "#f44336",
@@ -472,9 +455,18 @@ export default function Colors() {
                   >
                     {colorSpaceInfo.p3 ? "✓ Supported" : "✗ Not supported"}
                   </StatusValue>
+                  <SubText
+                    css={{ marginTop: "$3", fontSize: "$1" }}
+                    style={{ color: lightTextColor, opacity: 0.7 }}
+                  >
+                    ~25% wider than sRGB (modern displays)
+                  </SubText>
                 </div>
                 <div>
-                  <StatusLabel>Rec. 2020</StatusLabel>
+                  <StatusLabel style={{ color: accentColor }}>
+                    Rec. 2020
+                    {colorSpaceInfo.best === "rec2020" && " (detected)"}
+                  </StatusLabel>
                   <StatusValue
                     style={{
                       color: colorSpaceInfo.rec2020 ? "#4CAF50" : "#f44336",
@@ -482,27 +474,14 @@ export default function Colors() {
                   >
                     {colorSpaceInfo.rec2020 ? "✓ Supported" : "✗ Not supported"}
                   </StatusValue>
+                  <SubText
+                    css={{ marginTop: "$3", fontSize: "$1" }}
+                    style={{ color: lightTextColor, opacity: 0.7 }}
+                  >
+                    Ultra-wide gamut (HDR displays)
+                  </SubText>
                 </div>
               </InfoGrid>
-              <InfoText
-                css={{ marginTop: "$5" }}
-                style={{ color: lightTextColor, opacity: 0.4 }}
-              >
-                <p>
-                  <strong>Detection:</strong> Uses{" "}
-                  <code>window.matchMedia("(color-gamut: ...)")</code> - the
-                  same method CSS @media queries use to check your display
-                  capabilities.
-                </p>
-                <p style={{ marginBottom: 0 }}>
-                  <strong>Color spaces:</strong>
-                  <br />• <strong>sRGB</strong>: Standard gamut (all displays)
-                  <br />• <strong>Display P3</strong>: ~25% wider than sRGB
-                  (modern displays)
-                  <br />• <strong>Rec. 2020</strong>: Ultra-wide gamut (HDR
-                  displays)
-                </p>
-              </InfoText>
             </InfoPanel>
           </div>
         )}
