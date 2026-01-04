@@ -99,8 +99,9 @@ const PaletteGrid = styled("div", {
   flexWrap: "wrap",
 });
 
+// TODO: Swatches shouldn't be defined explicitly in terms of dimensions but should use an adaptive grid. Max cell size 60px.
 const PaletteSwatch = styled("div", {
-  width: "60px",
+  width: "5em",
   height: "120px",
   display: "flex",
   alignItems: "flex-end",
@@ -110,6 +111,7 @@ const PaletteSwatch = styled("div", {
   fontWeight: "bold",
 });
 
+// Details should use css-grid constructs instead of flex-box. Current layout is broken on mobile.
 const DetailRow = styled("div", {
   display: "flex",
   gap: "$6",
@@ -125,7 +127,6 @@ const ShadeLabel = styled("div", {
 const ColorSwatch = styled("div", {
   width: "40px",
   height: "20px",
-  border: "$borderWidths$1 solid #ccc",
 });
 
 const ColorValue = styled("div", {
@@ -159,6 +160,9 @@ const StatusValue = styled("div", {
 });
 
 export default function Colors() {
+  // TODO: Merge all of these into an object and store that inside an atom from jotai. (useAtom).
+  // Update read and updates to use the atom API.
+
   // Interactive state for palette configuration
   const [lightness, setLightness] = useState(0.43);
   const [chroma, setChroma] = useState(0.4);
@@ -168,20 +172,20 @@ export default function Colors() {
   const [torsion, setTorsion] = useState(-12);
   const [gamut, setGamut] = useState<Gamut>("p3");
 
+  // TODO: Refactor this hook into useDetectColorSpaceInfo.ts
   // Color space detection
   const [colorSpaceInfo, setColorSpaceInfo] = useState<ReturnType<
     typeof getColorSpaceSupport
   > | null>(null);
 
   useEffect(() => {
-    // Detect on client side only
+    // Detect on client side only.
     const info = getColorSpaceSupport();
     setColorSpaceInfo(info);
-    // Auto-select the best supported gamut
+    // Auto-select the best supported gamut.
     setGamut(detectBestColorSpace());
   }, []);
 
-  // Copy to clipboard hook
   const { copy, buttonText } = useCopyToClipboard({
     copyText: "Copy Palette Config",
     copiedText: "Copied!",
@@ -212,11 +216,13 @@ export default function Colors() {
     gamut,
   });
 
+  // TODO: Use the shade number constants from our palette utilities.
   // Convert to display format
   const shadeNumbers: PaletteShade[] = [
     50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750,
     800, 850, 900, 950,
   ];
+
   const palette = shadeNumbers.map((shade) => ({
     shade,
     luminosity: (1000 - shade) / 1000,
