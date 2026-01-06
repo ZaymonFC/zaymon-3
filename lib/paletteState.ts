@@ -2,7 +2,13 @@ import { atomWithStorage } from "jotai/utils";
 import { observe } from "jotai-effect";
 import type { PaletteShade } from "./colors";
 
-export type PaletteName = "blue" | "gold" | "red" | "magenta" | "green" | "indigo";
+export type PaletteName =
+  | "blue"
+  | "gold"
+  | "red"
+  | "magenta"
+  | "green"
+  | "indigo";
 
 export const currentPaletteAtom = atomWithStorage<PaletteName>(
   "primary-palette",

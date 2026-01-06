@@ -343,7 +343,9 @@ const Home: NextPage = () => {
   const [isVibingOut, setIsVibingOut] = useState(false);
 
   // Derive palette names from availableThemes
-  const palettes: PaletteName[] = availableThemes.map(theme => theme.name.toLowerCase() as PaletteName);
+  const palettes: PaletteName[] = availableThemes.map(
+    (theme) => theme.name.toLowerCase() as PaletteName,
+  );
 
   const cycleTheme = () => {
     const currentIndex = palettes.indexOf(currentPalette);

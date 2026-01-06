@@ -18,7 +18,14 @@ const magentaPalette = magentaPalettes.p3;
 const greenPalette = greenPalettes.p3;
 const indigoPalette = indigoPalettes.p3;
 
-export { bluePalettes, goldPalettes, redPalettes, magentaPalettes, greenPalettes, indigoPalettes };
+export {
+  bluePalettes,
+  goldPalettes,
+  redPalettes,
+  magentaPalettes,
+  greenPalettes,
+  indigoPalettes,
+};
 export type { SupportedGamut };
 
 const shadows = {
