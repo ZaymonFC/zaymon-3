@@ -4,6 +4,9 @@ import {
   bluePalettes,
   goldPalettes,
   redPalettes,
+  magentaPalettes,
+  greenPalettes,
+  indigoPalettes,
 } from "../Stitches";
 import { generateGamutCSS } from "../lib/gamutStyles";
 
@@ -13,8 +16,11 @@ export default function Document() {
   const blueCSS = generateGamutCSS(bluePalettes, "blue", true);
   const goldCSS = generateGamutCSS(goldPalettes, "gold", false);
   const redCSS = generateGamutCSS(redPalettes, "red", false);
+  const magentaCSS = generateGamutCSS(magentaPalettes, "magenta", false);
+  const greenCSS = generateGamutCSS(greenPalettes, "green", false);
+  const indigoCSS = generateGamutCSS(indigoPalettes, "indigo", false);
 
-  const gamutCSS = [blueCSS, goldCSS, redCSS].join("\n\n");
+  const gamutCSS = [blueCSS, goldCSS, redCSS, magentaCSS, greenCSS, indigoCSS].join("\n\n");
 
   return (
     <Html lang="en">

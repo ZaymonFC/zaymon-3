@@ -1,59 +1,25 @@
 import { createStitches } from "@stitches/react";
-import { generatePalette, paletteToTokens, type Palette } from "./lib/colors";
-
-export type SupportedGamut = "srgb" | "p3" | "rec2020";
-
-const bluePaletteConfig = {
-  lightness: 0.43,
-  chroma: 0.4,
-  hue: 281,
-  lowerCp: 1,
-  upperCp: 0.4,
-  torsion: -12,
-} as const;
-
-const goldPaletteConfig = {
-  lightness: 0.43,
-  chroma: 0.4,
-  hue: 82,
-  lowerCp: 1,
-  upperCp: 0.4,
-  torsion: -12,
-} as const;
-
-const redPaletteConfig = {
-  lightness: 0.43,
-  chroma: 0.4,
-  hue: 27,
-  lowerCp: 1,
-  upperCp: 0.4,
-  torsion: -12,
-} as const;
-
-const bluePalettes: Record<SupportedGamut, Palette> = {
-  srgb: generatePalette({ ...bluePaletteConfig, gamut: "srgb" }),
-  p3: generatePalette({ ...bluePaletteConfig, gamut: "p3" }),
-  rec2020: generatePalette({ ...bluePaletteConfig, gamut: "rec2020" }),
-};
-
-const goldPalettes: Record<SupportedGamut, Palette> = {
-  srgb: generatePalette({ ...goldPaletteConfig, gamut: "srgb" }),
-  p3: generatePalette({ ...goldPaletteConfig, gamut: "p3" }),
-  rec2020: generatePalette({ ...goldPaletteConfig, gamut: "rec2020" }),
-};
-
-const redPalettes: Record<SupportedGamut, Palette> = {
-  srgb: generatePalette({ ...redPaletteConfig, gamut: "srgb" }),
-  p3: generatePalette({ ...redPaletteConfig, gamut: "p3" }),
-  rec2020: generatePalette({ ...redPaletteConfig, gamut: "rec2020" }),
-};
+import { paletteToTokens } from "./lib/colors";
+import {
+  bluePalettes,
+  goldPalettes,
+  redPalettes,
+  magentaPalettes,
+  greenPalettes,
+  indigoPalettes,
+  type SupportedGamut,
+} from "./lib/themes";
 
 // Use P3 as the default palette (will be overridden by media queries in CSS)
 const bluePalette = bluePalettes.p3;
 const goldPalette = goldPalettes.p3;
 const redPalette = redPalettes.p3;
+const magentaPalette = magentaPalettes.p3;
+const greenPalette = greenPalettes.p3;
+const indigoPalette = indigoPalettes.p3;
 
-export { bluePalettes, goldPalettes, redPalettes };
+export { bluePalettes, goldPalettes, redPalettes, magentaPalettes, greenPalettes, indigoPalettes };
+export type { SupportedGamut };
 
 const shadows = {
   1: `
@@ -78,6 +44,9 @@ const physicalColors = {
   ...paletteToTokens(bluePalette, "blue"),
   ...paletteToTokens(goldPalette, "gold"),
   ...paletteToTokens(redPalette, "red"),
+  ...paletteToTokens(magentaPalette, "magenta"),
+  ...paletteToTokens(greenPalette, "green"),
+  ...paletteToTokens(indigoPalette, "indigo"),
   ...paletteToTokens(bluePalette, "primary"),
 
   gray500: "hsl(206,10%,76%)",

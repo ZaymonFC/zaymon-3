@@ -1,9 +1,15 @@
 import { useState, useEffect } from "react";
-import { generatePalette, type PaletteShade } from "../lib/colors";
+import { useAtom } from "jotai";
 import {
-  detectBestColorSpace,
-  getColorSpaceSupport,
-} from "../lib/colorSpaceDetection";
+  generatePalette,
+  shadeNumbers,
+  type PaletteShade,
+} from "../lib/colors";
+import { useDetectColorSpaceInfo } from "../hooks/useDetectColorSpaceInfo";
+import {
+  palettePlaygroundAtom,
+  type PalettePlaygroundConfig,
+} from "../lib/palettePlaygroundState";
 import type { Gamut } from "@ch-ui/colors";
 import { LegendButton } from "../components/LegendButton";
 import { Fade } from "../components/Fade";
@@ -94,15 +100,13 @@ const SectionHeading = styled(Heading, {
 });
 
 const PaletteGrid = styled("div", {
-  display: "flex",
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 60px), 1fr))",
   gap: "$3",
-  flexWrap: "wrap",
 });
 
-// TODO: Swatches shouldn't be defined explicitly in terms of dimensions but should use an adaptive grid. Max cell size 60px.
 const PaletteSwatch = styled("div", {
-  width: "5em",
-  height: "120px",
+  aspectRatio: "1 / 2",
   display: "flex",
   alignItems: "flex-end",
   justifyContent: "center",
@@ -111,28 +115,29 @@ const PaletteSwatch = styled("div", {
   fontWeight: "bold",
 });
 
-// Details should use css-grid constructs instead of flex-box. Current layout is broken on mobile.
 const DetailRow = styled("div", {
   display: "flex",
-  gap: "$6",
-  marginBottom: "$4",
+  gap: "$4",
+  marginBottom: "$3",
   alignItems: "center",
 });
 
 const ShadeLabel = styled("div", {
-  width: "60px",
+  minWidth: "36px",
   fontWeight: "bold",
 });
 
 const ColorSwatch = styled("div", {
   width: "40px",
   height: "20px",
+  flexShrink: 0,
 });
 
 const ColorValue = styled("div", {
   flex: 1,
   fontSize: "$2",
   fontFamily: "$mono",
+  minWidth: 0,
 });
 
 const LuminosityLabel = styled(SubText, {
@@ -160,68 +165,25 @@ const StatusValue = styled("div", {
 });
 
 export default function Colors() {
-  // TODO: Merge all of these into an object and store that inside an atom from jotai. (useAtom).
-  // Update read and updates to use the atom API.
+  const [config, setConfig] = useAtom(palettePlaygroundAtom);
 
-  // Interactive state for palette configuration
-  const [lightness, setLightness] = useState(0.43);
-  const [chroma, setChroma] = useState(0.4);
-  const [hue, setHue] = useState(276);
-  const [lowerCp, setLowerCp] = useState(1);
-  const [upperCp, setUpperCp] = useState(1);
-  const [torsion, setTorsion] = useState(-12);
-  const [gamut, setGamut] = useState<Gamut>("p3");
+  const updateConfig = <K extends keyof PalettePlaygroundConfig>(
+    key: K,
+    value: PalettePlaygroundConfig[K],
+  ) => setConfig((prev) => ({ ...prev, [key]: value }));
 
-  // TODO: Refactor this hook into useDetectColorSpaceInfo.ts
-  // Color space detection
-  const [colorSpaceInfo, setColorSpaceInfo] = useState<ReturnType<
-    typeof getColorSpaceSupport
-  > | null>(null);
-
+  const { colorSpaceInfo, detectedGamut } = useDetectColorSpaceInfo();
   useEffect(() => {
-    // Detect on client side only.
-    const info = getColorSpaceSupport();
-    setColorSpaceInfo(info);
-    // Auto-select the best supported gamut.
-    setGamut(detectBestColorSpace());
-  }, []);
+    updateConfig("gamut", detectedGamut);
+  }, [detectedGamut]);
 
   const { copy, buttonText } = useCopyToClipboard({
     copyText: "Copy Palette Config",
     copiedText: "Copied!",
-    getText: () =>
-      JSON.stringify(
-        {
-          lightness,
-          chroma,
-          hue,
-          lowerCp,
-          upperCp,
-          torsion,
-          gamut,
-        },
-        null,
-        2,
-      ),
+    getText: () => JSON.stringify(config, null, 2),
   });
 
-  // Generate the palette using our utility
-  const generatedPalette = generatePalette({
-    lightness,
-    chroma,
-    hue,
-    lowerCp,
-    upperCp,
-    torsion,
-    gamut,
-  });
-
-  // TODO: Use the shade number constants from our palette utilities.
-  // Convert to display format
-  const shadeNumbers: PaletteShade[] = [
-    50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750,
-    800, 850, 900, 950,
-  ];
+  const generatedPalette = generatePalette(config);
 
   const palette = shadeNumbers.map((shade) => ({
     shade,
@@ -229,7 +191,6 @@ export default function Colors() {
     color: generatedPalette[shade],
   }));
 
-  // Get colors from the palette
   const accentColor = generatedPalette[300];
   const lightTextColor = generatedPalette[50];
   const darkPanelColor = generatedPalette[900];
@@ -243,25 +204,25 @@ export default function Colors() {
           Home
         </LegendButton>
         <PageHeading as="h1" size="xl" style={{ color: lightTextColor }}>
-          Palette Test - Interactive
+          Color Playground
         </PageHeading>
         <Subheading style={{ color: lightTextColor }}>
-          Using @ch-ui/colors for perceptually uniform color generation
+          Using @ch-ui/colors for perceptually uniform color palette generation
         </Subheading>
 
         {/* Interactive Controls */}
         <ControlPanel style={{ background: darkPanelColor, borderColor }}>
           <ControlGroup>
             <Label>
-              Hue: <strong>{hue}°</strong>
+              Hue: <strong>{config.hue}°</strong>
             </Label>
             <RangeInput
               type="range"
               min="0"
               max="360"
               step="1"
-              value={hue}
-              onChange={(e) => setHue(parseInt(e.target.value))}
+              value={config.hue}
+              onChange={(e) => updateConfig("hue", parseInt(e.target.value))}
             />
             <HelperText style={{ color: lightTextColor }}>
               Color angle (0=red, 120=green, 240=blue)
@@ -270,15 +231,17 @@ export default function Colors() {
 
           <ControlGroup>
             <Label>
-              Lightness: <strong>{lightness.toFixed(2)}</strong>
+              Lightness: <strong>{config.lightness.toFixed(2)}</strong>
             </Label>
             <RangeInput
               type="range"
               min="0"
               max="1"
               step="0.01"
-              value={lightness}
-              onChange={(e) => setLightness(parseFloat(e.target.value))}
+              value={config.lightness}
+              onChange={(e) =>
+                updateConfig("lightness", parseFloat(e.target.value))
+              }
             />
             <HelperText style={{ color: lightTextColor }}>
               Key color lightness (0 = black, 1 = white)
@@ -287,15 +250,17 @@ export default function Colors() {
 
           <ControlGroup>
             <Label>
-              Chroma: <strong>{chroma.toFixed(2)}</strong>
+              Chroma: <strong>{config.chroma.toFixed(2)}</strong>
             </Label>
             <RangeInput
               type="range"
               min="0"
               max="0.4"
               step="0.01"
-              value={chroma}
-              onChange={(e) => setChroma(parseFloat(e.target.value))}
+              value={config.chroma}
+              onChange={(e) =>
+                updateConfig("chroma", parseFloat(e.target.value))
+              }
             />
             <HelperText style={{ color: lightTextColor }}>
               Colorfulness/saturation intensity
@@ -304,15 +269,17 @@ export default function Colors() {
 
           <ControlGroup>
             <Label>
-              Lower CP: <strong>{lowerCp.toFixed(2)}</strong>
+              Lower CP: <strong>{config.lowerCp.toFixed(2)}</strong>
             </Label>
             <RangeInput
               type="range"
               min="0"
               max="2"
               step="0.05"
-              value={lowerCp}
-              onChange={(e) => setLowerCp(parseFloat(e.target.value))}
+              value={config.lowerCp}
+              onChange={(e) =>
+                updateConfig("lowerCp", parseFloat(e.target.value))
+              }
             />
             <HelperText style={{ color: lightTextColor }}>
               Dark curve control (1 = straight)
@@ -321,15 +288,17 @@ export default function Colors() {
 
           <ControlGroup>
             <Label>
-              Upper CP: <strong>{upperCp.toFixed(2)}</strong>
+              Upper CP: <strong>{config.upperCp.toFixed(2)}</strong>
             </Label>
             <RangeInput
               type="range"
               min="0"
               max="2"
               step="0.05"
-              value={upperCp}
-              onChange={(e) => setUpperCp(parseFloat(e.target.value))}
+              value={config.upperCp}
+              onChange={(e) =>
+                updateConfig("upperCp", parseFloat(e.target.value))
+              }
             />
             <HelperText style={{ color: lightTextColor }}>
               Light curve control (1 = straight)
@@ -338,15 +307,17 @@ export default function Colors() {
 
           <ControlGroup>
             <Label>
-              Torsion: <strong>{torsion}</strong>
+              Torsion: <strong>{config.torsion}</strong>
             </Label>
             <RangeInput
               type="range"
               min="-50"
               max="50"
               step="1"
-              value={torsion}
-              onChange={(e) => setTorsion(parseInt(e.target.value))}
+              value={config.torsion}
+              onChange={(e) =>
+                updateConfig("torsion", parseInt(e.target.value))
+              }
             />
             <HelperText style={{ color: lightTextColor }}>
               Hue rotation to prevent color shifts
@@ -355,11 +326,11 @@ export default function Colors() {
 
           <ControlGroup>
             <Label>
-              Gamut: <strong>{gamut}</strong>
+              Gamut: <strong>{config.gamut}</strong>
             </Label>
             <Select
-              value={gamut}
-              onChange={(e) => setGamut(e.target.value as Gamut)}
+              value={config.gamut}
+              onChange={(e) => updateConfig("gamut", e.target.value as Gamut)}
               style={{ color: lightTextColor, backgroundColor: darkPanelColor }}
             >
               <option value="rec2020">Rec. 2020 (ultra-wide gamut)</option>
@@ -409,7 +380,7 @@ export default function Colors() {
             Palette Details
           </SectionHeading>
           <Text css={{ marginBottom: "$5" }} style={{ color: lightTextColor }}>
-            <strong>Gamut:</strong> {gamut} | <strong>Shades:</strong>{" "}
+            <strong>Gamut:</strong> {config.gamut} | <strong>Shades:</strong>{" "}
             {palette.length}
           </Text>
           {palette.map(({ shade, luminosity, color }) => (

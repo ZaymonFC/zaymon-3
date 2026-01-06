@@ -20,6 +20,7 @@ import { GlassCard } from "../components/GlassCard";
 import { useAtom } from "jotai";
 import { currentPaletteAtom, type PaletteName } from "../lib/paletteState";
 import { LegendButton } from "../components/LegendButton";
+import { availableThemes } from "../lib/themes";
 
 const randomSketches = ["circles"];
 
@@ -341,11 +342,12 @@ const Home: NextPage = () => {
   const [currentPalette, setCurrentPalette] = useAtom(currentPaletteAtom);
   const [isVibingOut, setIsVibingOut] = useState(false);
 
-  // TODO: Derive this from the available palettes
-  const palettes: PaletteName[] = ["blue", "gold", "red"];
+  // Derive palette names from availableThemes
+  const palettes: PaletteName[] = availableThemes.map(theme => theme.name.toLowerCase() as PaletteName);
 
   const cycleTheme = () => {
     const currentIndex = palettes.indexOf(currentPalette);
+    // If current palette not found, default to first theme (index -1 + 1 = 0)
     const nextIndex = (currentIndex + 1) % palettes.length;
     setCurrentPalette(palettes[nextIndex]);
   };

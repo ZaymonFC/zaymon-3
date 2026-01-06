@@ -7,7 +7,7 @@ import {
   type HelicalArcConfig,
 } from "@ch-ui/colors";
 
-const shadeNumbers = [
+export const shadeNumbers = [
   50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800,
   850, 900, 950,
 ] as const;
@@ -16,7 +16,7 @@ export type PaletteShade = (typeof shadeNumbers)[number];
 
 export type Palette = Record<PaletteShade, string>;
 
-export interface PaletteConfig {
+export type PaletteConfig = {
   lightness: number;
   chroma: number;
   hue: number;
@@ -24,7 +24,7 @@ export interface PaletteConfig {
   upperCp?: number;
   torsion?: number;
   gamut?: Gamut;
-}
+};
 
 /**
  * Generates a perceptually uniform color palette using helical arc interpolation
