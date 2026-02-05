@@ -18,16 +18,10 @@ export default function Document() {
   const redCSS = generateGamutCSS(redPalettes, "red", false);
   const magentaCSS = generateGamutCSS(magentaPalettes, "magenta", false);
   const greenCSS = generateGamutCSS(greenPalettes, "green", false);
-  const indigoCSS = generateGamutCSS(indigoPalettes, "indigo", false);
 
-  const gamutCSS = [
-    blueCSS,
-    goldCSS,
-    redCSS,
-    magentaCSS,
-    greenCSS,
-    indigoCSS,
-  ].join("\n\n");
+  const gamutCSS = [blueCSS, goldCSS, redCSS, magentaCSS, greenCSS].join(
+    "\n\n",
+  );
 
   return (
     <Html lang="en">

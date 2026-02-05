@@ -71,14 +71,14 @@ export const greenPaletteConfig = {
   torsion: -12,
 };
 
-export const indigoPaletteConfig = {
-  lightness: 0.43,
-  chroma: 0.4,
-  hue: 223,
-  lowerCp: 1,
-  upperCp: 0.4,
-  torsion: -12,
-};
+// export const indigoPaletteConfig = {
+//   lightness: 0.43,
+//   chroma: 0.4,
+//   hue: 223,
+//   lowerCp: 1,
+//   upperCp: 0.4,
+//   torsion: -12,
+// };
 
 // Generate palettes for all gamuts
 export const bluePalettes = makePalette(bluePaletteConfig);
@@ -86,7 +86,7 @@ export const goldPalettes = makePalette(goldPaletteConfig);
 export const redPalettes = makePalette(redPaletteConfig);
 export const magentaPalettes = makePalette(magentaPaletteConfig);
 export const greenPalettes = makePalette(greenPaletteConfig);
-export const indigoPalettes = makePalette(indigoPaletteConfig);
+// export const indigoPalettes = makePalette(indigoPaletteConfig);
 
 // Available themes for cycling
 export interface ThemePreset {
@@ -100,5 +100,5 @@ export const availableThemes: ThemePreset[] = [
   { name: "Red", config: redPaletteConfig },
   { name: "Magenta", config: magentaPaletteConfig },
   { name: "Green", config: greenPaletteConfig },
-  { name: "Indigo", config: indigoPaletteConfig },
+  // { name: "Indigo", config: indigoPaletteConfig },
 ];

@@ -6,7 +6,6 @@ import {
   redPalettes,
   magentaPalettes,
   greenPalettes,
-  indigoPalettes,
   type SupportedGamut,
 } from "./lib/themes";
 
@@ -16,7 +15,6 @@ const goldPalette = goldPalettes.p3;
 const redPalette = redPalettes.p3;
 const magentaPalette = magentaPalettes.p3;
 const greenPalette = greenPalettes.p3;
-const indigoPalette = indigoPalettes.p3;
 
 export {
   bluePalettes,
@@ -53,7 +51,6 @@ const physicalColors = {
   ...paletteToTokens(redPalette, "red"),
   ...paletteToTokens(magentaPalette, "magenta"),
   ...paletteToTokens(greenPalette, "green"),
-  ...paletteToTokens(indigoPalette, "indigo"),
   ...paletteToTokens(bluePalette, "primary"),
 
   gray500: "hsl(206,10%,76%)",
