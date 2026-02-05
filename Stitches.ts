@@ -22,7 +22,6 @@ export {
   redPalettes,
   magentaPalettes,
   greenPalettes,
-  indigoPalettes,
 };
 export type { SupportedGamut };
 

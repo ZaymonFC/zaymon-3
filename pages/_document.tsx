@@ -6,7 +6,6 @@ import {
   redPalettes,
   magentaPalettes,
   greenPalettes,
-  indigoPalettes,
 } from "../Stitches";
 import { generateGamutCSS } from "../lib/gamutStyles";
 

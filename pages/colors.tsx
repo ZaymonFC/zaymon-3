@@ -19,10 +19,10 @@ import { useCopyToClipboard } from "../hooks/useCopyToClipboard";
 
 const Container = styled("div", {
   paddingInline: "$5",
+  paddingTop: "$7",
   fontFamily: "$mono",
   position: "relative",
   "@bp1": {
-    paddingTop: "$7",
     paddingBlock: "$7",
   },
 });
