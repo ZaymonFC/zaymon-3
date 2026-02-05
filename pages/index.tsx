@@ -424,7 +424,7 @@ const Home: NextPage = () => {
 
         {isVibingOut && (
           <LegendButton onClick={stopVibing} fixed position="bottomLeft">
-            Quit vibing (esc)
+            Unrelax (Esc)
           </LegendButton>
         )}
 
@@ -482,7 +482,7 @@ const Home: NextPage = () => {
                       cycle theme
                     </LegendButton>
                     <LegendButton href="/colors">color playground</LegendButton>
-                    <LegendButton onClick={vibeOut}>vibe out</LegendButton>
+                    <LegendButton onClick={vibeOut}>relax</LegendButton>
                   </Stack>
                 </Page>
               </Padding>
