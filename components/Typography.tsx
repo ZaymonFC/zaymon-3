@@ -3,25 +3,25 @@ import { styled } from "../Stitches";
 const TextVariants = { bold: { true: { fontWeight: "bold" } } };
 
 export const Heading = styled("div", {
-  fontFamily: "EB Garamond",
-  color: "$orange",
-  fontWeight: 700,
+  fontFamily: "BBH Bartle",
+  color: "$typeHighlight",
+  fontWeight: 400,
   lineHeight: 1.5,
   variants: {
     size: {
-      sm: { fontSize: "$3" },
-      md: { fontSize: "$4" },
-      lg: { fontSize: "$5" },
-      xl: { fontSize: "$6" },
-      hero: { fontSize: "$7" },
+      sm: { fontSize: "$2" },
+      md: { fontSize: "$3" },
+      lg: { fontSize: "$4" },
+      xl: { fontSize: "$5" },
+      hero: { fontSize: "$6" },
     },
   },
   defaultVariants: { size: "md" },
 });
 
 export const Text = styled("p", {
-  color: "$type",
-  fontFamily: "Iosevka SS05",
+  color: "$typeHighlight",
+  fontFamily: "Iosevka SS05, Söhne Mono, menlo, monospace",
   fontSize: "$2",
   fontWeight: "normal",
   variants: {
@@ -30,6 +30,7 @@ export const Text = styled("p", {
 });
 
 export const SubText = styled("p", {
+  fontFamily: "Iosevka SS05, Söhne Mono, menlo, monospace",
   fontSize: "$1",
   color: "$type",
   variants: {
@@ -38,13 +39,16 @@ export const SubText = styled("p", {
 });
 
 export const Link = styled("a", {
-  color: "$typeHighlight",
+  fontFamily: "Iosevka SS05, Söhne Mono, menlo, monospace",
+  color: "$type",
   "&:hover": {
-    color: "$orange",
+    color: "$typeHighlight",
   },
   textDecoration: "underline",
   variants: {
-    invert: { true: { color: "$orange", "&:hover": { color: "white" } } },
+    invert: {
+      true: { color: "$typeHighlight", "&:hover": { color: "white" } },
+    },
   },
 });
 

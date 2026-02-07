@@ -4,7 +4,7 @@ import { SubText } from "./Typography";
 
 const Border = styled("div", {
   borderStyle: "solid",
-  borderColor: "$orange",
+  borderColor: "$typeHighlight",
 
   variants: {
     size: {

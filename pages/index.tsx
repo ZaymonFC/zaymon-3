@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import NextLink from "next/link";
 import { styled } from "../Stitches";
 import { BackgroundNoise } from "../components/BackgroundNoise";
 import Padding from "../components/Padding";
@@ -13,8 +14,13 @@ import { Heading, Link, Text } from "../components/Typography";
 import dynamic from "next/dynamic";
 import { SketchContainer } from "../components/SketchContainer";
 import { Fade } from "../components/Fade";
-import { ComponentType } from "react";
+import { ComponentType, useState, useEffect } from "react";
 import MiniProjectEntry from "../components/MiniProjectEntry";
+import { GlassCard } from "../components/GlassCard";
+import { useAtom } from "jotai";
+import { currentPaletteAtom, type PaletteName } from "../lib/paletteState";
+import { LegendButton } from "../components/LegendButton";
+import { availableThemes } from "../lib/themes";
 
 const randomSketches = ["circles"];
 
@@ -50,7 +56,7 @@ export const Panel = styled("div", {
         borderStyle: "solid",
       },
       strong: {
-        borderColor: "$orange",
+        borderColor: "$type",
         borderWidth: 2,
         borderStyle: "solid",
       },
@@ -58,9 +64,24 @@ export const Panel = styled("div", {
   },
 });
 
+const UIContainer = styled("div", {
+  transition: "opacity 0.3s ease-out",
+  variants: {
+    visible: {
+      true: {
+        opacity: 1,
+        pointerEvents: "auto",
+      },
+      false: {
+        opacity: 0,
+        pointerEvents: "none",
+      },
+    },
+  },
+});
+
 const Letter = () => (
   <Stack direction={"column"}>
-    <Heading>Dear Visitor,</Heading>
     <Text>
       I{"'"}m an Australian software engineer currently based in Vancouver,
       Canada. My passion is building software that enhances human connection and
@@ -78,7 +99,6 @@ const Letter = () => (
       you would like to talk to me, please{" "}
       <Link href="mailto:zaymon.antonio@protonmail.com">get in touch</Link>.
     </Text>
-    <VSpacer size="md" />
     <Text>Regards,</Text>
     <Text> Zaymon Antonio</Text>
   </Stack>
@@ -137,22 +157,6 @@ const Projects = () => (
       date="2023"
     />
     <MiniProjectEntry
-      title="Research for Lex.Page"
-      description={`Explored solutions for building unified diffs for rich text.
-      Implemented a solution that given two versions of a prose-mirror document, generates a new diff-document, highlighting differences in text, formatting and markup.`}
-      technologies={[
-        "React",
-        "TipTap",
-        "ProseMirror",
-        "Yjs",
-        "json-diff-patch",
-
-        "data structures and algorithms",
-      ]}
-      link={"https://lex.page/"}
-      date="2023"
-    />
-    <MiniProjectEntry
       title="Connect-4 Advanced 3D"
       link={"https://github.com/ZaymonFC/Connect4-3D-R3F"}
       description="A 3D implementation of Connect-Four Advanced (4x4x4) playable in the browser implemented in react-three-fiber."
@@ -195,6 +199,22 @@ const WorkEntries = () => (
       description="Discover economic research for a better economy."
       technologies={["Svelte", "SvelteKit", "Typescript", "DatoCMS", "GraphQL"]}
       link="https://www.economicpossibility.org/"
+    />
+    <ProjectEntry
+      title="Lex.Page"
+      from="2023"
+      to="2023"
+      position="Research & Development"
+      description="Explored solutions for building unified diffs for rich text. Implemented a solution that given two versions of a prose-mirror document, generates a new diff-document, highlighting differences in text, formatting and markup."
+      technologies={[
+        "React",
+        "TipTap",
+        "ProseMirror",
+        "Yjs",
+        "json-diff-patch",
+        "data structures and algorithms",
+      ]}
+      link="https://lex.page/"
     />
     <ProjectEntry
       title="UtilityOn"
@@ -264,26 +284,13 @@ const Socials = () => {
   return (
     <Text>
       Follow me on{" "}
-      <Link href="https://bsky.app/profile/boundless.garden">
-        <a>Bluesky</a>
-      </Link>{" "}
-      and{" "}
-      <Link href="https://www.twitter.com/zaymonantonio">
-        <a>X</a>
-      </Link>
-      , see my code on{" "}
-      <Link href="https://www.github.com/ZaymonFC">
-        <a>GitHub</a>
-      </Link>
-      , check out what books I{"'"}m reading on{" "}
-      <Link href="https://oku.club/user/zaymon">
-        <a>Oku.Club</a>
-      </Link>{" "}
-      or have a look at my collections on{" "}
-      <Link href="https://www.are.na/zaymon-antonio">
-        <a>Are.Na</a>
-      </Link>
-      .
+      <Link href="https://bsky.app/profile/boundless.garden">Bluesky</Link> and{" "}
+      <Link href="https://www.twitter.com/zaymonantonio">X</Link>, see my code
+      on <Link href="https://www.github.com/ZaymonFC">GitHub</Link>, check out
+      what books I{"'"}m reading on{" "}
+      <Link href="https://oku.club/user/zaymon">Oku.Club</Link> or have a look
+      at my collections on{" "}
+      <Link href="https://www.are.na/zaymon-antonio">Are.Na</Link>.
     </Text>
   );
 };
@@ -292,19 +299,17 @@ const Acknowledgements = () => {
   return (
     <>
       <Text>
-        This website is built with <Link href="https://nextjs.org">NextJS</Link>{" "}
-        and{" "}
-        <Link href="https://stitches.dev">
-          <a>Stitches</a>
+        This website is built with <Link href="https://nextjs.org">NextJS</Link>
+        , <Link href="https://stitches.dev">Stitches</Link>,{" "}
+        <Link href="https://github.com/ch-ui-dev/ch-ui">@ch-ui</Link> and{" "}
+        <Link href="https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API">
+          WebGL
         </Link>
         .
       </Text>
       <VSpacer size="sm" />
       <Text>
-        The{" "}
-        <Link href="https://github.com/ZaymonFC/zaymon-3">
-          <a>source code</a>
-        </Link>{" "}
+        The <Link href="https://github.com/ZaymonFC/zaymon-3">source code</Link>{" "}
         is public on GitHub.
       </Text>
     </>
@@ -334,6 +339,52 @@ const Favicons = () => (
 );
 
 const Home: NextPage = () => {
+  const [currentPalette, setCurrentPalette] = useAtom(currentPaletteAtom);
+  const [isVibingOut, setIsVibingOut] = useState(false);
+
+  // Derive palette names from availableThemes
+  const palettes: PaletteName[] = availableThemes.map(
+    (theme) => theme.name.toLowerCase() as PaletteName,
+  );
+
+  const cycleTheme = () => {
+    const currentIndex = palettes.indexOf(currentPalette);
+    // If current palette not found, default to first theme (index -1 + 1 = 0)
+    const nextIndex = (currentIndex + 1) % palettes.length;
+    setCurrentPalette(palettes[nextIndex]);
+  };
+
+  const vibeOut = () => {
+    setIsVibingOut(true);
+  };
+
+  const stopVibing = () => {
+    setIsVibingOut(false);
+  };
+
+  useEffect(() => {
+    if (isVibingOut) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isVibingOut]);
+
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isVibingOut) {
+        stopVibing();
+      }
+    };
+
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, [isVibingOut]);
+
   return (
     <>
       <Head>
@@ -370,43 +421,74 @@ const Home: NextPage = () => {
       </Head>
       <div>
         <BackgroundNoise />
-        <DynamicSketch sketch={randomSketch} />
 
-        <Fade duration="medium">
-          <Padding size="md">
-            <Page>
-              {/* <Padding size={{ "@initial": "lg", "@bp1": "xl" }}>
+        {isVibingOut && (
+          <LegendButton onClick={stopVibing} fixed position="bottomLeft">
+            Unrelax (Esc)
+          </LegendButton>
+        )}
+
+        <main>
+          <UIContainer visible={!isVibingOut}>
+            <Fade duration="medium">
+              <Padding
+                size="md"
+                css={{
+                  paddingTop: "$2",
+                  "@bp1": {
+                    paddingTop: "$4",
+                  },
+                }}
+              >
+                <Page>
+                  {/* <Padding size={{ "@initial": "lg", "@bp1": "xl" }}>
               <Heading style={{ textAlign: "center" }} size="md">
                 zaymon.dev
               </Heading>
             </Padding> */}
 
-              <Letter />
-              <VSpacer size={"xxl"} />
+                  <GlassCard title="Dear Visitor">
+                    <Letter />
+                  </GlassCard>
 
-              <SectionHeader title="Socials." />
-              <Socials />
+                  <GlassCard title="Socials">
+                    <Socials />
+                  </GlassCard>
 
-              <VSpacer size={"xxl"} />
+                  <GlassCard title="Ongoing Projects">
+                    <OngoingProjects />
+                  </GlassCard>
 
-              <SectionHeader title={"Ongoing Projects."} />
-              <OngoingProjects />
+                  <GlassCard title="Projects">
+                    <Projects />
+                  </GlassCard>
 
-              <VSpacer size={"xxl"} />
+                  <GlassCard title="Work">
+                    <WorkEntries />
+                  </GlassCard>
 
-              <SectionHeader title={"Projects."} />
-              <Projects />
+                  <GlassCard title="source">
+                    <Acknowledgements />
+                  </GlassCard>
 
-              <VSpacer size={"xxl"} />
+                  <VSpacer size="lg" />
 
-              <SectionHeader title={"Work."} />
-              <WorkEntries />
-
-              <VSpacer size="xxl" />
-              <Acknowledgements />
-            </Page>
-          </Padding>
-        </Fade>
+                  <Stack
+                    direction="row"
+                    spacing="md"
+                    css={{ flexWrap: "wrap" }}
+                  >
+                    <LegendButton onClick={cycleTheme}>
+                      cycle theme
+                    </LegendButton>
+                    <LegendButton href="/colors">color playground</LegendButton>
+                    <LegendButton onClick={vibeOut}>relax</LegendButton>
+                  </Stack>
+                </Page>
+              </Padding>
+            </Fade>
+          </UIContainer>
+        </main>
       </div>
     </>
   );

@@ -20,6 +20,9 @@ const Stack = styled("div", {
     },
     spacing: {
       none: {},
+      xs: {
+        gap: "$space$3",
+      },
       sm: {
         gap: "$space$4",
       },

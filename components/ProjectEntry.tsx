@@ -1,9 +1,9 @@
-import { format, formatDuration, intervalToDuration } from "date-fns";
 import { styled } from "../Stitches";
 import Badge from "./Badge";
 import { VSpacer } from "./Spacers";
 import Stack from "./Stack";
 import { Heading, SubLink, SubText, Text } from "./Typography";
+import { useDateString } from "../hooks/useClientDate";
 
 const Inlines = styled("div", {
   "> *": {
@@ -24,27 +24,11 @@ type ProjectEntryProps = {
 };
 
 const Time = ({ from, to }: any) => {
-  const [fromDate, toDate] = [
-    new Date(from),
-    to === "now" ? new Date() : new Date(to),
-  ];
-
-  const duration = intervalToDuration({
-    start: fromDate,
-    end: toDate,
-  });
-
-  return (
-    <SubText>
-      {format(fromDate, "MMM yyyy")}
-      {" to "}
-      {to === "now" ? "Present" : format(toDate, "MMM yyyy")} (
-      {formatDuration(duration, { format: ["years", "months"] })})
-    </SubText>
-  );
+  const dateString = useDateString({ from, to });
+  return <SubText>{dateString}</SubText>;
 };
 
-const Role = styled(Text, { color: "$orange" });
+const Role = styled(Text, { color: "$type" });
 
 const ProjectEntry = ({
   title,
@@ -61,7 +45,7 @@ const ProjectEntry = ({
         justify={{ "@initial": "spaceBetween", "@bp1": undefined }}
         align={{ "@initial": "start", "@bp1": "end" }}
         direction={{ "@initial": "column", "@bp1": "row" }}
-        spacing="none"
+        spacing="xs"
       >
         <Heading size="md">{title}</Heading>
         <Time {...{ from, to }}></Time>

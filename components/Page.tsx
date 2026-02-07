@@ -5,14 +5,17 @@ export const Page = styled("div", {
   marginLeft: "auto",
   marginRight: "auto",
 
-  paddingLeft: "$5",
-  paddingRight: "$5",
-  paddingBottom: 64,
+  paddingInline: "$5",
+  paddingBlock: "$4",
 
-  fontSize: 18,
+  fontSize: 16,
 
-  fontFamily: "Iosevka SS05",
+  fontFamily: "Departure Mono",
   color: "white",
 
   minHeight: "100vh",
+
+  "@bp1": {
+    paddingBlock: "$7",
+  },
 });

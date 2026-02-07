@@ -1,4 +1,29 @@
 import { createStitches } from "@stitches/react";
+import { paletteToTokens } from "./lib/colors";
+import {
+  bluePalettes,
+  goldPalettes,
+  redPalettes,
+  magentaPalettes,
+  greenPalettes,
+  type SupportedGamut,
+} from "./lib/themes";
+
+// Use P3 as the default palette (will be overridden by media queries in CSS)
+const bluePalette = bluePalettes.p3;
+const goldPalette = goldPalettes.p3;
+const redPalette = redPalettes.p3;
+const magentaPalette = magentaPalettes.p3;
+const greenPalette = greenPalettes.p3;
+
+export {
+  bluePalettes,
+  goldPalettes,
+  redPalettes,
+  magentaPalettes,
+  greenPalettes,
+};
+export type { SupportedGamut };
 
 const shadows = {
   1: `
@@ -19,20 +44,41 @@ const shadows = {
       `,
 };
 
+const physicalColors = {
+  ...paletteToTokens(bluePalette, "blue"),
+  ...paletteToTokens(goldPalette, "gold"),
+  ...paletteToTokens(redPalette, "red"),
+  ...paletteToTokens(magentaPalette, "magenta"),
+  ...paletteToTokens(greenPalette, "green"),
+  ...paletteToTokens(bluePalette, "primary"),
+
+  gray500: "hsl(206,10%,76%)",
+  purple500: "hsl(252,78%,60%)",
+  green500: "hsl(148,60%,60%)",
+  red500: "hsl(352,100%,62%)",
+  orange: "#ffaa48",
+
+  // Utility colors
+  cream: "#fcf3e6",
+  shadowBase: "254deg 38% 3%",
+} as const;
+
+const semanticColors = {
+  background: "$primary950",
+  type: "$primary800",
+  typeHighlight: "$primary600",
+  legendTitle: "$primary50",
+  shadowColor: "$shadowBase",
+} as const;
+
+const colors = {
+  ...physicalColors,
+  ...semanticColors,
+} as const;
+
 export const { styled, css, getCssText, keyframes } = createStitches({
   theme: {
-    colors: {
-      background: "rgb(20, 18, 32)",
-      gray500: "hsl(206,10%,76%)",
-      blue500: "hsl(206,100%,50%)",
-      purple500: "hsl(252,78%,60%)",
-      green500: "hsl(148,60%,60%)",
-      red500: "hsl(352,100%,62%)",
-      orange: "#ffaa48",
-      shadowColor: "254deg 38% 3%",
-      type: "#fcf3e6",
-      typeHighlight: "#fcf8f2",
-    },
+    colors,
     space: {
       1: "1px",
       2: "2px",
@@ -53,7 +99,7 @@ export const { styled, css, getCssText, keyframes } = createStitches({
       7: "4.5em",
     },
     fonts: {
-      mono: "Söhne Mono, menlo, monospace",
+      mono: "Iosevka SS05, Söhne Mono, menlo, monospace",
       serif: "Georgia, 'Times New Roman', Times, serif",
     },
     fontWeights: {},
