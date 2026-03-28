@@ -144,6 +144,15 @@ const OngoingProjects = () => (
         "StitchesJS",
       ]}
     />
+    <ProjectEntry
+      title="Antara"
+      from="2025"
+      to="now"
+      position="Sole Developer"
+      link="https://github.com/ZaymonFC/antara"
+      description="A command-line tool for monitoring recurring life patterns and activities. Track rhythmic activities through trailing windows, recurring intervals, or calendar-based patterns."
+      technologies={["TypeScript", "Deno", "SQLite", "Drizzle ORM"]}
+    />
   </Stack>
 );
 
