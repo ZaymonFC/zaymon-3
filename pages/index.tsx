@@ -149,7 +149,7 @@ const OngoingProjects = () => (
       from="2025"
       to="now"
       position="Sole Developer"
-      link="https://github.com/ZaymonFC/antara"
+      link="https://github.com/zaymonoid/antara"
       description="A command-line tool for monitoring recurring life patterns. Define rhythms as trailing windows, recurring intervals, or calendar-based patterns and track your progress against them."
       technologies={["TypeScript", "Deno", "SQLite", "Drizzle ORM"]}
     />
@@ -158,7 +158,7 @@ const OngoingProjects = () => (
       from="2025"
       to="now"
       position="Sole Developer"
-      link="https://github.com/ZaymonFC/effect-saga"
+      link="https://github.com/zaymonoid/effect-saga"
       description="A state management library implementing the saga pattern using Effect-TS's structured concurrency. Provides typed cancellation, scoped lifetimes, and real fiber-based concurrency as a modern alternative to redux-saga."
       technologies={["TypeScript", "Effect-TS", "Deno"]}
     />
@@ -169,28 +169,28 @@ const Projects = () => (
   <Stack spacing="lg" direction="column">
     <MiniProjectEntry
       title="Iosevka"
-      link={"https://github.com/ZaymonFC/iosevka/"}
+      link={"https://github.com/zaymonoid/iosevka/"}
       description="An iOS implementation of the word game Lexica."
       technologies={["Swift", "SwiftUI", "Combine", "ObservableStore", "Tries"]}
       date="2023"
     />
     <MiniProjectEntry
       title="Connect-4 Advanced 3D"
-      link={"https://github.com/ZaymonFC/Connect4-3D-R3F"}
+      link={"https://github.com/zaymonoid/Connect4-3D-R3F"}
       description="A 3D implementation of Connect-Four Advanced (4x4x4) playable in the browser implemented in react-three-fiber."
       technologies={["react", "react-three-fiber", "jotai"]}
       date="2022"
     />
     <MiniProjectEntry
       title="mac-os-key-repeat"
-      link={"https://github.com/ZaymonFC/mac-os-key-repeat"}
+      link={"https://github.com/zaymonoid/mac-os-key-repeat"}
       description="A simple tool to test Mac OS key-repeat settings without restarting your computer more than once."
       technologies={["NextJS", "rxjs", "StitchesJS"]}
       date="2022"
     />
     <MiniProjectEntry
       title="befunge-rust"
-      link={"https://github.com/ZaymonFC/befunge-rust"}
+      link={"https://github.com/zaymonoid/befunge-rust"}
       description="An interpreter for a significant subset of the esolang 'Befunge'."
       technologies={["Rust", "Interpreters"]}
       date="2022"
@@ -313,7 +313,7 @@ const Socials = () => {
       Follow me on{" "}
       <Link href="https://bsky.app/profile/boundless.garden">Bluesky</Link> and{" "}
       <Link href="https://www.twitter.com/zaymonantonio">X</Link>, see my code
-      on <Link href="https://www.github.com/ZaymonFC">GitHub</Link>, check out
+      on <Link href="https://www.github.com/zaymonoid">GitHub</Link>, check out
       what books I{"'"}m reading on{" "}
       <Link href="https://oku.club/user/zaymon">Oku.Club</Link> or have a look
       at my collections on{" "}
@@ -336,8 +336,9 @@ const Acknowledgements = () => {
       </Text>
       <VSpacer size="sm" />
       <Text>
-        The <Link href="https://github.com/ZaymonFC/zaymon-3">source code</Link>{" "}
-        is public on GitHub.
+        The{" "}
+        <Link href="https://github.com/zaymonoid/zaymon-3">source code</Link> is
+        public on GitHub.
       </Text>
     </>
   );
