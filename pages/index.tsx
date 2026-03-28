@@ -153,6 +153,15 @@ const OngoingProjects = () => (
       description="A command-line tool for monitoring recurring life patterns and activities. Track rhythmic activities through trailing windows, recurring intervals, or calendar-based patterns."
       technologies={["TypeScript", "Deno", "SQLite", "Drizzle ORM"]}
     />
+    <ProjectEntry
+      title="effect-saga"
+      from="2025"
+      to="now"
+      position="Sole Developer"
+      link="https://github.com/ZaymonFC/effect-saga"
+      description="A state management library implementing the saga pattern using Effect-TS's structured concurrency. Provides typed cancellation, scoped lifetimes, and real fiber-based concurrency as a modern alternative to redux-saga."
+      technologies={["TypeScript", "Effect-TS", "Deno"]}
+    />
   </Stack>
 );
 

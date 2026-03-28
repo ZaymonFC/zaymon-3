@@ -1,4 +1,4 @@
 pre-commit:
   commands:
     prettier:
-      run: pnpm prettier
+      run: pnpm prettier --check .
