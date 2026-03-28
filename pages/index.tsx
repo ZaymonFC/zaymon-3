@@ -188,12 +188,7 @@ const WorkEntries = () => (
       to="now"
       position="Freelance Software Engineer"
       description="Quick and easy electricity connections for Texas home builders."
-      technologies={[
-        "NextJS",
-        "Tailwind CSS",
-        "Typescript",
-        "Prisma",
-      ]}
+      technologies={["NextJS", "Tailwind CSS", "Typescript", "Prisma"]}
       link="https://www.utilityon.com"
     />
     <ProjectEntry
