@@ -150,7 +150,7 @@ const OngoingProjects = () => (
       to="now"
       position="Sole Developer"
       link="https://github.com/ZaymonFC/antara"
-      description="A command-line tool for monitoring recurring life patterns and activities. Track rhythmic activities through trailing windows, recurring intervals, or calendar-based patterns."
+      description="A command-line tool for monitoring recurring life patterns. Define rhythms as trailing windows, recurring intervals, or calendar-based patterns and track your progress against them."
       technologies={["TypeScript", "Deno", "SQLite", "Drizzle ORM"]}
     />
     <ProjectEntry
