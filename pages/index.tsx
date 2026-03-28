@@ -183,6 +183,20 @@ const Projects = () => (
 const WorkEntries = () => (
   <Stack spacing="lg" direction="column">
     <ProjectEntry
+      title="UtilityOn"
+      from="2026-01"
+      to="now"
+      position="Freelance Software Engineer"
+      description="Quick and easy electricity connections for Texas home builders."
+      technologies={[
+        "NextJS",
+        "Tailwind CSS",
+        "Typescript",
+        "Prisma",
+      ]}
+      link="https://www.utilityon.com"
+    />
+    <ProjectEntry
       title="DXOS"
       from="2024-03"
       to="2025-07"
