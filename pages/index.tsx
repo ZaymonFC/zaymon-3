@@ -107,6 +107,15 @@ const Letter = () => (
 const OngoingProjects = () => (
   <Stack spacing="lg" direction="column">
     <ProjectEntry
+      title="katha"
+      from="2026-02"
+      to="now"
+      position="Sole Developer"
+      link="https://github.com/zaymonoid/katha"
+      description="Saga-pattern state management built on Effect-TS structured concurrency. A minimal store plus long-running processes that coordinate side effects with typed cancellation, scoped lifetimes, and fiber-based coordination. Ships with React and Lit bindings and a SWR-style query layer."
+      technologies={["TypeScript", "Effect-TS", "React", "Lit"]}
+    />
+    <ProjectEntry
       title="LetterDesk"
       from="2021"
       to="now"
@@ -146,21 +155,12 @@ const OngoingProjects = () => (
     />
     <ProjectEntry
       title="Antara"
-      from="2025"
+      from="2026-01"
       to="now"
       position="Sole Developer"
       link="https://github.com/zaymonoid/antara"
       description="A command-line tool for monitoring recurring life patterns. Define rhythms as trailing windows, recurring intervals, or calendar-based patterns and track your progress against them."
       technologies={["TypeScript", "Deno", "SQLite", "Drizzle ORM"]}
-    />
-    <ProjectEntry
-      title="effect-saga"
-      from="2025"
-      to="now"
-      position="Sole Developer"
-      link="https://github.com/zaymonoid/effect-saga"
-      description="A state management library implementing the saga pattern using Effect-TS's structured concurrency. Provides typed cancellation, scoped lifetimes, and real fiber-based concurrency as a modern alternative to redux-saga."
-      technologies={["TypeScript", "Effect-TS", "Deno"]}
     />
   </Stack>
 );
